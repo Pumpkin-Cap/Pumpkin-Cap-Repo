@@ -1,17 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+
+// import "ace-builds/src-noconflict/webpack-resolver";
+
+
 /**
  * COMPONENT
  */
-export const Home = props => {
-  const {username} = props
+export class Home extends React.Component {
 
-  return (
-    <div>
-      <h3>Welcome, {username}</h3>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        Welcome, {this.props.username}
+      </div>
+    )
+  }
+  
 }
 
 /**
