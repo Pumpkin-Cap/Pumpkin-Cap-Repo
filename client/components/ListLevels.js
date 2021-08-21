@@ -1,6 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { fetchLevels } from '../store/level'
+import React from 'react';
+import { connect } from 'react-redux';
+import { fetchLevels } from '../store/level';
+import { Link } from 'react-router-dom';
 
 
 class ListLevels extends React.Component {
@@ -11,9 +12,14 @@ class ListLevels extends React.Component {
     }
 
     render() {
+        const { levels } = this.props
         return (
-            <div>
-                Hello!
+            <div className="levelListContainer">
+                {Array.isArray(levels) && levels.map(level => (
+                    <div className="level" key={level.id}>
+                        <Link to={`/level/${level.id}`}>Go to level {level.id}</Link>
+                        </div>
+                ))}
             </div>
         )
     }

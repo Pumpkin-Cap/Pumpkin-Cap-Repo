@@ -8,10 +8,12 @@ module.exports = router
 router.get('/list', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization)
+    if (req.query.password) {
     const level = await Level.findAll({where: {password: req.query.password}})
     if (level) {
       await user.addLevel(level)
     }
+  }
     const levels = await Level.findAll()
     res.send(levels)
   } catch (err) {
