@@ -17,10 +17,58 @@ async function seed() {
     User.create({ username: 'duane', password: '123' })
   ])
 
-  //Level 1
-  const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
+  for (let i = 1; i <= 400; i++) {
+    let randoUsername = 'Anonymous_Soldier_';
+    let currentNum = i;
 
-  //changed naming convention for test instance
+    while (currentNum >= 100) {
+      randoUsername += 'C';
+      currentNum -= 100;
+    }
+    if (currentNum >= 90) {
+      randoUsername += 'XC';
+      currentNum -= 90;
+    }
+    if (currentNum >= 50) {
+      randoUsername += 'L';
+      currentNum -= 50;
+    }
+    if (currentNum >= 40) {
+      randoUsername += 'XL';
+      currentNum -= 40;
+    }
+    while (currentNum>= 10) {
+      randoUsername += 'X';
+      currentNum -= 10;
+    }
+    if (currentNum === 9) {
+      randoUsername += 'IX';
+      currentNum -= 9;
+    }
+    if (currentNum === 4) {
+      randoUsername += 'IV';
+      currentNum -= 4;
+    }
+    if (currentNum >= 5) {
+      randoUsername += 'V';
+      currentNum -= 5;
+    }
+    while (currentNum > 0) {
+      randoUsername += 'I';
+      currentNum--;
+    }
+
+    //const randoMail = 'fake' + (i) + '@fake.com';
+
+    users.push({
+      username: randoUsername,
+      password: '123',
+      //email: randoMail
+    });
+  }
+
+  const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
+    
   const levelOneTestOne = await Test.create({
     name: 'test one',
     test: `describe('myFunction', function() {
