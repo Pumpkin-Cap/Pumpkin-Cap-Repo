@@ -37,21 +37,21 @@ class SingleLevel extends React.Component {
         this.setState({
           js: newValue
         })
-        // console.log("LEVEL ON PROPS: ", this.props);
+        console.log("Level: ", this.state.doc);
       }
     
       setDoc() {
         const doc = `
         <html>
           <body>
-          ${DocHTML}
+          ${DocHTML(this.props.level)}
           </body>
           <style>
           ${DocCSS}
           </style>
           ${DocIMPORTS}
           <script>
-          ${DocMocha()}
+          ${DocMocha(this.props.level)}
           ${this.state.js}
           </script>
         </html>

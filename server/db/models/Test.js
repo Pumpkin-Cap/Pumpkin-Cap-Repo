@@ -10,7 +10,7 @@ const Test = db.define('test', {
   test: {
     type: Sequelize.TEXT,
   },
-  testDiv: {
+  divId: {
     type: Sequelize.STRING,
   }
 })

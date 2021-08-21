@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
+import ListLevels from './components/ListLevels';
 import SingleLevel from './components/SingleLevel';
 import {me} from './store'
 
@@ -22,6 +23,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/level/list" component={ListLevels} />
             <Route path="/level/:id" component={SingleLevel} />
             <Redirect to="/home" />
           </Switch>

@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Test, Level} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -16,6 +16,40 @@ async function seed() {
     User.create({ username: 'murphy', password: '123' }),
     User.create({ username: 'duane', password: '123' })
   ])
+
+  const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
+  
+  const test1 = await Test.create({
+    name: 'test one',
+    test: `describe('myFunction', function() {
+      it('this is a duck', function() {
+        var callback = sinon.spy();
+    
+        myFunction(true, callback);
+    
+        assert(callback.calledOnce);
+        
+      })
+    });`,
+    divId: "this is a duck"
+  })
+
+  const test2 = await Test.create({
+    name: 'test one',
+    test: `describe('myFunction', function() {
+      it('this is another duck', function() {
+        var callback = sinon.spy();
+    
+        myFunction(true, callback);
+    
+        assert(callback.calledOnce);
+        
+      })
+    });`,
+    divId: "this is another duck"
+  })
+
+  await Level1.addTests( [ test1, test2 ] )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
