@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import { Login, Signup } from './AuthForm'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -19,8 +20,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Login />
+          <Signup />
+          {/* <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link> */}
         </div>
       )}
     </nav>

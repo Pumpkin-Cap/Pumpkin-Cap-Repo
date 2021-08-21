@@ -13,7 +13,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
-        Welcome, {this.props.username}
+        {this.props.username && ('Welcome, ' + this.props.username)}
       </div>
     )
   }
