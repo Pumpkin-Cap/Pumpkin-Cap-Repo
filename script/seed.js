@@ -17,18 +17,31 @@ async function seed() {
     User.create({ username: 'duane', password: '123' })
   ])
 
+  //nameless user generator
+  for (let i = 0; i < 101; i++) {
+    let sequentialUsername = 'Anonymous_Soldier_' + i;
+
+    //const randoMail = 'fake' + (i) + '@fake.com';
+
+    users.push({
+      username: sequentialUsername,
+      password: '123',
+      //email: randoMail
+    });
+  }
+
   const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
-  
+
   const test1 = await Test.create({
     name: 'test one',
     test: `describe('myFunction', function() {
       it('this is a duck', function() {
         var callback = sinon.spy();
-    
+
         myFunction(true, callback);
-    
+
         assert(callback.calledOnce);
-        
+
       })
     });`,
     divId: "this is a duck"
@@ -39,11 +52,11 @@ async function seed() {
     test: `describe('myFunction', function() {
       it('this is another duck', function() {
         var callback = sinon.spy();
-    
+
         myFunction(true, callback);
-    
+
         assert(callback.calledOnce);
-        
+
       })
     });`,
     divId: "this is another duck"
