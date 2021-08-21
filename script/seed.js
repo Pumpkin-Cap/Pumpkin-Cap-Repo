@@ -19,12 +19,12 @@ async function seed() {
 
   //nameless user generator
   for (let i = 0; i < 101; i++) {
-    let sequentialUsername = 'Anonymous_Soldier_' + i;
+    let randoUsername = 'Anonymous_Soldier_';
 
     //const randoMail = 'fake' + (i) + '@fake.com';
 
     users.push({
-      username: sequentialUsername,
+      username: randoUsername,
       password: '123',
       //email: randoMail
     });
