@@ -2,49 +2,73 @@
 
 
 
-export const DocMocha = function () {
+export const DocMocha = function (level) {
 
 
-    const testobject = {
+    // const testobject = {
 
-        id: 1,
-        name: 'test1',
-        test: `
+    //     id: 1,
+    //     name: 'test1',
+    //     test: `
       
-        describe('myFunction', function() {
-          it('should call the callback function', function() {
-            var callback = sinon.spy();
+        // describe('myFunction', function() {
+        //   it('should call the callback function', function() {
+        //     var callback = sinon.spy();
         
-            myFunction(true, callback);
+        //     myFunction(false, callback);
         
-            assert(callback.calledOnce);
+        //     assert(callback.calledOnce);
             
-          })
+        //   })
+        // });
         
-        afterEach(function() {
-            checkResult(this.currentTest)
-            })
-        });
-        
-        function checkResult(test) {
-          const duck = document.getElementById('duck')
-          if (test.state === 'passed') {
-            duck.innerText = 'PASSED'
-          } else {
-            duck.innerText = 'FAILED'
-          }
-        }`,
-        testDiv: '<div id="duck1">Duck</div>',
-        levelId: 1
-    }
+    //     `,
+    //     divId: 'duck',
+    //     levelId: 1
+    // }
+
+const tests = level.tests
+
+return (`
+    mocha.setup('bdd');
+    let assert = chai.assert;
+
+    const testDivs = [`+ tests.map(test => (`document.getElementById('` + test.divId + `')`)) + `]
+    
+    before(function() {
+        console.log(testDivs)
+        // runs once before the first test in this block
+      });
+
+     after(function() {
+         if (testDivs.every(div => (div.innerText === 'PASSED'))) {
+             const resultLink = document.getElementById('link')
+             resultLink.target = '_top'
+             resultLink.className = ''
+         }
+        // runs once after the last test in this block
+      });
 
 
-const tests = [testobject]
+      afterEach(function() {
+        checkResult(this.currentTest)
+        })
 
-return (
-    `mocha.setup('bdd');
-    var assert = chai.assert;` + 
-    tests.map(test => (test.test)) +
+      function checkResult(test) {
+        console.log(test)
+        const duck = document.getElementById(test.title)
+        if (test.state === 'passed') {
+          duck.innerText = 'PASSED'
+        } else {
+          duck.innerText = 'FAILED'
+        }
+      }
+
+
+    ` + 
+    tests.reduce((acc, test) => (
+      acc += test.test + `\n`), '')
+      +
     `mocha.run()`)
 }
 

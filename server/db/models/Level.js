@@ -10,6 +10,11 @@ const Level = db.define('level', {
   },
   category: {
     type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
   }
 })
 

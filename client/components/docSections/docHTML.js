@@ -5,15 +5,22 @@
 
 
 
-export const DocHTML = `
-            
-<div id="mocha"></div>
-<div id="duck">Duck</div>
+export const DocHTML = function(level) {
+
+    const tests = level.tests
+
+    return (`
+                
+        <div id="mocha"></div>
+        ` + tests.reduce((acc, test) => (
+            acc += `<div id='${test.divId}'>${test.name}</div>`) + `\n`, '')
+             + `
 
 
-<a id="result" href='/home' class="hidden">Snippets</a>
+        <a id="link" href='/level/list?password=megaman' class="hidden">Go to the next Level!</a>
 
-`
+        `
+    )
 
-
+}
 
