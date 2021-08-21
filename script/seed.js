@@ -17,8 +17,8 @@ async function seed() {
     User.create({ username: 'duane', password: '123' })
   ])
 
-  //nameless user generator
-  for (let i = 1; i < 401; i++) {
+  //nameless user generator (works up to 400)
+  for (let i = 1; i <= 400; i++) {
     let randoUsername = 'Anonymous_Soldier_';
     let currentNum = i;
 
