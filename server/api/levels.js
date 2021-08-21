@@ -12,7 +12,7 @@ router.get('/list', async (req, res, next) => {
     if (level) {
       await user.addLevel(level)
     }
-    const levels = await user.getLevels()
+    const levels = await Level.findAll()
     res.send(levels)
   } catch (err) {
     next(err)

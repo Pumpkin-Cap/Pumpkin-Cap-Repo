@@ -17,7 +17,6 @@ async function seed() {
     User.create({ username: 'duane', password: '123' })
   ])
 
-  //nameless user generator (works up to 400)
   for (let i = 1; i <= 400; i++) {
     let randoUsername = 'Anonymous_Soldier_';
     let currentNum = i;
@@ -69,8 +68,8 @@ async function seed() {
   }
 
   const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
-
-  const test1 = await Test.create({
+    
+  const levelOneTestOne = await Test.create({
     name: 'test one',
     test: `describe('myFunction', function() {
       it('this is a duck', function() {
@@ -85,7 +84,7 @@ async function seed() {
     divId: "this is a duck"
   })
 
-  const test2 = await Test.create({
+  const levelOneTestTwo = await Test.create({
     name: 'test one',
     test: `describe('myFunction', function() {
       it('this is another duck', function() {
@@ -100,7 +99,147 @@ async function seed() {
     divId: "this is another duck"
   })
 
-  await Level1.addTests( [ test1, test2 ] )
+  await Level1.addTests( [ levelOneTestOne, levelOneTestTwo ] )
+
+  // Level 2
+  const Level2 = await Level.create({name:'Level Two', category: 'Functions', password: 'protoman'})
+
+  const levelTwoTestOne = await Test.create({
+    name: 'test one',
+    test: `describe('myFunction', function() {
+      it('this is a third duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is a third duck"
+  })
+
+  const levelTwoTestTwo = await Test.create({
+    name: 'test two',
+    test: `describe('myFunction', function() {
+      it('this is a fourth duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is a fourth duck"
+  })
+
+  await Level2.addTests( [ levelTwoTestOne, levelTwoTestTwo ] )
+
+  // Level 3
+  const Level3 = await Level.create({name:'Level Three', category: 'Functions', password: 'sandman'})
+
+  const levelThreeTestOne = await Test.create({
+    name: 'test one',
+    test: `describe('myFunction', function() {
+      it('this is a fifth duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is a fifth duck"
+  })
+
+  const levelThreeTestTwo = await Test.create({
+    name: 'test two',
+    test: `describe('myFunction', function() {
+      it('this is a sixth duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is a sixth duck"
+  })
+
+  await Level3.addTests( [ levelThreeTestOne, levelThreeTestTwo ] )
+
+  // Level 4
+  const Level4 = await Level.create({name:'Level Four', category: 'Functions', password: 'gutsman'})
+
+  const levelFourTestOne = await Test.create({
+    name: 'test one',
+    test: `describe('myFunction', function() {
+      it('this is a seventh duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is a seventh duck"
+  })
+
+  const levelFourTestTwo = await Test.create({
+    name: 'test two',
+    test: `describe('myFunction', function() {
+      it('this is an eighth duck', function() {
+        var callback = sinon.spy();
+
+        myFunction(true, callback);
+
+        assert(callback.calledOnce);
+
+      })
+    });`,
+    divId: "this is an eighth duck"
+  })
+
+  await Level4.addTests( [ levelFourTestOne, levelFourTestTwo ] )
+
+    // Level 5
+    const Level5 = await Level.create({name:'Level Five', category: 'Functions', password: 'roll'})
+
+    const levelFiveTestOne = await Test.create({
+      name: 'test one',
+      test: `describe('myFunction', function() {
+        it('this is a ninth duck', function() {
+          var callback = sinon.spy();
+
+          myFunction(true, callback);
+
+          assert(callback.calledOnce);
+
+        })
+      });`,
+      divId: "this is a ninth duck"
+    })
+
+    const levelFiveTestTwo = await Test.create({
+      name: 'test two',
+      test: `describe('myFunction', function() {
+        it('this is a tenth duck', function() {
+          var callback = sinon.spy();
+
+          myFunction(true, callback);
+
+          assert(callback.calledOnce);
+
+        })
+      });`,
+      divId: "this is a tenth duck"
+    })
+
+    await Level5.addTests( [ levelFiveTestOne, levelFiveTestTwo ] )
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
