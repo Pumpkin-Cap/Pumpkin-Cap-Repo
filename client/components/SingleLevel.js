@@ -29,15 +29,15 @@ class SingleLevel extends React.Component {
         this.setDoc = this.setDoc.bind(this)
       }
     
-      componentDidMount() {
-          this.props.getLevel(this.props.match.params.id)
+      async componentDidMount() {
+          await this.props.getLevel(this.props.match.params.id)
+          this.setDoc()
       }
     
       onChange(newValue) {
         this.setState({
           js: newValue
         })
-        console.log("Level: ", this.state.doc);
       }
     
       setDoc() {
