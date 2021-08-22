@@ -46,7 +46,7 @@ class AuthForm extends React.Component {
         this.customStyles = modalStyle()
 
         if (props.name === 'signup') this.customStyles.content.height = "420px"
-        
+
         this.subtitle = '';
 
         this.name = props.name
@@ -63,7 +63,7 @@ class AuthForm extends React.Component {
         const formName = event.target.name
         const username = event.target.username.value
         const password = event.target.password.value
-        
+
         // let email = ''
         // if (event.target.email) email = event.target.email.value
         await this.props.authen(username, password, formName)
@@ -164,7 +164,7 @@ class AuthForm extends React.Component {
 
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
                 </form>
-            
+
             </Modal>
         </>
         );
@@ -184,7 +184,7 @@ const mapSignup = state => ({
 })
 
 const mapDispatch = dispatch => ({
-   
+
     authen: (username,password,formName) => dispatch(authenticate(username, password, formName))
 
   })

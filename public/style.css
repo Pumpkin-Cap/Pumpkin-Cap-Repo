@@ -24,6 +24,10 @@ form div {
   height: 100px;
 }
 
+.outlinedButton {
+  
+}
+/* listLevelsStyling */
 .unlocked {
   border-radius: 15px ;
   border-style: solid;
@@ -31,6 +35,7 @@ form div {
   text-align: center;
   width: 500px;
   height: 100px;
+  padding: 60px 0px 0px 0px;
   background-color: lightgreen;
 }
 
@@ -41,5 +46,16 @@ form div {
   text-align: center;
   width: 500px;
   height: 100px;
+  padding: 60px 0px 0px 0px;
   background-color: grey;
+}
+
+.levelListContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.level {
+  padding: 25px;
 }
