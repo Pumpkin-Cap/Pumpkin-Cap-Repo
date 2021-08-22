@@ -26,3 +26,27 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+
+
+router.put('/update/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByToken(req.body.headers.authorization)
+    const {username, password} = req.body
+    console.log(req.params)
+    if (user.id === parseInt(req.params.id)) {
+      await user.update({username, password})
+      console.log(user)
+      res.json(user)
+    } else {
+      res.sendStatus(403)
+    }
+
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+
+
+

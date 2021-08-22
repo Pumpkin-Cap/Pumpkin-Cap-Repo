@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchUser } from '../store/user'
 import { fetchLevels } from '../store/level'
 import { Link } from 'react-router-dom'
+import EditProfile from './EditProfile'
 
 
 class Profile extends React.Component {
@@ -20,6 +21,7 @@ class Profile extends React.Component {
 
         return (
             <div id="profileContainer">
+                {(this.props.auth.id === this.props.user.id) && <EditProfile />}
                 Hello, I am a profile for {this.props.user.username}
                 <div>
                 Completion: {completedLevels / this.props.levels.length * 100} %
@@ -28,8 +30,6 @@ class Profile extends React.Component {
             </div>
         )
     }
-
-
 
 
 }
