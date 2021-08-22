@@ -5,15 +5,8 @@ import { fetchLevel } from '../store/level';
 import ace from "ace-builds"
 import AceEditor from "react-ace";
 
-// ace.config.setModuleUrl('ace/mode/php_worker', require('../../node_modules/ace-builds/src-noconflict/worker-php.js'))
-// ace.config.setModuleUrl('ace/mode/php_json', require('../../node_modules/ace-builds/src-noconflict/worker-json.js'))
-// ace.config.setModuleUrl('ace/mode/php_javascript', require('../../node_modules/ace-builds/src-noconflict/worker-javascript.js'))
-// ace.config.setModuleUrl('ace/mode/javascript', require('../../node_modules/ace-builds/src-noconflict/mode-javascript.js'))
-// ace.config.setModuleUrl('ace/mode/javascript_worker', require('../../node_modules/ace-builds/src-noconflict/worker-javascript.js'))
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
-// import "ace-builds/webpack-resolver";
-// import "ace-builds/src-noconflict/javascript_worker";
 
 
 class SingleLevel extends React.Component {

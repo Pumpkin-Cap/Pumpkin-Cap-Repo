@@ -24,8 +24,7 @@ router.get('/list', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const level = await Level.findByPk(req.params.id,{include: Test
-    })
+    const level = await Level.findByPk(req.params.id,{include: Test})
     res.json(level)
   } catch (err) {
     next(err)
