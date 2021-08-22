@@ -68,7 +68,7 @@ async function seed() {
   }
 
   const Level1 = await Level.create({name:'Level One', category: 'Functions', password: 'megaman'})
-    
+
   const levelOneTestOne = await Test.create({
     name: 'test one',
     test: `describe('myFunction', function() {
