@@ -6,7 +6,6 @@ import { TOKEN } from "./auth"
 const SET_LEVEL = 'SET_LEVEL'
 
 
-
 // action creators
 
 const setLevel = level => ({
@@ -30,16 +29,14 @@ export const fetchLevels = () => async dispatch => {
   try {
     const token = window.localStorage.getItem(TOKEN)
     const queryString = window.location.search;
-    console.log(queryString);
     const { data } = await axios.get(`/api/level/list${queryString}`, {
       headers: {
         authorization: token
       }
     })
-    console.log("LEVELS:  ", data)
     dispatch(setLevel(data))
   } catch (levelError) {
-    console.log("Could not get completed levels", levelError )
+    console.log("Could not get all levels", levelError )
   }
 }
 // reducer

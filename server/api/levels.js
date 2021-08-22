@@ -14,7 +14,7 @@ router.get('/list', async (req, res, next) => {
       await user.addLevel(level)
     }
   }
-    const levels = await Level.findAll()
+    const levels = await Level.findAll({include: User, order: [['id','ASC']]})
     res.send(levels)
   } catch (err) {
     next(err)

@@ -13,13 +13,32 @@ class ListLevels extends React.Component {
 
     render() {
         const { levels } = this.props
+        let completedUsernames = [];
+        let lastCompleted = 1;
         return (
             <div className="levelListContainer">
-                {Array.isArray(levels) && levels.map(level => (
+                {Array.isArray(levels) && levels.map(level => {
+                    
+                    completedUsernames = level.users.map(user => user.username)
+                    completedUsernames.includes(this.props.user.username) && lastCompleted++
+                    let levelUnlocked = false
+                    if (lastCompleted === level.id  || completedUsernames.includes(this.props.user.username)) {
+                        levelUnlocked = true
+                    }
+
+                    return (
                     <div className="level" key={level.id}>
-                        <Link to={`/level/${level.id}`}>Go to level {level.id}</Link>
+                        {(levelUnlocked) ?
+                        <Link to={`/level/${level.id}`}>
+                        <div className="unlocked">Go to level {level.id}</div>
+                        </Link>
+                        : 
+                        <div className="locked">level {level.id} Not unlocked yet</div>
+                        }
+                        
                         </div>
-                ))}
+                    )
+                    })}
             </div>
         )
     }
@@ -28,6 +47,7 @@ class ListLevels extends React.Component {
 
 
 const mapState = state => ({
+    user: state.auth,
     levels: state.level
 })
 
