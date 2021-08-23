@@ -49,7 +49,7 @@ class SingleLevel extends React.Component {
           </script>
         </html>
       `
-
+        console.log(doc)
       this.setState({
         doc
       })
