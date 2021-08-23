@@ -28,18 +28,18 @@ class SingleLevel extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
       }
-    
+
       async componentDidMount() {
           await this.props.getLevel(this.props.match.params.id)
           this.setDoc()
       }
-    
+
       onChange(newValue) {
         this.setState({
           js: newValue
         })
       }
-    
+
       setDoc() {
         const doc = `
         <html>
@@ -56,17 +56,18 @@ class SingleLevel extends React.Component {
           </script>
         </html>
       `
-    
+
       this.setState({
         doc
       })
-    
+
       }
-      
+
     render () {
+      console.log(this.props.level);
+      const sampleCode = this.props.level.startingJS
         return (
-        
-    
+          this.props.level.startingJS ?
           <div>
             {(this.props.level.id) && <div>{this.props.level.name}</div>}
             {/* <h3>Welcome, {username}</h3> */}
@@ -89,8 +90,9 @@ class SingleLevel extends React.Component {
                 name="unique_id"
                 style={{height:'250px'}}
                 editorProps={{ $blockScrolling: true }}
+                defaultValue={`${this.props.level.startingJS}`}
             />
-          </div>
+          </div> : null
         )
       }
 

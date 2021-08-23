@@ -24,9 +24,6 @@ form div {
   height: 100px;
 }
 
-.outlinedButton {
-  
-}
 /* listLevelsStyling */
 .unlocked {
   border-radius: 15px ;
@@ -36,7 +33,7 @@ form div {
   width: 500px;
   height: 100px;
   padding: 60px 0px 0px 0px;
-  background-color: lightgreen;
+  background-color: #936639;
 }
 
 .locked {
@@ -47,7 +44,7 @@ form div {
   width: 500px;
   height: 100px;
   padding: 60px 0px 0px 0px;
-  background-color: grey;
+  background-color: #656D4A;
 }
 
 .levelListContainer {

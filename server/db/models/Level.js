@@ -8,8 +8,14 @@ const Level = db.define('level', {
     unique: true,
     allowNull: false
   },
+  prompt: {
+    type: Sequelize.STRING
+  },
   category: {
     type: Sequelize.STRING,
+  },
+  startingJS: {
+    type: Sequelize.TEXT
   },
   password: {
     type: Sequelize.STRING,
