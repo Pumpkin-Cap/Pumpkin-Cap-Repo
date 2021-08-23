@@ -24,7 +24,6 @@ form div {
   height: 100px;
 }
 
-/* listLevelsStyling */
 .unlocked {
   border-radius: 15px ;
   border-style: solid;
@@ -55,4 +54,11 @@ form div {
 
 .level {
   padding: 25px;
+}
+
+#profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }

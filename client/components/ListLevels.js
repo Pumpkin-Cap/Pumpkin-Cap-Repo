@@ -54,5 +54,4 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getLevels: () => dispatch(fetchLevels()),
 });
-
 export default connect(mapState, mapDispatch)(ListLevels);
