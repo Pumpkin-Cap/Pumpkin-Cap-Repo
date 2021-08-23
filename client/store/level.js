@@ -18,10 +18,13 @@ const setLevel = level => ({
 
 export const fetchLevel = (id) => async dispatch => {
     try {
-      const { data } = await axios.get(`/api/level/${id}`)
+      const token = window.localStorage.getItem('token')
+      const { data } = await axios.get(`/api/level/${id}`, { headers: { authorization: token }})
       dispatch(setLevel(data))
+      return true;
     } catch (levelError) {
       console.log("THERE WAS A PROBLEM GETTING THE LEVEL!!! ", levelError )
+      return false;
     }
   }
 

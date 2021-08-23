@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { Level, Test, User }} = require('../db')
+const { requireToken, userHasLevel } = require('./gatekeepingMiddleware');
 module.exports = router
 
 
@@ -23,7 +24,7 @@ router.get('/list', async (req, res, next) => {
 })
 
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requireToken, userHasLevel, async (req, res, next) => {
   try {
     const level = await Level.findByPk(req.params.id,{include: Test})
     res.json(level)
