@@ -5,15 +5,8 @@ import { fetchLevel } from '../store/level';
 import ace from "ace-builds"
 import AceEditor from "react-ace";
 
-// ace.config.setModuleUrl('ace/mode/php_worker', require('../../node_modules/ace-builds/src-noconflict/worker-php.js'))
-// ace.config.setModuleUrl('ace/mode/php_json', require('../../node_modules/ace-builds/src-noconflict/worker-json.js'))
-// ace.config.setModuleUrl('ace/mode/php_javascript', require('../../node_modules/ace-builds/src-noconflict/worker-javascript.js'))
-// ace.config.setModuleUrl('ace/mode/javascript', require('../../node_modules/ace-builds/src-noconflict/mode-javascript.js'))
-// ace.config.setModuleUrl('ace/mode/javascript_worker', require('../../node_modules/ace-builds/src-noconflict/worker-javascript.js'))
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
-// import "ace-builds/webpack-resolver";
-// import "ace-builds/src-noconflict/javascript_worker";
 
 
 class SingleLevel extends React.Component {
@@ -28,18 +21,18 @@ class SingleLevel extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
       }
-    
+  
       async componentDidMount() {
           await this.props.getLevel(this.props.match.params.id)
           this.setDoc()
       }
-    
+
       onChange(newValue) {
         this.setState({
           js: newValue
         })
       }
-    
+
       setDoc() {
         const doc = `
         <html>
@@ -56,17 +49,18 @@ class SingleLevel extends React.Component {
           </script>
         </html>
       `
-    
+        console.log(doc)
       this.setState({
         doc
       })
-    
+
       }
-      
+
     render () {
+      console.log(this.props.level);
+      const sampleCode = this.props.level.startingJS
         return (
-        
-    
+          this.props.level.startingJS ?
           <div>
             {(this.props.level.id) && <div>{this.props.level.name}</div>}
             {/* <h3>Welcome, {username}</h3> */}
@@ -89,8 +83,9 @@ class SingleLevel extends React.Component {
                 name="unique_id"
                 style={{height:'250px'}}
                 editorProps={{ $blockScrolling: true }}
+                defaultValue={`${this.props.level.startingJS}`}
             />
-          </div>
+          </div> : null
         )
       }
 

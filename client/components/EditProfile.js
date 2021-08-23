@@ -12,8 +12,7 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { connect } from 'react-redux';
-// import { toast } from 'react-toastify';
-// import modalStyle from './modalStyle';
+import { updateUser } from '../store/user';
 
 const modalStyle = () => ({
     content: {
@@ -29,7 +28,7 @@ const modalStyle = () => ({
     },
 })
 
-class AuthForm extends React.Component {
+class EditProfile extends React.Component {
 
 
     constructor(props) {
@@ -41,40 +40,11 @@ class AuthForm extends React.Component {
         this.afterOpenModal = this.afterOpenModal.bind(this)
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
+        this.handleEditUser = this.handleEditUser.bind(this)
 
         this.customStyles = modalStyle()
-
-        if (props.name === 'signup') this.customStyles.content.height = "420px"
-
+        
         this.subtitle = '';
-
-        this.name = props.name
-        this.displayName = props.displayName
-        this.handleSubmit = props.handleSubmit
-        this.error = props.error
-
-    }
-
-    async handleLogin(event) {
-        event.persist()
-        event.preventDefault()
-
-        const formName = event.target.name
-        const username = event.target.username.value
-        const password = event.target.password.value
-
-        // let email = ''
-        // if (event.target.email) email = event.target.email.value
-        await this.props.authen(username, password, formName)
-        if (!this.props.error) {
-            this.closeModal()
-            // toast.success(`Logged in as ${username}`, {position: toast.POSITION.TOP_CENTER, autoClose: 1500})
-        } else {
-            this.setState({
-                error: this.props.error
-            })
-        }
 
     }
 
@@ -92,18 +62,25 @@ class AuthForm extends React.Component {
         this.setState({ modalOpen: false, error: null });
     }
 
+    handleEditUser(event) {
+        event.persist()
+        event.preventDefault()
+        this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
+        console.log('TIME TO EDIT THE USER')
+    }
 
-    // modalForm() {
+
+
     render() {
         return (
         <>
-            <a onClick={this.openModal}>{this.displayName}</a>
+            <button onClick={this.openModal}>Edit Profile</button>
             <Modal
                 isOpen={this.state.modalOpen}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
                 style={this.customStyles}
-                contentLabel="Login Modal"
+                contentLabel="Edit Profile Modal"
                 ariaHideApp={false}
             >
                 <div
@@ -115,7 +92,7 @@ class AuthForm extends React.Component {
                 <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
                 <Button onClick={this.closeModal}>close</Button>
                 </div>
-                <form onSubmit={this.handleLogin} name={this.name}>
+                <form onSubmit={this.handleEditUser} name={this.name}>
                     {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
@@ -158,38 +135,32 @@ class AuthForm extends React.Component {
                       type="submit"
                       variant="outlined"
                     >
-                      {this.displayName}
+                      Confirm
                     </Button>
                     </FormControl>
 
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
                 </form>
-
+            
             </Modal>
         </>
         );
     }
 }
 
-const mapLogin = state => ({
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-})
-
-const mapSignup = state => ({
-    name: 'signup',
-    displayName: 'Sign up',
-    error: state.auth.error
+const mapState = state => ({
+    user: state.auth
 })
 
 const mapDispatch = dispatch => ({
-
-    authen: (username,password,formName) => dispatch(authenticate(username, password, formName))
-
+    updateUser: (id, username, password) => dispatch(updateUser(id, username, password))
   })
 
-export const Login = connect(mapLogin,mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup,mapDispatch)(AuthForm)
+export default connect(mapState,mapDispatch)(EditProfile)
+
+
+
+
+
 
 

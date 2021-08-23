@@ -10,18 +10,18 @@ export const DocMocha = function (level) {
     //     id: 1,
     //     name: 'test1',
     //     test: `
-      
+
         // describe('myFunction', function() {
         //   it('should call the callback function', function() {
         //     var callback = sinon.spy();
-        
+
         //     myFunction(false, callback);
-        
+
         //     assert(callback.calledOnce);
-            
+
         //   })
         // });
-        
+
     //     `,
     //     divId: 'duck',
     //     levelId: 1
@@ -32,9 +32,10 @@ const tests = level.tests
 return (`
     mocha.setup('bdd');
     let assert = chai.assert;
+    let expect = chai.expect;
 
     const testDivs = [`+ tests.map(test => (`document.getElementById('` + test.divId + `')`)) + `]
-    
+
     before(function() {
         console.log(testDivs)
         // runs once before the first test in this block
@@ -64,12 +65,18 @@ return (`
         }
       }
 
+      try {
 
-    ` + 
+    ` +
     tests.reduce((acc, test) => (
       acc += test.test + `\n`), '')
       +
-    `mocha.run()`)
+    `
+    } catch (err) {
+      const errorDiv = document.getElementById('error')
+      errorDiv.innerText = error
+    }
+    mocha.run()`)
 }
 
 

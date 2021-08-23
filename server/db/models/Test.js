@@ -10,6 +10,9 @@ const Test = db.define('test', {
   test: {
     type: Sequelize.TEXT,
   },
+  description: {
+    type: Sequelize.TEXT
+  },
   divId: {
     type: Sequelize.STRING,
   }

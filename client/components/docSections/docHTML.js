@@ -12,6 +12,7 @@ export const DocHTML = function(level) {
     return (`
 
         <div id="mocha"></div>
+        <div id="error"></div>
         ` + tests.reduce((acc, test) => (
             acc += `<div id='${test.divId}'>${test.name}</div>`) + `\n`, '')
              + `
