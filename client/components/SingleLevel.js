@@ -2,11 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { DocCSS, DocHTML, DocIMPORTS, DocMocha } from './docSections'
 import { fetchLevel } from '../store/level';
-import ace from "ace-builds"
-import AceEditor from "react-ace";
-
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-github";
+import Editor from '@monaco-editor/react';
 
 
 class SingleLevel extends React.Component {
@@ -49,7 +45,6 @@ class SingleLevel extends React.Component {
           </script>
         </html>
       `
-        console.log(doc)
       this.setState({
         doc
       })
@@ -57,7 +52,6 @@ class SingleLevel extends React.Component {
       }
 
     render () {
-      console.log(this.props.level);
       const sampleCode = this.props.level.startingJS
         return (
           this.props.level.startingJS ?
@@ -75,15 +69,19 @@ class SingleLevel extends React.Component {
               />
               <button onClick={this.setDoc}>Run</button>
             </div>
-            <AceEditor
-                setOptions={{ useWorker: false }}
-                mode="javascript"
-                theme="github"
-                onChange={this.onChange}
-                name="unique_id"
-                style={{height:'250px'}}
-                editorProps={{ $blockScrolling: true }}
-                defaultValue={`${this.props.level.startingJS}`}
+            <Editor
+              height="50vh"
+              width="75vw"
+              fontsize="12px"
+              value={this.state.js}
+              defaultLanguage="javascript"
+              theme="vs-dark"
+              onChange={this.onChange}
+              defaultValue={sampleCode}
+              options={{
+                readOnly: false,
+                lineHeight: 25,
+              }}
             />
           </div> : null
         )
