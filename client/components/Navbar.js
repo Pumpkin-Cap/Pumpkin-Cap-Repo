@@ -6,7 +6,7 @@ import { Login, Signup } from './AuthForm'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Pumkin Cap</h1>
+    <h1>Call of Coding: Fullstack Warfare</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -18,7 +18,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </a>
         </div>
       ) : (
-        <div>
+        <div className="navLinks">
           {/* The navbar will show these links before you log in */}
           <Login />
           <Signup />

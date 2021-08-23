@@ -31,7 +31,8 @@ form div {
   text-align: center;
   width: 500px;
   height: 100px;
-  background-color: lightgreen;
+  padding: 60px 0px 0px 0px;
+  background-color: #936639;
 }
 
 .locked {
@@ -41,7 +42,18 @@ form div {
   text-align: center;
   width: 500px;
   height: 100px;
-  background-color: grey;
+  padding: 60px 0px 0px 0px;
+  background-color: #656D4A;
+}
+
+.levelListContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.level {
+  padding: 25px;
 }
 
 #profileContainer {
