@@ -7,7 +7,7 @@ module.exports = router
 
 router.get('/list', async (req, res, next) => {
   try {
-    
+
     if (req.query.password && req.headers.authorization) {
       const user = await User.findByToken(req.headers.authorization)
       const level = await Level.findAll({where: {password: req.query.password}})

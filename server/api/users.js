@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const { models: { User, Level }} = require('../db')
+const { requireToken, requireAdmin, userIsUser } = require('./gatekeepingMiddleware');
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', requireToken, async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and username fields - even though
@@ -17,7 +18,7 @@ router.get('/', async (req, res, next) => {
 })
 
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requireToken, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id, {include: Level})
     res.json(user)
@@ -28,19 +29,11 @@ router.get('/:id', async (req, res, next) => {
 
 
 
-router.put('/update/:id', async (req, res, next) => {
+router.put('/update/:id', requireToken, userIsUser, async (req, res, next) => {
   try {
-    const user = await User.findByToken(req.body.headers.authorization)
-    const {username, password} = req.body
-    console.log(req.params)
-    if (user.id === parseInt(req.params.id)) {
-      await user.update({username, password})
-      console.log(user)
-      res.json(user)
-    } else {
-      res.sendStatus(403)
-    }
-
+    await user.update({username, password})
+    console.log(user)
+    res.json(user)
   } catch (err) {
     next(err)
   }

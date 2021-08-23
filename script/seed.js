@@ -307,7 +307,6 @@ async function seed() {
       //insert appropriate numbers to make it FALSE
       return (/*replace me!*/ <= /*replace me!*/ || /*replace me!*/ >= /*replace me!*/)
       }
-      }
       `
   });
 
@@ -340,28 +339,14 @@ async function seed() {
     name: "Level Five",
     category: "Functions",
     password: "roll",
-    startingJS: `function myLessThanFunction(){
+    startingJS: `function myIfElseFunction(duckCount, hasShield){
 
-      //insert appropriate numbers to make it TRUE
-      return (1 < 2)
-      }
+      const hold = “Hold your fire!!”
+      const rifle = “Fire the rifle!!”
+      const cannon = “Fire the cannon!!”
+      const grenade = “Fire the grenade launcher!!”
 
-      function myGreaterThanFunction(){
-
-      //insert appropriate numbers to make it TRUE
-      return (2 > 1)
-      }
-
-      function myEqualToFunction(){
-
-      //insert appropriate numbers to make it TRUE
-      return (1 === 1)
-      }
-
-      function myNotEqualToFunction(){
-
-      //insert appropriate numbers to make it TRUE
-      return (1 !== 2)
+      //write your code here!
       }
       `
   });
