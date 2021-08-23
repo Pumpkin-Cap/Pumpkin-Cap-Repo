@@ -170,23 +170,23 @@ async function seed() {
   const levelTwoTestOne = await Test.create({
     name: "test one",
     test: `describe('myIfFunction', function(){
-      it('returns \'Hold your fire!!\' when no ducks are advancing', function(){
+      it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfFunction(0)).to.equal('Hold your fire!!');
         expect(myIfFunction(1)).to.not.equal('Hold your fire!!');
         expect(myIfFunction(100)).to.not.equal('Hold your fire!!');
       });`,
-    divId: `returns \'Hold your fire!!\' when no ducks are advancing`,
+    divId: `returns Hold your fire!! when no ducks are advancing`,
   });
 
   const levelTwoTestTwo = await Test.create({
     name: "test two",
-    test: `it('returns \'Fire!!\' when ducks are advancing', function(){
+    test: `it('returns Fire!! when ducks are advancing', function(){
       expect(myIfFunction(0)).to.not.equal('Fire!!');
       expect(myIfFunction(1)).to.equal('Fire!!');
       expect(myIfFunction(100)).to.equal('Fire!!');
     });
   });`,
-    divId: `returns \'Fire!!\' when ducks are advancing`,
+    divId: `returns Fire!! when ducks are advancing`,
   });
 
   await Level2.addTests([
@@ -229,7 +229,7 @@ async function seed() {
   const levelThreeTestOne = await Test.create({
     name: "test one",
     test: `describe('myIfElseFunction', function(){
-      it('returns \'Hold your fire!!\' when no ducks are advancing', function(){
+      it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0)).to.equal('Hold your fire!!');
         expect(myIfElseFunction(1)).to.not.equal('Hold your fire!!');
         expect(myIfElseFunction(2)).to.not.equal('Hold your fire!!');
@@ -238,12 +238,12 @@ async function seed() {
         expect(myIfElseFunction(8)).to.not.equal('Hold your fire!!');
         expect(myIfElseFunction(100)).to.not.equal('Hold your fire!!');
       });`,
-    divId: `returns \'Hold your fire!!\' when no ducks are advancing`,
+    divId: `returns Hold your fire!! when no ducks are advancing`,
   });
 
   const levelThreeTestTwo = await Test.create({
     name: "test two",
-    test: `it('returns \'Fire the rifle!!\' when 1-2 ducks are advancing', function(){
+    test: `it('returns Fire the rifle!! when 1-2 ducks are advancing', function(){
       expect(myIfElseFunction(0)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(1)).to.equal('Fire the rifle!!');
       expect(myIfElseFunction(2)).to.equal('Fire the rifle!!');
@@ -252,12 +252,12 @@ async function seed() {
       expect(myIfElseFunction(8)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(100)).to.not.equal('Fire the rifle!!');
     });`,
-    divId: `returns \'Fire the rifle!!\' when 1-2 ducks are advancing`,
+    divId: `returns Fire the rifle!! when 1-2 ducks are advancing`,
   });
 
   const levelThreeTestThree = await Test.create({
     name: "test three",
-    test: `it('returns \'Fire the cannon!!\' when 3-5 ducks are advancing', function(){
+    test: `it('returns Fire the cannon!! when 3-5 ducks are advancing', function(){
       expect(myIfElseFunction(0)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(1)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(2)).to.not.equal('Fire the cannon!!');
@@ -266,12 +266,12 @@ async function seed() {
       expect(myIfElseFunction(8)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(100)).to.not.equal('Fire the cannon!!');
     });`,
-    divId: `returns \'Fire the cannon!!\' when 3-5 ducks are advancing`,
+    divId: `returns Fire the cannon!! when 3-5 ducks are advancing`,
   });
 
   const levelThreeTestFour = await Test.create({
     name: "test four",
-    test: `it('returns \'Fire the grenade launcher!!\' when 6+ ducks are advancing', function(){
+    test: `it('returns Fire the grenade launcher!! when 6+ ducks are advancing', function(){
       expect(myIfElseFunction(0)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(1)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(2)).to.not.equal('Fire the grenade launcher!!');
@@ -281,7 +281,7 @@ async function seed() {
       expect(myIfElseFunction(100)).to.equal('Fire the grenade launcher!!');
     });
   });`,
-  divId: `returns \'Fire the grenade launcher!!\' when 6+ ducks are advancing`,
+  divId: `returns Fire the grenade launcher!! when 6+ ducks are advancing`,
 });
 
   await Level3.addTests([
@@ -369,7 +369,7 @@ async function seed() {
   const levelFiveTestOne = await Test.create({
     name: "test one",
     test: `describe('myIfElseFunction', function(){
-      it('returns \'Hold your fire!!\' when no ducks are advancing', function(){
+      it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0, false)).to.equal('Hold your fire!!');
         expect(myIfElseFunction(0, true)).to.equal('Hold your fire!!');
         expect(myIfElseFunction(1, false)).to.not.equal('Hold your fire!!');
@@ -385,12 +385,12 @@ async function seed() {
         expect(myIfElseFunction(100, false)).to.not.equal('Hold your fire!!');
         expect(myIfElseFunction(100, true)).to.not.equal('Hold your fire!!');
       });`,
-    divId: `returns \'Hold your fire!!\' when no ducks are advancing`,
+    divId: `returns Hold your fire!! when no ducks are advancing`,
   });
 
   const levelFiveTestTwo = await Test.create({
     name: "test two",
-    test: `it('returns \'Fire the rifle!!\' when 1-2 ducks are advancing without a shield', function(){
+    test: `it('returns Fire the rifle!! when 1-2 ducks are advancing without a shield', function(){
       expect(myIfElseFunction(0, false)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(0, true)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(1, false)).to.equal('Fire the rifle!!');
@@ -406,12 +406,12 @@ async function seed() {
       expect(myIfElseFunction(100, false)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(100, true)).to.not.equal('Fire the rifle!!');
     });`,
-    divId: `returns \'Fire the rifle!!\' when 1-2 ducks are advancing without a shield`,
+    divId: `returns Fire the rifle!! when 1-2 ducks are advancing without a shield`,
   });
 
   const levelFiveTestThree = await Test.create({
     name: "test three",
-    test: `it('returns \'Fire the cannon!!\' when 3-5 ducks are advancing without a shield', function(){
+    test: `it('returns Fire the cannon!! when 3-5 ducks are advancing without a shield', function(){
       expect(myIfElseFunction(0, false)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(0, true)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(1, false)).to.not.equal('Fire the cannon!!');
@@ -427,12 +427,12 @@ async function seed() {
       expect(myIfElseFunction(100, false)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(100, true)).to.not.equal('Fire the cannon!!');
     });`,
-    divId: `returns \'Fire the cannon!!\' when 3-5 ducks are advancing without a shield`,
+    divId: `returns Fire the cannon!! when 3-5 ducks are advancing without a shield`,
   });
 
   const levelFiveTestFour = await Test.create({
     name: "test four",
-    test: `it('returns \'Fire the grenade launcher!!\' when 6+ ducks are advancing without a shield', function(){
+    test: `it('returns Fire the grenade launcher!! when 6+ ducks are advancing without a shield', function(){
       expect(myIfElseFunction(0, false)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(0, true)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(1, false)).to.not.equal('Fire the grenade launcher!!');
@@ -446,12 +446,12 @@ async function seed() {
       expect(myIfElseFunction(8, false)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(100, false)).to.equal('Fire the grenade launcher!!');
     });`,
-    divId: `returns \'Fire the grenade launcher!!\' when 6+ ducks are advancing without a shield`,
+    divId: `returns Fire the grenade launcher!! when 6+ ducks are advancing without a shield`,
   });
 
   const levelFiveTestFive = await Test.create({
     name: "test five",
-    test: `it('returns \'Fire the grenade launcher!!\' when any amount of ducks are advancing with a shield', function(){
+    test: `it('returns Fire the grenade launcher!! when any amount of ducks are advancing with a shield', function(){
       expect(myIfElseFunction(0, false)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(0, true)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(1, false)).to.not.equal('Fire the grenade launcher!!');
@@ -468,7 +468,7 @@ async function seed() {
       expect(myIfElseFunction(100, true)).to.equal('Fire the grenade launcher!!');
     });
   });`,
-  divId: `returns \'Fire the grenade launcher!!\' when any amount of ducks are advancing with a shield`,
+  divId: `returns Fire the grenade launcher!! when any amount of ducks are advancing with a shield`,
 });
 
   await Level5.addTests([

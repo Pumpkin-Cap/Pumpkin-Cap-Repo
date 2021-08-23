@@ -65,12 +65,18 @@ return (`
         }
       }
 
+      try {
 
     ` +
     tests.reduce((acc, test) => (
       acc += test.test + `\n`), '')
       +
-    `mocha.run()`)
+    `
+    } catch (err) {
+      const errorDiv = document.getElementById('error')
+      errorDiv.innerText = error
+    }
+    mocha.run()`)
 }
 
 
