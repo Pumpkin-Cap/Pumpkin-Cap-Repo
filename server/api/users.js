@@ -31,9 +31,8 @@ router.get('/:id', requireToken, async (req, res, next) => {
 
 router.put('/update/:id', requireToken, userIsUser, async (req, res, next) => {
   try {
-    await user.update({username, password})
-    console.log(user)
-    res.json(user)
+		const updateUser = await User.findByPk(req.params.id);
+		res.send(await updateUser.update(req.body));
   } catch (err) {
     next(err)
   }

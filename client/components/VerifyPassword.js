@@ -24,11 +24,11 @@ const modalStyle = () => ({
     transform: "translate(-50%, -50%)",
     zIndex: 10,
     width: "400px",
-    height: "350px",
+    height: "300px",
     },
 })
 
-class EditProfile extends React.Component {
+class VerifyProfile extends React.Component {
 
 
     constructor(props) {
@@ -40,7 +40,7 @@ class EditProfile extends React.Component {
         this.afterOpenModal = this.afterOpenModal.bind(this)
         this.openModal = this.openModal.bind(this)
         this.closeModal = this.closeModal.bind(this)
-        this.handleEditUser = this.handleEditUser.bind(this)
+        this.handleVerifyPassword = this.handleVerifyPassword.bind(this)
 
         this.customStyles = modalStyle()
 
@@ -62,16 +62,10 @@ class EditProfile extends React.Component {
         this.setState({ modalOpen: false, error: null });
     }
 
-    handleEditUser(event) {
-        if (event.target.username.value === '' || event.target.password.value === ''){
-            const nameError = { response: { data: "All fields required" } }
-            this.setState({ error: nameError });
-        } else{
-            this.closeModal();
-            event.persist()
-            event.preventDefault()
-            this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
-        }
+    handleVerifyPassword(event) {
+        event.persist()
+        event.preventDefault()
+        this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
     }
 
 
@@ -142,10 +136,9 @@ class EditProfile extends React.Component {
                     >
                       Confirm
                     </Button>
-                    <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
+                    </FormControl>
+
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
-                    </FormControl>
-                    </FormControl>
                 </form>
 
             </Modal>
@@ -159,7 +152,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    updateUser: (id, username, password) => dispatch(updateUser(id, username, password))
+    verifyPassword: (id, password) => dispatch(updateUser(id, password))
   })
 
 export default connect(mapState,mapDispatch)(EditProfile)

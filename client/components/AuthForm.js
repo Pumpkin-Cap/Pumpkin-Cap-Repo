@@ -69,9 +69,7 @@ class AuthForm extends React.Component {
 
         if(username === '' || password === ''){
             const nameError = { response: { data: "All fields required" } }
-            this.setState({
-                error: nameError
-            })
+            this.setState({ error: nameError })
         } else{
             await this.props.authen(username, password, formName)
 

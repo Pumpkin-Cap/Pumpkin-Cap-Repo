@@ -17,16 +17,16 @@ class Profile extends React.Component {
     render() {
 
         let completedLevels = 0
-        if (this.props.user.id) (completedLevels = this.props.user.levels.length)
+        if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
 
         return (
             <div id="profileContainer">
-                {(this.props.auth.id === this.props.user.id) && <EditProfile />}
                 Hello, I am a profile for {this.props.user.username}
                 <div>
                 Completion: {completedLevels / this.props.levels.length * 100} %
                 </div>
                 <div>Current Level: {this.props.levels[completedLevels] && <Link to={`/level/${completedLevels+1}`} >{this.props.levels[completedLevels].name}</Link>}</div>
+                {(this.props.auth.id === this.props.user.id) && <EditProfile />}
             </div>
         )
     }
