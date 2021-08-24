@@ -20,10 +20,6 @@ form div {
   display: inline-block;
 }
 
-#aceEditor {
-  height: 100px;
-}
-
 .unlocked {
   border-radius: 15px;
   border-style: solid;
@@ -52,8 +48,21 @@ form div {
   flex-wrap: wrap;
 }
 
-.level {
+.levelCard {
   padding: 25px;
+}
+
+#level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.codeIframe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
 }
 
 #profileContainer {
@@ -61,6 +70,7 @@ form div {
   flex-direction: column;
   align-items: center;
 }
+
 
 /* #login-modal {
   display: "flex";

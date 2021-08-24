@@ -25,7 +25,7 @@ class ListLevels extends React.Component {
             }
 
             return (
-              <div className="level" key={level.id}>
+              <div className="levelCard" key={level.id}>
                 {levelUnlocked ? (
                   <Link to={`/level/${level.id}`}>
                     <div className="unlocked">Go to level {level.id}</div>
