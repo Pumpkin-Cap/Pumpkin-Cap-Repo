@@ -18,8 +18,9 @@ const setLevel = level => ({
 
 export const fetchLevel = (id) => async dispatch => {
     try {
-      const token = window.localStorage.getItem('token')
-      const { data } = await axios.get(`/api/level/${id}`, { headers: { authorization: token }})
+      const token = window.localStorage.getItem(TOKEN)
+      const queryString = window.location.search;
+      const { data } = await axios.get(`/api/level/${id}/${queryString}`, { headers: { authorization: token }})
       dispatch(setLevel(data))
       return true;
     } catch (levelError) {
@@ -31,12 +32,7 @@ export const fetchLevel = (id) => async dispatch => {
 export const fetchLevels = () => async dispatch => {
   try {
     const token = window.localStorage.getItem(TOKEN)
-    const queryString = window.location.search;
-    const { data } = await axios.get(`/api/level/list${queryString}`, {
-      headers: {
-        authorization: token
-      }
-    })
+    const { data } = await axios.get(`/api/level/list`, { headers: { authorization: token }})
     dispatch(setLevel(data))
   } catch (levelError) {
     console.log("Could not get all levels", levelError )

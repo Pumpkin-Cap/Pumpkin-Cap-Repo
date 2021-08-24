@@ -4,29 +4,6 @@
 
 export const DocMocha = function (level) {
 
-
-    // const testobject = {
-
-    //     id: 1,
-    //     name: 'test1',
-    //     test: `
-
-        // describe('myFunction', function() {
-        //   it('should call the callback function', function() {
-        //     var callback = sinon.spy();
-
-        //     myFunction(false, callback);
-
-        //     assert(callback.calledOnce);
-
-        //   })
-        // });
-
-    //     `,
-    //     divId: 'duck',
-    //     levelId: 1
-    // }
-
 const tests = level.tests
 
 return (`
@@ -37,7 +14,6 @@ return (`
     const testDivs = [`+ tests.map(test => (`document.getElementById('` + test.divId + `')`)) + `]
 
     before(function() {
-        console.log(testDivs)
         // runs once before the first test in this block
       });
 
@@ -56,7 +32,6 @@ return (`
         })
 
       function checkResult(test) {
-        console.log(test)
         const duck = document.getElementById(test.title)
         if (test.state === 'passed') {
           duck.innerText = 'PASSED'
@@ -71,6 +46,8 @@ return (`
       acc += test.test + `\n`), '')
       +
     `
+    
+
     mocha.run()`)
 }
 

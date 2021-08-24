@@ -18,7 +18,7 @@ export const DocHTML = function(level) {
              + `
 
 
-        <a id="link" href='/level/list?password=${level.password}' class="hidden">Go to the next Level!</a>
+        <a id="link" href='/level/${level.id+1}?password=${level.password}' class="hidden">Go to the next Level!</a>
 
         `
     )
