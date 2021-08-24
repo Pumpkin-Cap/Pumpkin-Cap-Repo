@@ -63,14 +63,20 @@ class EditProfile extends React.Component {
     }
 
     handleEditUser(event) {
+		event.preventDefault();
+        event.persist();
         if (event.target.username.value === '' || event.target.password.value === ''){
             const nameError = { response: { data: "All fields required" } }
             this.setState({ error: nameError });
         } else{
-            this.closeModal();
-            event.persist()
-            event.preventDefault()
-            this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
+            if (!this.props.error) {
+                this.closeModal();
+                this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
+            } else {
+                this.setState({
+                    error: this.props.error
+                })
+            }
         }
     }
 
@@ -98,7 +104,7 @@ class EditProfile extends React.Component {
                 <Button onClick={this.closeModal}>close</Button>
                 </div>
                 <form onSubmit={this.handleEditUser} name={this.name}>
-                    {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
+                    {/* <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
                         id="label"
@@ -109,7 +115,7 @@ class EditProfile extends React.Component {
                         variant="outlined"
                         name="email"
                     />
-                    </FormControl>}
+                    </FormControl> */}
                     <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
