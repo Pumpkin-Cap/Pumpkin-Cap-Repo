@@ -25,6 +25,7 @@ class Routes extends Component {
       <div>
         {/* {isLoggedIn ? ( */}
           <Switch>
+            <Route path="/" component={Home} />
             <Route path="/home" component={Home} />
             <Route path="/login" component={Home} />
             <Route path="/level/list" component={ListLevels} />

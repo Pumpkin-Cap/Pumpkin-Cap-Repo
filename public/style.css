@@ -61,9 +61,3 @@ form div {
   flex-direction: column;
   align-items: center;
 }
-
-/* #login-modal {
-  display: "flex";
-  justify-content: "space-between";
-  flex-wrap: "wrap";
-} */

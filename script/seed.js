@@ -151,8 +151,8 @@ async function seed() {
     password: "protoman",
     startingJS: `function myIfFunction(duckCount){
 
-    const fire = “Fire!!”
-    const hold = “Hold your fire!!”
+    const fire = 'Fire!!'
+    const hold = 'Hold your fire!!'
 
 
     if (/*replace me with your condition!*/){
@@ -201,10 +201,10 @@ async function seed() {
     password: "sandman",
     startingJS: `function myIfElseFunction(duckCount){
 
-      const hold = “Hold your fire!!”
-      const rifle = “Fire the rifle!!”
-      const cannon = “Fire the cannon!!”
-      const grenade = “Fire the grenade launcher!!”
+      const hold = 'Hold your fire!!'
+      const rifle = 'Fire the rifle!!'
+      const cannon = 'Fire the cannon!!'
+      const grenade = 'Fire the grenade launcher!!'
 
 
       if (/*replace me with your condition!*/){
@@ -341,10 +341,10 @@ async function seed() {
     password: "roll",
     startingJS: `function myIfElseFunction(duckCount, hasShield){
 
-      const hold = “Hold your fire!!”
-      const rifle = “Fire the rifle!!”
-      const cannon = “Fire the cannon!!”
-      const grenade = “Fire the grenade launcher!!”
+      const hold = 'Hold your fire!!'
+      const rifle = 'Fire the rifle!!'
+      const cannon = 'Fire the cannon!!'
+      const grenade = 'Fire the grenade launcher!!'
 
       //write your code here!
       }
