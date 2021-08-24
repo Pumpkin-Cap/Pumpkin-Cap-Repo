@@ -25,7 +25,7 @@ const modalStyle = () => ({
     transform: "translate(-50%, -50%)",
     zIndex: 10,
     width: "400px",
-    height: "335px",
+    height: "350px",
     },
 })
 
@@ -66,14 +66,23 @@ class AuthForm extends React.Component {
 
         // let email = ''
         // if (event.target.email) email = event.target.email.value
-        await this.props.authen(username, password, formName)
-        if (!this.props.error) {
-            this.closeModal()
-            // toast.success(`Logged in as ${username}`, {position: toast.POSITION.TOP_CENTER, autoClose: 1500})
-        } else {
+
+        if(username === '' || password === ''){
+            const nameError = { response: { data: "All fields required" } }
             this.setState({
-                error: this.props.error
+                error: nameError
             })
+        } else{
+            await this.props.authen(username, password, formName)
+
+            if (!this.props.error) {
+                this.closeModal()
+                // toast.success(`Logged in as ${username}`, {position: toast.POSITION.TOP_CENTER, autoClose: 1500})
+            } else {
+                this.setState({
+                    error: this.props.error
+                })
+            }
         }
 
     }
@@ -119,7 +128,7 @@ class AuthForm extends React.Component {
                     display: "flex",
                     justifyContent: "space-between"
                 }}>
-                    {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
+                    {/* {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
                         id="label"
@@ -130,7 +139,7 @@ class AuthForm extends React.Component {
                         variant="outlined"
                         name="email"
                     />
-                    </FormControl>}
+                    </FormControl>} */}
                     <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
@@ -163,7 +172,9 @@ class AuthForm extends React.Component {
                     >
                       {this.displayName}
                     </Button>
+                    <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
+                    </FormControl>
                     </FormControl>
 
                 </form>
@@ -185,6 +196,7 @@ const mapSignup = state => ({
     displayName: 'Sign up',
     error: state.auth.error
 })
+
 
 const mapDispatch = dispatch => ({
 
