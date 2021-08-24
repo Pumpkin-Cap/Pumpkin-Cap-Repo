@@ -4,15 +4,15 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import { Login, Signup } from './AuthForm'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>Call of Coding: Fullstack Warfare</h1>
+const Navbar = ({handleClick, isLoggedIn, userId}) => (
+
     <nav>
+    <Link to="/home"><h1>Call of Coding: Fullstack Warfare</h1></Link>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/level/list">Levels</Link>
-          <Link to="/home">Home</Link>
+          <Link to={`/user/${userId}`}>Profile</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -27,8 +27,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-    <hr />
-  </div>
 )
 
 /**
@@ -36,7 +34,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    userId: state.auth.id
   }
 }
 

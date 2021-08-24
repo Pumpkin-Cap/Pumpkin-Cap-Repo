@@ -15,4 +15,14 @@ export const DocCSS = `
 .hidden {
   display: none;
 }
+
+.failed {
+  color: red
+}
+
+.passed {
+  color: green
+}
+
+
 `
