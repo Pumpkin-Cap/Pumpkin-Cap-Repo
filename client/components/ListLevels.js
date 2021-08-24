@@ -10,19 +10,16 @@ class ListLevels extends React.Component {
 
   render() {
     const { levels } = this.props;
-    let completedUsernames = [];
     let lastCompleted = 1;
     return (
       <div className="levelListContainer">
         {Array.isArray(levels) &&
           levels.map((level) => {
-            completedUsernames = level.users.map((user) => user.username);
-            completedUsernames.includes(this.props.user.username) &&
-              lastCompleted++;
+            level.users.length > 0 && lastCompleted++;
             let levelUnlocked = false;
             if (
               lastCompleted === level.id ||
-              completedUsernames.includes(this.props.user.username)
+              level.users.length > 0
             ) {
               levelUnlocked = true;
             }
