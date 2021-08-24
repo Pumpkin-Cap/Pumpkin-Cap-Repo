@@ -131,7 +131,7 @@ async function seed() {
     name: "test four",
     test: `describe('myNotEqualToFunction', function(){
       it('returns TRUE when both values are NOT the same', function(){
-        expect(myNotEqualToFunction()).to.equal(false);
+        expect(myNotEqualToFunction()).to.equal(true);
       });
     });`,
     divId: "returns TRUE when both values are NOT the same",

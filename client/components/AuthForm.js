@@ -24,7 +24,7 @@ const modalStyle = () => ({
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     zIndex: 10,
-    width: "450px",
+    width: "400px",
     height: "335px",
     },
 })
