@@ -17,10 +17,15 @@ class SingleLevel extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
       }
-  
+
       async componentDidMount() {
-          await this.props.getLevel(this.props.match.params.id)
-          this.setDoc()
+          const currentLevel = await this.props.getLevel(this.props.match.params.id)
+
+          if (currentLevel){
+            this.setDoc()
+          } else{
+            this.props.history.push("/level/unauthorized")
+          }
       }
 
       onChange(newValue) {

@@ -14,7 +14,8 @@ const setUser = user => ( {type: SET_USER, user} )
 export const fetchUser = (id) => async dispatch => {
 
     try {
-        const { data } = await axios.get(`/api/users/${id}`)
+        const token = window.localStorage.getItem('token');
+        const { data } = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
         dispatch(setUser(data))
     } catch (userError) {
         console.log("COULD NOT GET USER ", userError)
@@ -22,17 +23,11 @@ export const fetchUser = (id) => async dispatch => {
 
 }
 
-export const updateUser = (id, username, password) => async dispatch => {
+export const updateUser = (id) => async dispatch => {
     try {
         const token = window.localStorage.getItem('token')
         console.log(token)
-        const { data } = await axios.put(`/api/users/update/${id}`, {
-            username,
-            password,
-            headers: {
-              authorization: token
-            }
-          })
+        const { data } = await axios.put(`/api/users/update/${id}`, { headers: { authorization: token } });
         dispatch(setUser(data))
     } catch (err) {
         console.log('THERE WAS A PROBLEM UPDATING THE USER: ', err)

@@ -25,7 +25,7 @@ const modalStyle = () => ({
     transform: "translate(-50%, -50%)",
     zIndex: 10,
     width: "400px",
-    height: "300px",
+    height: "335px",
     },
 })
 
@@ -115,7 +115,10 @@ class AuthForm extends React.Component {
                 <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
                 <Button onClick={this.closeModal}>close</Button>
                 </div>
-                <form onSubmit={this.handleLogin} name={this.name}>
+                <form onSubmit={this.handleLogin} name={this.name} style={{
+                    display: "flex",
+                    justifyContent: "space-between"
+                }}>
                     {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
@@ -160,9 +163,9 @@ class AuthForm extends React.Component {
                     >
                       {this.displayName}
                     </Button>
+                    {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
                     </FormControl>
 
-                    {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
                 </form>
 
             </Modal>
