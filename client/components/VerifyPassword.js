@@ -62,6 +62,7 @@ class verifyPassword extends React.Component {
             this.setState({ error: codeError });
         }
         if (!this.props.error) {
+            console.log('success')
             this.closeModal();
             <EditProfile />
         } else {

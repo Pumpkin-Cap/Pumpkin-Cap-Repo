@@ -29,7 +29,6 @@ router.get('/:id', requireToken, async (req, res, next) => {
 
 router.get('/verify/:id', requireToken, userIsUser, async (req, res, next) => {
   try {
-    console.log(req.headers.check)
     const user = await User.findByPk(req.params.id)
     const checkPass = await user.correctPassword(req.headers.check);
     res.json(checkPass)
