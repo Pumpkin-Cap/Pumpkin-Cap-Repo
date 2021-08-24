@@ -33,14 +33,15 @@ export const updateUser = (id, newName, newPass) => async dispatch => {
     }
 }
 
-export const checkPassword = (id) => async dispatch => {
+export const verifyUser = (id, enteredPass) => async () =>{
+    try{
+        const token = window.localStorage.getItem('token')
+        const { data } = await axios.get(`/api/users/verify/${id}`, { headers: { authorization: token, check: enteredPass } });
 
-    try {
-        const token = window.localStorage.getItem('token');
-        const { data } = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
-        dispatch(setUser(data))
-    } catch (userError) {
-        console.log("COULD NOT GET USER ", userError)
+        if (data){ return true; }
+        return false;
+    }catch(err){
+        console.log('THERE WAS A PROBLEM VERIFYING THE USER: ', err)
     }
 }
 

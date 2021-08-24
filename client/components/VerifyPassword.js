@@ -1,18 +1,10 @@
 import React from 'react'
 import Modal from "react-modal"
 import {authenticate} from '../store'
-import {
-  Button,
-  Input,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+import { Button, Input, InputLabel, Select, MenuItem, FormControl, FormControlLabel, Checkbox } from "@material-ui/core";
 import { connect } from 'react-redux';
-import { updateUser } from '../store/user';
+import EditProfile from './EditProfile';
+import { verifyUser } from '../store/user';
 
 const modalStyle = () => ({
     content: {
@@ -28,7 +20,7 @@ const modalStyle = () => ({
     },
 })
 
-class VerifyProfile extends React.Component {
+class verifyPassword extends React.Component {
 
 
     constructor(props) {
@@ -65,7 +57,21 @@ class VerifyProfile extends React.Component {
     handleVerifyPassword(event) {
         event.persist()
         event.preventDefault()
-        this.props.updateUser(this.props.user.id, event.target.username.value, event.target.password.value)
+        if (!this.props.verifyUser(this.props.user.id, event.target.password.value)){
+            const codeError = { response: { data: "Invalid Password" } }
+            this.setState({ error: codeError });
+        }
+        if (!this.props.error) {
+            this.closeModal();
+            <EditProfile />
+        } else {
+            this.setState({
+                error: this.props.error
+            })
+        }
+
+
+
     }
 
 
@@ -91,38 +97,13 @@ class VerifyProfile extends React.Component {
                 <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
                 <Button onClick={this.closeModal}>close</Button>
                 </div>
-                <form onSubmit={this.handleEditUser} name={this.name}>
-                    {this.name === 'signup' && <FormControl style={{ marginTop: "50px" }}>
-                    <InputLabel
-                        style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                        id="label"
-                    >
-                        Email
-                    </InputLabel>
-                    <Input
-                        variant="outlined"
-                        name="email"
-                    />
-                    </FormControl>}
+                <form onSubmit={this.handleVerifyPassword} name={this.name}>
                     <FormControl style={{ marginTop: "50px" }}>
                     <InputLabel
                         style={{ transform: "translateX(15px)", fontSize: "12px" }}
                         id="label"
                     >
-                        Username
-                    </InputLabel>
-                    <Input
-                        variant="outlined"
-                        name="username"
-                    />
-                    </FormControl>
-
-                    <FormControl style={{ marginTop: "50px" }}>
-                    <InputLabel
-                        style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                        id="label"
-                    >
-                        Password
+                        Verify Password
                     </InputLabel>
                     <Input
                         variant="outlined"
@@ -136,9 +117,10 @@ class VerifyProfile extends React.Component {
                     >
                       Confirm
                     </Button>
-                    </FormControl>
-
+                    <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
+                    </FormControl>
+                    </FormControl>
                 </form>
 
             </Modal>
@@ -152,10 +134,10 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    verifyPassword: (id, password) => dispatch(updateUser(id, password))
+    verifyUser: (id, enteredPass) => dispatch(verifyUser(id, enteredPass))
   })
 
-export default connect(mapState,mapDispatch)(EditProfile)
+export default connect(mapState, mapDispatch)(verifyPassword)
 
 
 

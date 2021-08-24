@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { fetchUser } from '../store/user'
 import { fetchLevels } from '../store/level'
 import { Link } from 'react-router-dom'
-import EditProfile from './EditProfile'
+// import EditProfile from './EditProfile'
+import VerifyPassword from './VerifyPassword'
 
 
 class Profile extends React.Component {
@@ -26,7 +27,7 @@ class Profile extends React.Component {
                 Completion: {completedLevels / this.props.levels.length * 100} %
                 </div>
                 <div>Current Level: {this.props.levels[completedLevels] && <Link to={`/level/${completedLevels+1}`} >{this.props.levels[completedLevels].name}</Link>}</div>
-                {(this.props.auth.id === this.props.user.id) && <EditProfile />}
+                {(this.props.auth.id === this.props.user.id) && <VerifyPassword />}
             </div>
         )
     }
