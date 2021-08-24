@@ -129,9 +129,9 @@ async function seed() {
 
   const levelOneTestFour = await Test.create({
     name: "test four",
-    test: `describe('myEqualToFunction', function(){
+    test: `describe('myNotEqualToFunction', function(){
       it('returns TRUE when both values are NOT the same', function(){
-        expect(myEqualToFunction()).to.equal(true);
+        expect(myNotEqualToFunction()).to.equal(false);
       });
     });`,
     divId: "returns TRUE when both values are NOT the same",

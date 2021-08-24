@@ -26,7 +26,9 @@ class Routes extends Component {
         {/* {isLoggedIn ? ( */}
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/login" component={Home} />
             <Route path="/level/list" component={ListLevels} />
+            {/* With the way it's currently coded, all new '/level/...' routes must be above unauthorized. :id is ok because it bypasses unauthorized if authorized */}
             <Route path="/level/unauthorized" component={UnauthorizedLevel} />
             <Route path="/level/:id" component={SingleLevel} />
             <Route path="/user/:id" component={Profile} />
