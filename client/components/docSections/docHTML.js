@@ -12,9 +12,9 @@ export const DocHTML = function(level) {
     return (`
 
         <div id="mocha"></div>
-        <div id="error"></div>
+        <div id="error" class="failed"> It looks like there is a problem with your code. Double check you didn't make any syntax errors!</div>
         ` + tests.reduce((acc, test) => (
-            acc += `<div id='${test.divId}'>${test.name}</div>`) + `\n`, '')
+            acc += `<div>${test.description}</div><div class="hidden" id='${test.divId}'>${test.name}</div>`) + `\n`, '')
              + `
 
 

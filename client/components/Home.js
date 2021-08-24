@@ -2,12 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 
-// import "ace-builds/src-noconflict/webpack-resolver";
-
-
-/**
- * COMPONENT
- */
 export class Home extends React.Component {
 
   render() {
@@ -20,9 +14,6 @@ export class Home extends React.Component {
   
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     username: state.auth.username

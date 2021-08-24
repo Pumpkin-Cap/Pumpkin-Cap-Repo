@@ -14,6 +14,8 @@ return (`
     const testDivs = [`+ tests.map(test => (`document.getElementById('` + test.divId + `')`)) + `]
 
     before(function() {
+      const errorDiv = document.getElementById('error')
+      errorDiv.className = "hidden"
         // runs once before the first test in this block
       });
 
@@ -34,8 +36,10 @@ return (`
       function checkResult(test) {
         const duck = document.getElementById(test.title)
         if (test.state === 'passed') {
+          duck.className = 'passed'
           duck.innerText = 'PASSED'
         } else {
+          duck.className = 'failed'
           duck.innerText = 'FAILED'
         }
       }
