@@ -6,6 +6,8 @@ import Home from './components/Home';
 import ListLevels from './components/ListLevels';
 import Profile from './components/Profile';
 import SingleLevel from './components/SingleLevel';
+import UnauthorizedLevel from './components/UnauthorizedLevel';
+import PageNotFound from './components/PageNotFound';
 import {me} from './store'
 
 /**
@@ -25,8 +27,10 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/level/list" component={ListLevels} />
+            <Route path="/level/unauthorized" component={UnauthorizedLevel} />
             <Route path="/level/:id" component={SingleLevel} />
             <Route path="/user/:id" component={Profile} />
+            <Route component={PageNotFound} />
             <Redirect to="/home" />
           </Switch>
       </div>

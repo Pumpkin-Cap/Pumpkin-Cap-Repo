@@ -28,7 +28,7 @@ class SingleLevel extends React.Component {
           if (currentLevel){
             this.setDoc()
           } else{
-            this.props.history.push("/level/list")
+            this.props.history.push("/level/unauthorized")
           }
       }
 
