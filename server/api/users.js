@@ -27,13 +27,21 @@ router.get('/:id', requireToken, async (req, res, next) => {
   }
 })
 
+router.get('/verify/:id', requireToken, userIsUser, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id)
+    const checkPass = await user.correctPassword(req.headers.check);
+    res.json(checkPass)
+  } catch (err) {
+    next(err)
+  }
+})
 
 
 router.put('/update/:id', requireToken, userIsUser, async (req, res, next) => {
   try {
-    await user.update({username, password})
-    console.log(user)
-    res.json(user)
+		const updateUser = await User.findByPk(req.params.id);
+		res.send(await updateUser.update(req.body));
   } catch (err) {
     next(err)
   }
