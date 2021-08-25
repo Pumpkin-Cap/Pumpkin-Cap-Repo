@@ -60,10 +60,10 @@ class SingleLevel extends React.Component {
       const sampleCode = this.props.level.startingJS
         return (
           this.props.level.startingJS ?
-          <div>
-            {(this.props.level.id) && <div>{this.props.level.name}</div>}
+          <div id="level">
+            {(this.props.level.id) && <h2>{this.props.level.name}</h2>}
             {/* <h3>Welcome, {username}</h3> */}
-            <div className="pane">
+            <div className="codeIframe">
               <iframe id="thing"
                 srcDoc={this.state.doc}
                 title="output"

@@ -1,4 +1,4 @@
-const { models: { User } } = require('../db')
+const { models: { User, Level } } = require('../db')
 
 const requireToken = async (req, res, next) =>{
   try{
@@ -23,9 +23,22 @@ const userIsUser = (req, res, next) =>{
   else{ next(); }
 }
 
-const userHasLevel = (req, res, next) =>{
-  if ((req.user.levels[req.user.levels.length - 1]) && (parseInt(req.user.levels[req.user.levels.length - 1].id) < (parseInt(req.params.id) - 1)) && !req.user.isAdmin){ return res.status(403).send('You cannot handle these ducks.');}
-  else{ next(); }
+
+const userHasLevel = async (req, res, next) =>{
+
+  if (req.query.password) {
+    const level = await Level.findAll({where: {password: req.query.password}})
+    if (level) {
+      await req.user.addLevel(level)
+    }
+  }
+  const userLevels = await req.user.getLevels()
+
+  if ((userLevels.length > 0) && ((userLevels[userLevels.length - 1].id) < (parseInt(req.params.id) - 1) && !req.user.isAdmin)) {
+    return res.status(403).send('You cannot handle these ducks.')
+  } else {
+    next()
+  }
 }
 
 module.exports = {
