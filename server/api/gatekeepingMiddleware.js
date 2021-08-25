@@ -24,7 +24,7 @@ const userIsUser = (req, res, next) =>{
 }
 
 const userHasLevel = (req, res, next) =>{
-  if (parseInt(req.user.levels[req.user.levels.length - 1].id) < (parseInt(req.params.id) - 1) && !req.user.isAdmin){ return res.status(403).send('You cannot handle these ducks.');}
+  if ((req.user.levels[req.user.levels.length - 1]) && (parseInt(req.user.levels[req.user.levels.length - 1].id) < (parseInt(req.params.id) - 1)) && !req.user.isAdmin){ return res.status(403).send('You cannot handle these ducks.');}
   else{ next(); }
 }
 

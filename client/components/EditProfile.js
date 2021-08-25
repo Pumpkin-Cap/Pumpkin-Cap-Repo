@@ -52,6 +52,12 @@ class EditProfile extends React.Component {
         this.openModal();
     }
 
+    // componentDidUpdate(){
+    //     if (this.props.openBool){
+    //         this.props.resetVerification();
+    //     }
+    // }
+
     afterOpenModal() {
         // references are now sync'd and can be accessed.
         this.subtitle.style.color = "rgb(39, 39, 230)";
@@ -64,6 +70,7 @@ class EditProfile extends React.Component {
 
     closeModal() {
         this.setState({ modalOpen: false, error: null });
+        this.props.setVerified(false);
     }
 
     handleEditUser(event) {
@@ -88,79 +95,80 @@ class EditProfile extends React.Component {
 
     render() {
         return (
-        <>
-            {/* <button onClick={this.openModal}>Edit Profile</button> */}
+            <>
+           <button onClick={this.openModal}>Edit Profile</button>
+
             <Modal
-                isOpen={this.state.modalOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
-                style={this.customStyles}
-                contentLabel="Edit Profile Modal"
-                ariaHideApp={false}
+            isOpen={this.state.modalOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={this.customStyles}
+            contentLabel="Edit Profile Modal"
+            ariaHideApp={false}
+        >
+            <div
+            style={{
+                display: "flex",
+                justifyContent: "space-between",
+            }}
             >
-                <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                }}
+            <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
+            <Button onClick={this.closeModal}>close</Button>
+            </div>
+            <form onSubmit={this.handleEditUser} name={this.name}>
+                {/* <FormControl style={{ marginTop: "50px" }}>
+                <InputLabel
+                    style={{ transform: "translateX(15px)", fontSize: "12px" }}
+                    id="label"
                 >
-                <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
-                <Button onClick={this.closeModal}>close</Button>
-                </div>
-                <form onSubmit={this.handleEditUser} name={this.name}>
-                    {/* <FormControl style={{ marginTop: "50px" }}>
-                    <InputLabel
-                        style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                        id="label"
-                    >
-                        Email
-                    </InputLabel>
-                    <Input
-                        variant="outlined"
-                        name="email"
-                    />
-                    </FormControl> */}
-                    <FormControl style={{ marginTop: "50px" }}>
-                    <InputLabel
-                        style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                        id="label"
-                    >
-                        Username
-                    </InputLabel>
-                    <Input
-                        variant="outlined"
-                        name="username"
-                    />
-                    </FormControl>
+                    Email
+                </InputLabel>
+                <Input
+                    variant="outlined"
+                    name="email"
+                />
+                </FormControl> */}
+                <FormControl style={{ marginTop: "50px" }}>
+                <InputLabel
+                    style={{ transform: "translateX(15px)", fontSize: "12px" }}
+                    id="label"
+                >
+                    Username
+                </InputLabel>
+                <Input
+                    variant="outlined"
+                    name="username"
+                />
+                </FormControl>
 
-                    <FormControl style={{ marginTop: "50px" }}>
-                    <InputLabel
-                        style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                        id="label"
-                    >
-                        Password
-                    </InputLabel>
-                    <Input
-                        variant="outlined"
-                        name="password"
-                        type="password"
-                    />
-                    <Button
-                      style={{ marginTop: "50px" }}
-                      type="submit"
-                      variant="outlined"
-                    >
-                      Confirm
-                    </Button>
-                    <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
-                    {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
-                    </FormControl>
-                    </FormControl>
-                </form>
+                <FormControl style={{ marginTop: "50px" }}>
+                <InputLabel
+                    style={{ transform: "translateX(15px)", fontSize: "12px" }}
+                    id="label"
+                >
+                    Password
+                </InputLabel>
+                <Input
+                    variant="outlined"
+                    name="password"
+                    type="password"
+                />
+                <Button
+                  style={{ marginTop: "50px" }}
+                  type="submit"
+                  variant="outlined"
+                >
+                  Confirm
+                </Button>
+                <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
+                {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
+                </FormControl>
+                </FormControl>
+            </form>
 
-            </Modal>
+        </Modal>
         </>
-        );
+        )
     }
 }
 

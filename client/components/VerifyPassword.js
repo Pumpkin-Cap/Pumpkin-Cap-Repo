@@ -16,17 +16,17 @@ const modalStyle = () => ({
     transform: "translate(-50%, -50%)",
     zIndex: 10,
     width: "400px",
-    height: "300px",
+    height: "350px",
     },
 })
 
-class verifyPassword extends React.Component {
+class VerifyPassword extends React.Component {
 
 
     constructor(props) {
         super(props)
         this.state = {
-            modalOpen: false,
+            modalOpen: false
         }
 
         this.afterOpenModal = this.afterOpenModal.bind(this)
@@ -54,25 +54,18 @@ class verifyPassword extends React.Component {
         this.setState({ modalOpen: false, error: null });
     }
 
-    handleVerifyPassword(event) {
+    async handleVerifyPassword(event) {
         event.persist()
         event.preventDefault()
-        if (!this.props.verifyUser(this.props.user.id, event.target.password.value)){
+
+        const confirmBool = await this.props.verifyUser(this.props.user.id, event.target.password.value)
+        if (confirmBool) {
+            this.closeModal();
+            this.props.setVerified(true);
+        } else {
             const codeError = { response: { data: "Invalid Password" } }
             this.setState({ error: codeError });
         }
-        if (!this.props.error) {
-            console.log('success')
-            this.closeModal();
-            <EditProfile />
-        } else {
-            this.setState({
-                error: this.props.error
-            })
-        }
-
-
-
     }
 
 
@@ -111,13 +104,16 @@ class verifyPassword extends React.Component {
                         name="password"
                         type="password"
                     />
+                    <>
                     <Button
-                      style={{ marginTop: "50px" }}
-                      type="submit"
-                      variant="outlined"
+                        style={{ marginTop: "50px" }}
+                        type="submit"
+                        variant="outlined"
                     >
-                      Confirm
+                        Confirm
                     </Button>
+
+                </>
                     <FormControl style={{ display: "flex", flexWrap: "wrap", maxWidth: "100px" }}>
                     {this.state.error && this.state.error.response && <div> {this.state.error.response.data} </div>}
                     </FormControl>
@@ -138,7 +134,7 @@ const mapDispatch = dispatch => ({
     verifyUser: (id, enteredPass) => dispatch(verifyUser(id, enteredPass))
   })
 
-export default connect(mapState, mapDispatch)(verifyPassword)
+export default connect(mapState, mapDispatch)(VerifyPassword)
 
 
 
