@@ -63,8 +63,14 @@ class SingleLevel extends React.Component {
       const level = this.props.level
         return (
           this.props.level.startingJS ?
+          <Anime duration={6000} opacity={[0,1]}>
           <div id="level">
-            {(this.props.level.id) && <h2>{this.props.level.name}</h2>}
+            {(this.props.level.id) && <div>
+                  <Anime duration={3500} translateX={[-1000,-450]} >
+                    <img src="../generalJoe.png" className="generalJoe"></img>
+                  </Anime>
+                  <h2>{this.props.level.name}</h2>
+                  </div>}
             {/* <h3>Welcome, {username}</h3> */}
             <div className="codeIframe">
               <iframe id="thing"
@@ -101,7 +107,8 @@ class SingleLevel extends React.Component {
                 lineHeight: 25,
               }}
             />
-          </div> : null
+          </div>
+          </Anime> : null
         )
       }
 
