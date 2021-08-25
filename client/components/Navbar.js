@@ -7,6 +7,7 @@ import { Login, Signup } from './AuthForm'
 const Navbar = ({handleClick, isLoggedIn, userId}) => (
 
     <nav>
+      <div className="nav">
     <Link to="/home"><h1>Call of Coding: Fullstack Warfare</h1></Link>
       {isLoggedIn ? (
         <div>
@@ -26,6 +27,7 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
           <Link to="/signup">Sign Up</Link> */}
         </div>
       )}
+      </div>
     </nav>
 )
 
