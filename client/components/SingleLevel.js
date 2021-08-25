@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { DocCSS, DocHTML, DocIMPORTS, DocMocha } from './docSections'
-import { fetchLevel } from '../store/level';
+import level, { fetchLevel } from '../store/level';
 import Editor from '@monaco-editor/react';
-
+import Anime from 'react-anime';
 
 class SingleLevel extends React.Component {
 
@@ -12,7 +12,8 @@ class SingleLevel extends React.Component {
         super()
         this.state = {
           js: '',
-          doc: ''
+          doc: '',
+          scale: 0
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
@@ -51,13 +52,15 @@ class SingleLevel extends React.Component {
         </html>
       `
       this.setState({
-        doc
+        doc,
+        scale: this.state.scale +1
       })
 
       }
 
     render () {
       const sampleCode = this.props.level.startingJS
+      const level = this.props.level
         return (
           this.props.level.startingJS ?
           <div id="level">
@@ -72,8 +75,18 @@ class SingleLevel extends React.Component {
                 width="100%"
                 height="100%"
               />
-              <button onClick={this.setDoc}>Run</button>
             </div>
+
+
+              <button className="runButton" onClick={this.setDoc}>Run</button>
+            <div className="duckDiv">
+            {level.tests && level.tests.map(test => (
+              <Anime duration={3500} rotate={[0,-20,0,20,0]} scale={[this.state.scale]} loop={true} >
+                <img src="../theEvilRubberDuck.png" className="evilDuck"></img>
+              </Anime>
+            ))}
+            </div>
+
             <Editor
               height="50vh"
               width="75vw"
