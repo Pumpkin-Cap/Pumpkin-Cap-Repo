@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchLevels } from "../store/level";
 import { Link } from "react-router-dom";
+import Anime from "react-anime";
 
 class ListLevels extends React.Component {
   componentDidMount() {
@@ -12,6 +13,8 @@ class ListLevels extends React.Component {
     const { levels } = this.props;
     let lastCompleted = 1;
     return (
+
+      <Anime duration={6000} opacity={[0,1]}>
       <div className="levelListContainer">
         {Array.isArray(levels) &&
           levels.map((level) => {
@@ -39,6 +42,7 @@ class ListLevels extends React.Component {
             );
           })}
       </div>
+      </Anime>
     );
   }
 }
