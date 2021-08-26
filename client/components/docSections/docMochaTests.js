@@ -12,6 +12,7 @@ return (`
     let expect = chai.expect;
 
     const testDivs = [`+ tests.map(test => (`document.getElementById('` + test.divId + `')`)) + `]
+    const testResults = []
 
     before(function() {
       const errorDiv = document.getElementById('error')
@@ -20,6 +21,7 @@ return (`
       });
 
      after(function() {
+        parent.postMessage(JSON.stringify(testResults),"http://localhost:8080");
          if (testDivs.every(div => (div.innerText === 'PASSED'))) {
              const resultLink = document.getElementById('link')
              resultLink.target = '_top'
@@ -42,6 +44,7 @@ return (`
           duck.className = 'failed'
           duck.innerText = 'FAILED'
         }
+        testResults.push(duck.innerText)
       }
 
 
