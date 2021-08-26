@@ -74,7 +74,7 @@ async function seed() {
   //Might have to refactor
   const Level1 = await Level.create({
     name: "Level One",
-    category: "Functions",
+    category: "Control Flow",
     password: "megaman",
     startingJS: `function myLessThanFunction(){
     //insert appropriate numbers to make it TRUE
@@ -99,6 +99,7 @@ async function seed() {
 
   const levelOneTestOne = await Test.create({
     name: "test one",
+    description: 'To pass this test, you must insert your choice of approriate numbers where it says "/*replace me!*/" on line 3. Hint - "x is less than y"',
     test: `describe('myLessThanFunction', function(){
       it('returns TRUE when given valueOne is less than valueTwo', function(){
         expect(myLessThanFunction()).to.equal(true);
@@ -109,6 +110,7 @@ async function seed() {
 
   const levelOneTestTwo = await Test.create({
     name: "test two",
+    description: 'To pass this test, you must insert your choice of approriate numbers where it says "/*replace me!*/" on line 8. Hint - "x is greater than y"',
     test: `describe('myGreaterThanFunction', function(){
       it('returns TRUE when valueOne is greater than valueTwo', function(){
         expect(myGreaterThanFunction()).to.equal(true);
@@ -119,6 +121,7 @@ async function seed() {
 
   const levelOneTestThree = await Test.create({
     name: "test three",
+    description: 'To pass this test, you must insert your choice of approriate numbers where it says "/*replace me!*/" on line 13. Hint - "x is strictly equal to y"',
     test: `describe('myEqualToFunction', function(){
       it('returns TRUE when both values are the same', function(){
         expect(myEqualToFunction()).to.equal(true);
@@ -129,6 +132,7 @@ async function seed() {
 
   const levelOneTestFour = await Test.create({
     name: "test four",
+    description: 'To pass this test, you must insert your choice of approriate numbers where it says "/*replace me!*/" on line 18. Hint - "x does not equal y"',
     test: `describe('myNotEqualToFunction', function(){
       it('returns TRUE when both values are NOT the same', function(){
         expect(myNotEqualToFunction()).to.equal(true);
@@ -147,7 +151,7 @@ async function seed() {
   // Level 2
   const Level2 = await Level.create({
     name: "Level Two",
-    category: "Functions",
+    category: "Control Flow",
     password: "protoman",
     startingJS: `function myIfFunction(duckCount){
 
@@ -169,19 +173,18 @@ async function seed() {
 
   const levelTwoTestOne = await Test.create({
     name: "test one",
+    description: 'We want to return hold when the duck count is less than 1',
     test: `describe('myIfFunction', function(){
       it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfFunction(0)).to.equal('Hold your fire!!');
-        expect(myIfFunction(1)).to.not.equal('Hold your fire!!');
-        expect(myIfFunction(100)).to.not.equal('Hold your fire!!');
       });`,
     divId: `returns Hold your fire!! when no ducks are advancing`,
   });
 
   const levelTwoTestTwo = await Test.create({
     name: "test two",
+    description: 'We want to return fire when the duck count is greater than 0',
     test: `it('returns Fire!! when ducks are advancing', function(){
-      expect(myIfFunction(0)).to.not.equal('Fire!!');
       expect(myIfFunction(1)).to.equal('Fire!!');
       expect(myIfFunction(100)).to.equal('Fire!!');
     });
@@ -197,7 +200,7 @@ async function seed() {
   // Level 3
   const Level3 = await Level.create({
     name: "Level Three",
-    category: "Functions",
+    category: "Control Flow",
     password: "sandman",
     startingJS: `function myIfElseFunction(duckCount){
 
@@ -228,55 +231,40 @@ async function seed() {
 
   const levelThreeTestOne = await Test.create({
     name: "test one",
+    description: 'When there are no ducks advancing, order a hold',
     test: `describe('myIfElseFunction', function(){
       it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0)).to.equal('Hold your fire!!');
-        expect(myIfElseFunction(1)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(2)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(3)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(5)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(8)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(100)).to.not.equal('Hold your fire!!');
+        expect(myIfElseFunction(-10)).to.equal('Hold your fire!!');
       });`,
     divId: `returns Hold your fire!! when no ducks are advancing`,
   });
 
   const levelThreeTestTwo = await Test.create({
     name: "test two",
+    description: 'When 1 or 2 ducks are approaching, fire the rifle for precise shots',
     test: `it('returns Fire the rifle!! when 1-2 ducks are advancing', function(){
-      expect(myIfElseFunction(0)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(1)).to.equal('Fire the rifle!!');
       expect(myIfElseFunction(2)).to.equal('Fire the rifle!!');
-      expect(myIfElseFunction(3)).to.not.equal('Fire the rifle!!');
-      expect(myIfElseFunction(5)).to.not.equal('Fire the rifle!!');
-      expect(myIfElseFunction(8)).to.not.equal('Fire the rifle!!');
-      expect(myIfElseFunction(100)).to.not.equal('Fire the rifle!!');
     });`,
     divId: `returns Fire the rifle!! when 1-2 ducks are advancing`,
   });
 
   const levelThreeTestThree = await Test.create({
     name: "test three",
+    description: 'When 3 to 5 ducks are approaching, fire the cannon for broader hits',
     test: `it('returns Fire the cannon!! when 3-5 ducks are advancing', function(){
-      expect(myIfElseFunction(0)).to.not.equal('Fire the cannon!!');
-      expect(myIfElseFunction(1)).to.not.equal('Fire the cannon!!');
-      expect(myIfElseFunction(2)).to.not.equal('Fire the cannon!!');
       expect(myIfElseFunction(3)).to.equal('Fire the cannon!!');
       expect(myIfElseFunction(5)).to.equal('Fire the cannon!!');
-      expect(myIfElseFunction(8)).to.not.equal('Fire the cannon!!');
-      expect(myIfElseFunction(100)).to.not.equal('Fire the cannon!!');
     });`,
     divId: `returns Fire the cannon!! when 3-5 ducks are advancing`,
   });
 
   const levelThreeTestFour = await Test.create({
     name: "test four",
+    description: 'When all else fails, fire the grenade launcher!!',
     test: `it('returns Fire the grenade launcher!! when 6+ ducks are advancing', function(){
-      expect(myIfElseFunction(0)).to.not.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(1)).to.not.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(2)).to.not.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(3)).to.not.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(5)).to.not.equal('Fire the grenade launcher!!');
+      expect(myIfElseFunction(6)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(8)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(100)).to.equal('Fire the grenade launcher!!');
     });
@@ -294,7 +282,7 @@ async function seed() {
   // Level 4
   const Level4 = await Level.create({
     name: "Level Four",
-    category: "Functions",
+    category: "Control Flow",
     password: "gutsman",
     startingJS: `function myAndFunction(){
 
@@ -312,6 +300,7 @@ async function seed() {
 
   const levelFourTestOne = await Test.create({
     name: "test one",
+    description: 'Insert the appropriate conditional statements that\'ll make line 4 evaluate to true',
     test: `describe('myAndFunction', function(){
       it('returns TRUE when given correct input', function(){
         expect(myAndFunction()).to.equal(true);
@@ -322,6 +311,7 @@ async function seed() {
 
   const levelFourTestTwo = await Test.create({
     name: "test two",
+    description: 'Insert the appropriate conditional statements that\'ll make line 10 evaluate to false. Hint - an || will return true if at least one side evaluate to true',
     test: `describe('myOrFunction', function(){
       it('returns FALSE when given appropriate input', function(){
         expect(myOrFunction()).to.equal(false);
@@ -337,7 +327,7 @@ async function seed() {
   // Level 5
   const Level5 = await Level.create({
     name: "Level Five",
-    category: "Functions",
+    category: "Control Flow",
     password: "roll",
     startingJS: `function myIfElseFunction(duckCount, hasShield){
 
@@ -357,18 +347,6 @@ async function seed() {
       it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0, false)).to.equal('Hold your fire!!');
         expect(myIfElseFunction(0, true)).to.equal('Hold your fire!!');
-        expect(myIfElseFunction(1, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(1, true)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(2, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(2, true)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(3, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(3, true)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(5, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(5, true)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(8, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(8, true)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(100, false)).to.not.equal('Hold your fire!!');
-        expect(myIfElseFunction(100, true)).to.not.equal('Hold your fire!!');
       });`,
     divId: `returns Hold your fire!! when no ducks are advancing`,
   });
@@ -376,10 +354,7 @@ async function seed() {
   const levelFiveTestTwo = await Test.create({
     name: "test two",
     test: `it('returns Fire the rifle!! when 1-2 ducks are advancing without a shield', function(){
-      expect(myIfElseFunction(0, false)).to.not.equal('Fire the rifle!!');
-      expect(myIfElseFunction(0, true)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(1, false)).to.equal('Fire the rifle!!');
-      expect(myIfElseFunction(1, true)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(2, false)).to.equal('Fire the rifle!!');
       expect(myIfElseFunction(2, true)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(3, false)).to.not.equal('Fire the rifle!!');
