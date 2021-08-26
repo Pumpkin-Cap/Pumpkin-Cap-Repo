@@ -111,6 +111,13 @@ form div {
   margin-right: 50px;
 }
 
+.goodDuck {
+  height: 100px;
+  width: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
 .runButton {
   z-index: 1;
 }

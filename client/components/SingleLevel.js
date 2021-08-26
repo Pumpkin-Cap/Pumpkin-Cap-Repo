@@ -14,23 +14,39 @@ class SingleLevel extends React.Component {
           js: '',
           doc: '',
           scale: 0,
-          animationIsDone: false
+          animationIsDone: false,
+          testResults: []
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
-        this.checktests = this.checktests.bind(this)
       }
 
       async componentDidMount() {
           setTimeout(this.setAnimationDone, 6300);
-          const currentLevel = await this.props.getLevel(this.props.match.params.id)
+          const userHasAccesToLevel = await this.props.getLevel(this.props.match.params.id)
 
-          if (currentLevel){
+          if (userHasAccesToLevel){
             this.setDoc(true)
           } else{
             this.props.history.push("/level/unauthorized")
           }
+
+          // Create IE + others compatible event handler
+          var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+          var eventer = window[eventMethod];
+          var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+          function eventFunction(e) {
+            if (typeof e.data === 'string') {
+              this.setState({testResults: JSON.parse(e.data)})
+            }
+          }
+
+          // Listen to message from child window
+          eventer(messageEvent,eventFunction.bind(this),false);
+
+
+
       }
 
       setAnimationDone() {
@@ -45,11 +61,6 @@ class SingleLevel extends React.Component {
         })
       }
 
-      checktests() {
-        console.log(this.props.level)
-        const testDivs = this.props.level.tests.map(test => (document.getElementById(`"` + `${test.divId}` + `"`)))
-        console.log("TEST DIVS: ", testDivs)
-      }
 
       setDoc(canDo) {
         const doc = `
@@ -64,27 +75,28 @@ class SingleLevel extends React.Component {
           <script>
           ${DocMocha(this.props.level)}
           ${this.state.js}
+
           </script>
         </html>
       `
-      if (canDo) {
-        let scale = this.state.scale
-        if (scale >= 6) {
-          scale = 6
-        } else {
-          scale += 1
+        if (canDo) {
+          let scale = this.state.scale
+          if (scale >= 6) {
+            scale = 6
+          } else {
+            scale += 1
+          }
+          this.setState({
+            doc,
+            scale
+          })
         }
-        this.setState({
-          doc,
-          scale
-        })
-      }
 
-      this.checktests()
 
       }
 
     render () {
+      console.log("TEST RESULTS:", this.state.testResults)
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
         return (
@@ -112,11 +124,17 @@ class SingleLevel extends React.Component {
 
               <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
             <div className="duckDiv">
-            {level.tests && level.tests.map(test => (
-              <Anime duration={3000} rotate={[0,-20,0,20]} scale={[this.state.scale]} loop={true} direction={'alternate'}>
-                <img src="../theEvilRubberDuck.png" className="evilDuck" ></img>
-              </Anime>
-            ))}
+            {level.tests && level.tests.map((test, index) => {
+              if (this.state.testResults[index] === 'FAILED') {
+                return (<Anime duration={3000} rotate={[0,-20,0,20]} scale={[this.state.scale]} loop={true} direction={'alternate'}>
+                  <img src="../theEvilRubberDuck.png" className="evilDuck" ></img>
+                </Anime>)
+              } else {
+                return (<Anime duration={3000} rotate={[0,20,0,-20]}  loop={true} direction={'alternate'}>
+                  <img src="../theDocileRubberDuck.jpg" className="goodDuck" ></img>
+                </Anime>)
+              }
+              })}
             </div>
 
             <Editor
