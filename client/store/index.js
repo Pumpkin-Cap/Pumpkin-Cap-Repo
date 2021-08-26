@@ -5,6 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import level from './level'
 import user from './user'
+import socket from '../socket'
 
 const reducer = combineReducers({ auth, level, user })
 const middleware = composeWithDevTools(

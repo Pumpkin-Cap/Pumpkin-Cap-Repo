@@ -4,6 +4,7 @@ import { DocCSS, DocHTML, DocIMPORTS, DocMocha } from './docSections'
 import level, { fetchLevel } from '../store/level';
 import Editor from '@monaco-editor/react';
 import Anime from 'react-anime';
+import socket from '../socket';
 
 class SingleLevel extends React.Component {
 
@@ -49,6 +50,15 @@ class SingleLevel extends React.Component {
 
       }
 
+      handleStartRoom(e, roomName = "megaman") {
+        console.log('I joined the room: ', roomName)
+        socket.emit('join-room', roomName);
+      }
+
+      handleMessageRoom(e, roomName = "megaman") {
+        socket.emit('message-room', roomName);
+      }
+
       setAnimationDone() {
         this.setState({
           animationIsDone: true
@@ -63,6 +73,7 @@ class SingleLevel extends React.Component {
 
 
       setDoc(canDo) {
+
         const doc = `
         <html>
           <body>
@@ -121,8 +132,10 @@ class SingleLevel extends React.Component {
               />
             </div>
 
+              <button onClick={(e) => this.handleStartRoom(e)}>START ROOM</button>
+              <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button>
 
-              <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
+            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
             <div className="duckDiv">
             {level.tests && level.tests.map((test, index) => {
               if (this.state.testResults[index] === 'FAILED') {
