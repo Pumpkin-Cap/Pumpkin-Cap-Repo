@@ -13,20 +13,30 @@ class SingleLevel extends React.Component {
         this.state = {
           js: '',
           doc: '',
-          scale: 0
+          scale: 0,
+          animationIsDone: false
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
+        this.setAnimationDone = this.setAnimationDone.bind(this)
+        this.checktests = this.checktests.bind(this)
       }
 
       async componentDidMount() {
+          setTimeout(this.setAnimationDone, 6300);
           const currentLevel = await this.props.getLevel(this.props.match.params.id)
 
           if (currentLevel){
-            this.setDoc()
+            this.setDoc(true)
           } else{
             this.props.history.push("/level/unauthorized")
           }
+      }
+
+      setAnimationDone() {
+        this.setState({
+          animationIsDone: true
+        })
       }
 
       onChange(newValue) {
@@ -35,7 +45,13 @@ class SingleLevel extends React.Component {
         })
       }
 
-      setDoc() {
+      checktests() {
+        console.log(this.props.level)
+        const testDivs = this.props.level.tests.map(test => (document.getElementById(`"` + `${test.divId}` + `"`)))
+        console.log("TEST DIVS: ", testDivs)
+      }
+
+      setDoc(canDo) {
         const doc = `
         <html>
           <body>
@@ -51,10 +67,20 @@ class SingleLevel extends React.Component {
           </script>
         </html>
       `
-      this.setState({
-        doc,
-        scale: this.state.scale +1
-      })
+      if (canDo) {
+        let scale = this.state.scale
+        if (scale >= 6) {
+          scale = 6
+        } else {
+          scale += 1
+        }
+        this.setState({
+          doc,
+          scale
+        })
+      }
+
+      this.checktests()
 
       }
 
@@ -66,17 +92,17 @@ class SingleLevel extends React.Component {
           <Anime duration={6000} opacity={[0,1]}>
           <div id="level">
             {(this.props.level.id) && <div>
-                  <Anime duration={3500} translateX={[-1000,-450]} >
+                  <Anime duration={3000} translateX={[-1000,-500]} easing={'linear'}>
                     <img src="../generalJoe.png" className="generalJoe"></img>
                   </Anime>
                   <h2>{this.props.level.name}</h2>
                   </div>}
             {/* <h3>Welcome, {username}</h3> */}
-            <div className="codeIframe">
+            <div id="codeIframe">
               <iframe id="thing"
                 srcDoc={this.state.doc}
                 title="output"
-                sandbox="allow-scripts allow-top-navigation"
+                sandbox="allow-scripts allow-top-navigation allow-same-origin"
                 frameBorder="0"
                 width="100%"
                 height="100%"
@@ -84,11 +110,11 @@ class SingleLevel extends React.Component {
             </div>
 
 
-              <button className="runButton" onClick={this.setDoc}>Run</button>
+              <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
             <div className="duckDiv">
             {level.tests && level.tests.map(test => (
-              <Anime duration={3500} rotate={[0,-20,0,20,0]} scale={[this.state.scale]} loop={true} >
-                <img src="../theEvilRubberDuck.png" className="evilDuck"></img>
+              <Anime duration={3000} rotate={[0,-20,0,20]} scale={[this.state.scale]} loop={true} direction={'alternate'}>
+                <img src="../theEvilRubberDuck.png" className="evilDuck" ></img>
               </Anime>
             ))}
             </div>
