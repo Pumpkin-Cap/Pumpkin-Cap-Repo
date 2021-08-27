@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  background-color: #C2C5AA;
+  background-color: #c2c5aa;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -130,4 +130,9 @@ form div {
   height: 200px;
   width: 200px;
   position: absolute;
+}
+
+.openingOfficer {
+  height: 200px;
+  margin-top: 50px;
 }
