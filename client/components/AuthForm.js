@@ -26,6 +26,12 @@ const modalStyle = () => ({
     zIndex: 10,
     width: "400px",
     height: "350px",
+    backgroundColor: "#A4AC86",
+    borderLeft: "10px solid",
+    borderRight: "10px solid",
+    borderTop: "5px solid",
+    borderBottom: "5px solid",
+    borderColor: "#582F0E"
     },
 })
 
@@ -87,7 +93,7 @@ class AuthForm extends React.Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed.
-        this.subtitle.style.color = "rgb(39, 39, 230)";
+        this.subtitle.style.color = "#414833";
         this.subtitle.style.fontFamily = "'Roboto Mono', monospace";
     }
 
@@ -116,7 +122,7 @@ class AuthForm extends React.Component {
                 <div
                 style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-between"
                 }}
                 >
                 <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>

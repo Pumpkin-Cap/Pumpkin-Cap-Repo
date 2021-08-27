@@ -24,12 +24,6 @@ label {
   justify-content: space-between;
   align-items: center;
   background-color: #414833;
-  z-index: 1;
-  position: relative;
-}
-
-nav div {
-  z-index: 1;
 }
 
 nav a {
