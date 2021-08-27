@@ -5,6 +5,7 @@ import level, { fetchLevel, nextLevel } from '../store/level';
 import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import Anime from 'react-anime';
+import LevelComplete from './LevelComplete';
 
 class SingleLevel extends React.Component {
 	constructor() {
@@ -77,8 +78,12 @@ class SingleLevel extends React.Component {
 	async handleNextLevel() {
 		await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
-		this.setState({js: this.props.level.startingJS, testResults: [], scale: 0})
-		this.setDoc(true)
+		this.setState({
+			js: this.props.level.startingJS,
+			testResults: [],
+			scale: 0,
+		});
+		this.setDoc(true);
 	}
 
 	setDoc(canDo) {
@@ -185,16 +190,7 @@ class SingleLevel extends React.Component {
 								if (this.state.testResults[index] === 'PASSED') {
 									return true;
 								}
-							}) && (
-								<div id='popup'>
-									<i id='fa fa-check'></i>
-									<div id='success'>Success!!</div>
-									<div id='popup-desc'>You did it!</div>
-									<button className='next-level' onClick={this.handleNextLevel}>
-										Go to the next Level!
-									</button>
-								</div>
-							)}
+							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
 					</div>
 					<Editor
 						height='50vh'
