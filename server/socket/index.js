@@ -7,22 +7,22 @@ module.exports = io => {
 
     console.log(socket.id, ' has made a persistent connection to the server!');
 
-    socket.on('join-room', roomName => {
-        console.log(` ${socket} has joined the room ${roomName} `)
-        socket.join(roomName)
+    socket.on('join-room', joinObject => {
+        console.log(` ${joinObject.userName} has joined the room: ${joinObject.roomName} `)
+        socket.join(joinObject.roomName)
+        socket.to(joinObject.roomName).emit(` ${joinObject.userName} has joined the room: ${joinObject.roomName} `)
     })
 
-    socket.on('message-room', roomName => {
-        console.log(` ${socket} is sending a message to ${roomName}`)
-        socket.to(roomName).emit('new-message', 'HELLO')
+    socket.on('message-room', roomMessage => {
+        socket.to(roomMessage.roomName).emit('new-message', roomMessage)
     })
 
-    socket.on('new-message', message => {
-      socket.broadcast.emit('new-message', message);
+    socket.on('new-message', messageObject => {
+      socket.broadcast.emit('new-message', messageObject);
     });
     
-    socket.on('new-channel', channel => {
-      socket.broadcast.emit('new-channel', channel);
+    socket.on('change-code', eventObject => {
+      socket.to(eventObject.roomName).emit('change-code', eventObject);
     });
 
   });
