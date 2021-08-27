@@ -50,6 +50,18 @@ class SingleLevel extends React.Component {
 		eventer(messageEvent, eventFunction.bind(this), false);
 	}
 
+	// async componentDidUpdate() {
+
+	// 	console.log('hello there')
+	// 	const userHasAccesToLevel = await this.props.getLevel(
+	// 		this.props.match.params.id
+	// 	);
+
+	// 	if (userHasAccesToLevel) {
+	// 		this.setDoc(true);
+	// 	}
+	// }
+
 	setAnimationDone() {
 		this.setState({
 			animationIsDone: true,
@@ -64,8 +76,9 @@ class SingleLevel extends React.Component {
 
 	async handleNextLevel() {
 		await this.props.newLevel(this.props.level.id);
-		this.props.history.push(`/level/${this.props.level.id + 1}`);
-		console.log(`/level/${level.id + 1}?password=${level.password}`);
+		this.props.history.push(`/level/${this.props.level.id}`);
+		this.setState({js: this.props.level.startingJS, testResults: [], scale: 0})
+		this.setDoc(true)
 	}
 
 	setDoc(canDo) {
@@ -138,7 +151,19 @@ class SingleLevel extends React.Component {
 					<div className='duckDiv'>
 						{level.tests &&
 							level.tests.map((test, index) => {
-								if (this.state.testResults[index] === 'FAILED') {
+								if (this.state.testResults[index] === 'PASSED') {
+									return (
+										<Anime
+											duration={3000}
+											rotate={[0, 20, 0, -20]}
+											loop={true}
+											direction={'alternate'}>
+											<img
+												src='../theDocileRubberDuck.jpg'
+												className='goodDuck'></img>
+										</Anime>
+									);
+								} else {
 									return (
 										<Anime
 											duration={3000}
@@ -149,18 +174,6 @@ class SingleLevel extends React.Component {
 											<img
 												src='../theEvilRubberDuck.png'
 												className='evilDuck'></img>
-										</Anime>
-									);
-								} else {
-									return (
-										<Anime
-											duration={3000}
-											rotate={[0, 20, 0, -20]}
-											loop={true}
-											direction={'alternate'}>
-											<img
-												src='../theDocileRubberDuck.jpg'
-												className='goodDuck'></img>
 										</Anime>
 									);
 								}
