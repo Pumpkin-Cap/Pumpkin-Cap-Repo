@@ -1,9 +1,14 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { DocCSS, DocHTML, DocIMPORTS, DocMocha } from './docSections'
-import level, { fetchLevel } from '../store/level';
+import React from 'react';
+import { connect } from 'react-redux';
+import { DocCSS, DocHTML, DocIMPORTS, DocMocha } from './docSections';
+import level, { fetchLevel, nextLevel } from '../store/level';
+import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import Anime from 'react-anime';
+import socket from '../socket';
+import { changeCode } from '../store/code';
+import LevelComplete from './LevelComplete';
+
 
 class SingleLevel extends React.Component {
 
@@ -20,6 +25,7 @@ class SingleLevel extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
+    		this.handleNextLevel = this.handleNextLevel.bind(this);
       }
 
       async componentDidMount() {
@@ -45,8 +51,12 @@ class SingleLevel extends React.Component {
           // Listen to message from child window
           eventer(messageEvent,eventFunction.bind(this),false);
 
+      }
 
-
+      componentDidUpdate() {
+        if (this.props.code != this.state.js) {
+          this.setState({js: this.props.code})
+        }
       }
 
       setAnimationDone() {
@@ -56,14 +66,26 @@ class SingleLevel extends React.Component {
       }
 
       onChange(newValue) {
-        this.setState({
-          js: newValue
-        })
+        socket.emit('change-code', {roomName: 'megaman', userName: 'cody', code: newValue})
+        this.props.changeCode(newValue)
       }
 
 
-      setDoc(canDo) {
-        const doc = `
+
+	async handleNextLevel() {
+		await this.props.newLevel(this.props.level.id);
+		this.props.history.push(`/level/${this.props.level.id}`);
+		this.setState({
+			js: this.props.level.startingJS,
+			testResults: [],
+			scale: 0,
+		});
+		this.setDoc(true);
+	}
+
+
+	setDoc(canDo) {
+		const doc = `
         <html>
           <body>
           ${DocHTML(this.props.level)}
@@ -81,8 +103,8 @@ class SingleLevel extends React.Component {
       `
         if (canDo) {
           let scale = this.state.scale
-          if (scale >= 6) {
-            scale = 6
+          if (scale >= 8) {
+            scale = 8
           } else {
             scale += 1
           }
@@ -91,12 +113,9 @@ class SingleLevel extends React.Component {
             scale
           })
         }
-
-
       }
-
+  
     render () {
-      console.log("TEST RESULTS:", this.state.testResults)
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
         return (
@@ -110,7 +129,6 @@ class SingleLevel extends React.Component {
                   <h2>{this.props.level.name}</h2>
                   <h3>{this.props.level.prompt}</h3>
                   </div>}
-            {/* <h3>Welcome, {username}</h3> */}
             <div id="codeIframe">
               <iframe id="thing"
                 srcDoc={this.state.doc}
@@ -122,21 +140,48 @@ class SingleLevel extends React.Component {
               />
             </div>
 
+            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
+            
+					<div className='duckDiv'>
+						{level.tests &&
+							level.tests.map((test, index) => {
+								if (this.state.testResults[index] === 'PASSED') {
+									return (
+										<Anime
+											duration={3000}
+											rotate={[0, 20, 0, -20]}
+											loop={true}
+											direction={'alternate'}>
+											<img
+												src='../theDocileRubberDuck.jpg'
+												className='goodDuck'></img>
+										</Anime>
+									);
+								} else {
+									return (
+										<Anime
+											duration={3000}
+											rotate={[0, -20, 0, 20]}
+											scale={[this.state.scale]}
+											loop={true}
+											direction={'alternate'}>
+											<img
+												src='../theEvilRubberDuck.png'
+												className='evilDuck'></img>
+										</Anime>
+									);
+								}
+							})}
+					</div>
 
-              <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
-            <div className="duckDiv">
-            {level.tests && level.tests.map((test, index) => {
-              if (this.state.testResults[index] === 'FAILED') {
-                return (<Anime duration={3000} rotate={[0,-20,0,20]} scale={[this.state.scale]} loop={true} direction={'alternate'}>
-                  <img src="../theEvilRubberDuck.png" className="evilDuck" ></img>
-                </Anime>)
-              } else {
-                return (<Anime duration={3000} rotate={[0,20,0,-20]}  loop={true} direction={'alternate'}>
-                  <img src="../theDocileRubberDuck.jpg" className="goodDuck" ></img>
-                </Anime>)
-              }
-              })}
-            </div>
+					<div id='popbox'>
+						{level.tests &&
+							level.tests.every((test, index) => {
+								if (this.state.testResults[index] === 'PASSED') {
+									return true;
+								}
+							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
+					</div>
 
             <Editor
               height="50vh"
@@ -156,19 +201,18 @@ class SingleLevel extends React.Component {
           </Anime> : null
         )
       }
-
-
-
 }
 
-
 const mapState = state => ({
-    level: state.level
+    level: state.level,
+    code: state.code
 })
 
 const mapDispatch = dispatch => ({
-    getLevel: (id) => dispatch(fetchLevel(id))
+    getLevel: (id) => dispatch(fetchLevel(id)),
+	  newLevel: (id) => dispatch(nextLevel(id)),
+    changeCode: (code) => dispatch(changeCode(code))
 })
 
 
-export default connect(mapState, mapDispatch)(SingleLevel)
+export default connect(mapState, mapDispatch)(SingleLevel);

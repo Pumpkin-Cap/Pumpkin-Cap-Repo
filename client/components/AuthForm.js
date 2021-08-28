@@ -1,16 +1,16 @@
-import React from 'react'
-import Modal from "react-modal"
-import {authenticate} from '../store'
+import React from 'react';
+import Modal from 'react-modal';
+import { authenticate } from '../store';
 import {
-  Button,
-  Input,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+	Button,
+	Input,
+	InputLabel,
+	Select,
+	MenuItem,
+	FormControl,
+	FormControlLabel,
+	Checkbox,
+} from '@material-ui/core';
 import { connect } from 'react-redux';
 // import { toast } from 'react-toastify';
 // import modalStyle from './modalStyle';
@@ -26,6 +26,10 @@ const modalStyle = () => ({
     zIndex: 10,
     width: "400px",
     height: "350px",
+    backgroundColor: "#A4AC86",
+    borderWidth: "10px",
+    borderColor: "#582F0E",
+    borderStyle: "ridge"
     },
 })
 
@@ -87,7 +91,7 @@ class AuthForm extends React.Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed.
-        this.subtitle.style.color = "rgb(39, 39, 230)";
+        this.subtitle.style.color = "#414833";
         this.subtitle.style.fontFamily = "'Roboto Mono', monospace";
     }
 
@@ -116,7 +120,7 @@ class AuthForm extends React.Component {
                 <div
                 style={{
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-between"
                 }}
                 >
                 <h2 ref={(_subtitle) => (this.subtitle = _subtitle)}>{this.displayName}</h2>
@@ -183,26 +187,22 @@ class AuthForm extends React.Component {
     }
 }
 
-const mapLogin = state => ({
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-})
+const mapLogin = (state) => ({
+	name: 'login',
+	displayName: 'Login',
+	error: state.auth.error,
+});
 
-const mapSignup = state => ({
-    name: 'signup',
-    displayName: 'Sign up',
-    error: state.auth.error
-})
+const mapSignup = (state) => ({
+	name: 'signup',
+	displayName: 'Sign up',
+	error: state.auth.error,
+});
 
+const mapDispatch = (dispatch) => ({
+	authen: (username, password, formName) =>
+		dispatch(authenticate(username, password, formName)),
+});
 
-const mapDispatch = dispatch => ({
-
-    authen: (username,password,formName) => dispatch(authenticate(username, password, formName))
-
-  })
-
-export const Login = connect(mapLogin,mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup,mapDispatch)(AuthForm)
-
-
+export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
