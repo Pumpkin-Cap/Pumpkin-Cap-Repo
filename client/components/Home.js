@@ -60,15 +60,19 @@ export class Home extends React.Component {
         </Anime>
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <h2 style={{textAlign: "center", color: "#333D29"}}>{this.props.username && ('Welcome, ' + this.props.username + '.')}</h2>
-          <h3 style={{textAlign: "center", color: "#333D29"}}>{this.props.username && (<Anime delay={1000} duration={1300} opacity={[0,1]} >
+          <h3 style={{textAlign: "center", color: "#333D29"}}>{this.props.username && <div><Anime delay={1200} duration={1500} opacity={[0,1]} >
             <>Are you ready for your next mission?</>
+
+          </Anime>
+          <Anime delay={2000} duration={2000} opacity={[0,1]} >
             <Link to={`/level/${nextLevel}`}>
               <div className="unlocked" style={{padding: "0px", marginTop: "20px", height: "120px"}}>
                 <h2>{levelCategory}</h2>
                 <h4 style={{marginBottom: "20px"}}>Level {levelNumber}</h4>
               </div>
             </Link>
-          </Anime>)}</h3>
+          </Anime>
+          </div>}</h3>
           <h3 style={{textAlign: "center", color: "#333D29"}}>{!this.props.username && ('LEARN TO CODE')}</h3>
           <h3 style={{textAlign: "center", color: "#333D29"}}>{!this.props.username && ('JOIN THE FIGHT')}</h3>
           <h3 style={{textAlign: "center", color: "#333D29"}}>{!this.props.username && ('DEFEAT THE EVIL DUCK ARMY!!')}</h3>
