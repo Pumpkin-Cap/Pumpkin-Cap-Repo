@@ -131,3 +131,26 @@ form div {
   width: 200px;
   position: absolute;
 }
+
+#bottomBar {
+  display: flex;
+  flex-direction: row-reverse;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#bottomBarInnerDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 25px;
+  background-color: royalblue;
+}
+
+#bottomBarOpenSymbol {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+

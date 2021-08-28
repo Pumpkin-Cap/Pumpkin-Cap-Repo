@@ -22,7 +22,6 @@ class SingleLevel extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
-        // this.handleChangeCode = this.handleChangeCode.bind(this)
       }
 
       async componentDidMount() {
@@ -56,15 +55,6 @@ class SingleLevel extends React.Component {
         }
       }
 
-      handleStartRoom(e, roomName = "megaman") {
-        console.log('I joined the room: ', roomName)
-        socket.emit('join-room', {roomName, userName: 'cody'});
-      }
-
-      handleMessageRoom(e, roomName = "megaman") {
-        socket.emit('message-room', {roomName, userName: 'cody', message: "hello"});
-      }
-
       setAnimationDone() {
         this.setState({
           animationIsDone: true
@@ -75,9 +65,6 @@ class SingleLevel extends React.Component {
 
         socket.emit('change-code', {roomName: 'megaman', userName: 'cody', code: newValue})
         this.props.changeCode(newValue)
-        // this.setState({
-        //   js: newValue
-        // })
       }
 
 
@@ -116,7 +103,6 @@ class SingleLevel extends React.Component {
       }
 
     render () {
-      // console.log("TEST RESULTS:", this.state.testResults)
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
         return (
@@ -129,7 +115,6 @@ class SingleLevel extends React.Component {
                   </Anime>
                   <h2>{this.props.level.name}</h2>
                   </div>}
-            {/* <h3>Welcome, {username}</h3> */}
             <div id="codeIframe">
               <iframe id="thing"
                 srcDoc={this.state.doc}
@@ -140,9 +125,6 @@ class SingleLevel extends React.Component {
                 height="100%"
               />
             </div>
-
-              <button onClick={(e) => this.handleStartRoom(e)}>START ROOM</button>
-              <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button>
 
             <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
             <div className="duckDiv">
