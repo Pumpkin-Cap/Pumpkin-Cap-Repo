@@ -1,9 +1,10 @@
 body {
-	font-family: sans-serif;
-	margin: 0;
-	background-color: #c2c5aa;
-	max-width: 100%;
-	overflow-x: hidden;
+
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #c2c5aa;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .hidden {
@@ -20,16 +21,10 @@ label {
 }
 
 .nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #414833;
-	z-index: 1;
-	position: relative;
-}
-
-nav div {
-	z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #414833;
 }
 
 nav a {
@@ -143,4 +138,23 @@ form div {
 
 .next-level {
 	margin: 30px;
+}
+
+.openingOfficer {
+  height: 200px;
+  margin-top: 50px;
+}
+
+.singleCardContainer {
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-color: #414833;
+  border-width: 15px;
+  border-style: groove;
+  color: #333d29;
+  background-color: #b6ad90;
+  width: 200px;
 }
