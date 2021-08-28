@@ -31,7 +31,8 @@ const modalStyle = () => ({
     borderRight: "10px solid",
     borderTop: "5px solid",
     borderBottom: "5px solid",
-    borderColor: "#582F0E"
+    borderColor: "#582F0E",
+    color: "#A4AC86"
     },
 })
 
