@@ -103,11 +103,12 @@ class SingleLevel extends React.Component {
           this.props.level.startingJS ?
           <Anime duration={6000} opacity={[0,1]}>
           <div id="level">
-            {(this.props.level.id) && <div>
-                  <Anime duration={3000} translateX={[-1000,-500]} easing={'linear'}>
+           <Anime duration={3000} translateX={[-1000,-600]} easing={'linear'}>
                     <img src="../generalJoe.png" className="generalJoe"></img>
-                  </Anime>
+                   </Anime>
+            {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
+                  <h3>{this.props.level.prompt}</h3>
                   </div>}
             {/* <h3>Welcome, {username}</h3> */}
             <div id="codeIframe">

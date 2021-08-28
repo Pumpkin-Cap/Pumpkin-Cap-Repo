@@ -82,8 +82,19 @@ form div {
 }
 
 #level h2 {
+  display: flex;
+  justify-content: center;
   z-index: 1;
   position: relative;
+}
+#level h3 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  margin-left: 25%;
+  margin-right: 25%
 }
 
 #codeIframe {

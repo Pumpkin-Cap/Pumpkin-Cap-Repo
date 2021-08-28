@@ -30,7 +30,7 @@ export class Home extends React.Component {
       </Anime>
     )
   }
-  
+
 }
 
 const mapState = state => {
