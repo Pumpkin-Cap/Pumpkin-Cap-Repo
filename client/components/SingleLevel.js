@@ -5,75 +5,72 @@ import level, { fetchLevel, nextLevel } from '../store/level';
 import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import Anime from 'react-anime';
+import socket from '../socket';
+import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
 
+
 class SingleLevel extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			js: '',
-			doc: '',
-			scale: 0,
-			animationIsDone: false,
-			testResults: [],
-		};
-		this.onChange = this.onChange.bind(this);
-		this.setDoc = this.setDoc.bind(this);
-		this.setAnimationDone = this.setAnimationDone.bind(this);
-		this.handleNextLevel = this.handleNextLevel.bind(this);
-	}
 
-	async componentDidMount() {
-		setTimeout(this.setAnimationDone, 6300);
-		const userHasAccesToLevel = await this.props.getLevel(
-			this.props.match.params.id
-		);
 
-		if (userHasAccesToLevel) {
-			this.setDoc(true);
-		} else {
-			this.props.history.push('/level/unauthorized');
-		}
+    constructor() {
+        super()
+        this.state = {
+          js: '',
+          doc: '',
+          scale: 0,
+          animationIsDone: false,
+          testResults: []
+        }
+        this.onChange = this.onChange.bind(this)
+        this.setDoc = this.setDoc.bind(this)
+        this.setAnimationDone = this.setAnimationDone.bind(this)
+    		this.handleNextLevel = this.handleNextLevel.bind(this);
+      }
 
-		// Create IE + others compatible event handler
-		var eventMethod = window.addEventListener
-			? 'addEventListener'
-			: 'attachEvent';
-		var eventer = window[eventMethod];
-		var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message';
-		function eventFunction(e) {
-			if (typeof e.data === 'string') {
-				this.setState({ testResults: JSON.parse(e.data) });
-			}
-		}
+      async componentDidMount() {
+          setTimeout(this.setAnimationDone, 6300);
+          const userHasAccesToLevel = await this.props.getLevel(this.props.match.params.id)
 
-		// Listen to message from child window
-		eventer(messageEvent, eventFunction.bind(this), false);
-	}
+          if (userHasAccesToLevel){
+            this.setDoc(true)
+          } else{
+            this.props.history.push("/level/unauthorized")
+          }
 
-	// async componentDidUpdate() {
+          // Create IE + others compatible event handler
+          var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+          var eventer = window[eventMethod];
+          var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+          function eventFunction(e) {
+            if (typeof e.data === 'string') {
+              this.setState({testResults: JSON.parse(e.data)})
+            }
+          }
 
-	// 	console.log('hello there')
-	// 	const userHasAccesToLevel = await this.props.getLevel(
-	// 		this.props.match.params.id
-	// 	);
+          // Listen to message from child window
+          eventer(messageEvent,eventFunction.bind(this),false);
 
-	// 	if (userHasAccesToLevel) {
-	// 		this.setDoc(true);
-	// 	}
-	// }
+      }
 
-	setAnimationDone() {
-		this.setState({
-			animationIsDone: true,
-		});
-	}
+      componentDidUpdate() {
+        if (this.props.code != this.state.js) {
+          this.setState({js: this.props.code})
+        }
+      }
 
-	onChange(newValue) {
-		this.setState({
-			js: newValue,
-		});
-	}
+      setAnimationDone() {
+        this.setState({
+          animationIsDone: true
+        })
+      }
+
+      onChange(newValue) {
+        socket.emit('change-code', {roomName: 'megaman', userName: 'cody', code: newValue})
+        this.props.changeCode(newValue)
+      }
+
+
 
 	async handleNextLevel() {
 		await this.props.newLevel(this.props.level.id);
@@ -85,6 +82,7 @@ class SingleLevel extends React.Component {
 		});
 		this.setDoc(true);
 	}
+
 
 	setDoc(canDo) {
 		const doc = `
@@ -102,57 +100,47 @@ class SingleLevel extends React.Component {
 
           </script>
         </html>
-      `;
-		if (canDo) {
-			let scale = this.state.scale;
-			if (scale >= 6) {
-				scale = 6;
-			} else {
-				scale += 1;
-			}
-			this.setState({
-				doc,
-				scale,
-			});
-		}
-	}
+      `
+        if (canDo) {
+          let scale = this.state.scale
+          if (scale >= 8) {
+            scale = 8
+          } else {
+            scale += 1
+          }
+          this.setState({
+            doc,
+            scale
+          })
+        }
+      }
+  
+    render () {
+      const sampleCode = this.props.level.startingJS
+      const level = this.props.level
+        return (
+          this.props.level.startingJS ?
+          <Anime duration={6000} opacity={[0,1]}>
+          <div id="level">
+            {(this.props.level.id) && <div>
+                  <Anime duration={3000} translateX={[-1000,-500]} easing={'linear'}>
+                    <img src="../generalJoe.png" className="generalJoe"></img>
+                  </Anime>
+                  <h2>{this.props.level.name}</h2>
+                  </div>}
+            <div id="codeIframe">
+              <iframe id="thing"
+                srcDoc={this.state.doc}
+                title="output"
+                sandbox="allow-scripts allow-top-navigation allow-same-origin"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+              />
+            </div>
 
-	render() {
-		console.log('TEST RESULTS:', this.state.testResults);
-		const sampleCode = this.props.level.startingJS;
-		const level = this.props.level;
-		return this.props.level.startingJS ? (
-			<Anime duration={6000} opacity={[0, 1]}>
-				<div id='level'>
-					{this.props.level.id && (
-						<div>
-							<Anime
-								duration={3000}
-								translateX={[-1000, -500]}
-								easing={'linear'}>
-								<img src='../generalJoe.png' className='generalJoe'></img>
-							</Anime>
-							<h2>{this.props.level.name}</h2>
-						</div>
-					)}
-					{/* <h3>Welcome, {username}</h3> */}
-					<div id='codeIframe'>
-						<iframe
-							id='thing'
-							srcDoc={this.state.doc}
-							title='output'
-							sandbox='allow-scripts allow-top-navigation allow-same-origin'
-							frameBorder='0'
-							width='100%'
-							height='100%'
-						/>
-					</div>
-
-					<button
-						className='runButton'
-						onClick={() => this.setDoc(this.state.animationIsDone)}>
-						Run
-					</button>
+            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
+            
 					<div className='duckDiv'>
 						{level.tests &&
 							level.tests.map((test, index) => {
@@ -184,6 +172,7 @@ class SingleLevel extends React.Component {
 								}
 							})}
 					</div>
+
 					<div id='popbox'>
 						{level.tests &&
 							level.tests.every((test, index) => {
@@ -192,33 +181,37 @@ class SingleLevel extends React.Component {
 								}
 							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
 					</div>
-					<Editor
-						height='50vh'
-						width='75vw'
-						fontsize='12px'
-						value={this.state.js}
-						defaultLanguage='javascript'
-						theme='vs-dark'
-						onChange={this.onChange}
-						defaultValue={sampleCode}
-						options={{
-							readOnly: false,
-							lineHeight: 25,
-						}}
-					/>
-				</div>
-			</Anime>
-		) : null;
-	}
+
+            <Editor
+              height="50vh"
+              width="75vw"
+              fontsize="12px"
+              value={this.state.js}
+              defaultLanguage="javascript"
+              theme="vs-dark"
+              onChange={this.onChange}
+              defaultValue={sampleCode}
+              options={{
+                readOnly: false,
+                lineHeight: 25,
+              }}
+            />
+          </div>
+          </Anime> : null
+        )
+      }
 }
 
-const mapState = (state) => ({
-	level: state.level,
-});
+const mapState = state => ({
+    level: state.level,
+    code: state.code
+})
 
-const mapDispatch = (dispatch, { history }) => ({
-	getLevel: (id) => dispatch(fetchLevel(id)),
-	newLevel: (id) => dispatch(nextLevel(id, history)),
-});
+const mapDispatch = dispatch => ({
+    getLevel: (id) => dispatch(fetchLevel(id)),
+	  newLevel: (id) => dispatch(nextLevel(id)),
+    changeCode: (code) => dispatch(changeCode(code))
+})
+
 
 export default connect(mapState, mapDispatch)(SingleLevel);
