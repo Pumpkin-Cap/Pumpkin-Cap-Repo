@@ -63,9 +63,9 @@ export class Home extends React.Component {
           <h3 style={{textAlign: "center", color: "#333D29"}}>{this.props.username && (<Anime delay={1000} duration={1300} opacity={[0,1]} >
             <>Are you ready for your next mission?</>
             <Link to={`/level/${nextLevel}`}>
-              <div className="unlocked" style={{padding: "0px", marginTop: "20px"}}>
+              <div className="unlocked" style={{padding: "0px", marginTop: "20px", height: "120px"}}>
                 <h2>{levelCategory}</h2>
-                <h4 style={{marginBottom: "10px"}}>Level {levelNumber}</h4>
+                <h4 style={{marginBottom: "20px"}}>Level {levelNumber}</h4>
               </div>
             </Link>
           </Anime>)}</h3>
