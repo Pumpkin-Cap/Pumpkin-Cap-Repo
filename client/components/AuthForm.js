@@ -1,16 +1,16 @@
-import React from 'react'
-import Modal from "react-modal"
-import {authenticate} from '../store'
+import React from 'react';
+import Modal from 'react-modal';
+import { authenticate } from '../store';
 import {
-  Button,
-  Input,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+	Button,
+	Input,
+	InputLabel,
+	Select,
+	MenuItem,
+	FormControl,
+	FormControlLabel,
+	Checkbox,
+} from '@material-ui/core';
 import { connect } from 'react-redux';
 // import { toast } from 'react-toastify';
 // import modalStyle from './modalStyle';
@@ -187,26 +187,22 @@ class AuthForm extends React.Component {
     }
 }
 
-const mapLogin = state => ({
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-})
+const mapLogin = (state) => ({
+	name: 'login',
+	displayName: 'Login',
+	error: state.auth.error,
+});
 
-const mapSignup = state => ({
-    name: 'signup',
-    displayName: 'Sign up',
-    error: state.auth.error
-})
+const mapSignup = (state) => ({
+	name: 'signup',
+	displayName: 'Sign up',
+	error: state.auth.error,
+});
 
+const mapDispatch = (dispatch) => ({
+	authen: (username, password, formName) =>
+		dispatch(authenticate(username, password, formName)),
+});
 
-const mapDispatch = dispatch => ({
-
-    authen: (username,password,formName) => dispatch(authenticate(username, password, formName))
-
-  })
-
-export const Login = connect(mapLogin,mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup,mapDispatch)(AuthForm)
-
-
+export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm);

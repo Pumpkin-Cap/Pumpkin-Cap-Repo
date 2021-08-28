@@ -1,4 +1,5 @@
 body {
+
   font-family: sans-serif;
   margin: 0;
   background-color: #c2c5aa;
@@ -7,16 +8,16 @@ body {
 }
 
 .hidden {
-  color: rgba(0, 0, 0, 0);
+	color: rgba(0, 0, 0, 0);
 }
 
 a {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 
 label {
-  display: block;
+	display: block;
 }
 
 .nav {
@@ -27,103 +28,116 @@ label {
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
-  color: blanchedalmond;
+	display: inline-block;
+	margin: 1em;
+	color: blanchedalmond;
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+	margin: 1em;
+	display: inline-block;
 }
 
 .unlocked {
-  border-radius: 15px;
-  border-style: solid;
-  border-width: 3px;
-  text-align: center;
-  width: 500px;
-  height: 100px;
-  padding: 60px 0px 0px 0px;
-  background-color: #936639;
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 3px;
+	text-align: center;
+	width: 500px;
+	height: 100px;
+	padding: 60px 0px 0px 0px;
+	background-color: #936639;
 }
 
 .locked {
-  border-radius: 15px;
-  border-style: solid;
-  border-width: 3px;
-  text-align: center;
-  width: 500px;
-  height: 100px;
-  padding: 60px 0px 0px 0px;
-  background-color: #656d4a;
+	border-radius: 15px;
+	border-style: solid;
+	border-width: 3px;
+	text-align: center;
+	width: 500px;
+	height: 100px;
+	padding: 60px 0px 0px 0px;
+	background-color: #656d4a;
 }
 
 .levelListContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .levelCard {
-  padding: 25px;
+	padding: 25px;
 }
 
 #level {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #level h2 {
-  z-index: 1;
-  position: relative;
+	z-index: 1;
+	position: relative;
 }
 
 #codeIframe {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-  z-index: 1;
-  background-color: rgba(255, 238, 189, 0.555);
-  border: 5px double;
-  width: 600px;
-  height: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px;
+	z-index: 1;
+	background-color: rgba(255, 238, 189, 0.555);
+	border: 5px double;
+	width: 600px;
+	height: 250px;
 }
 
 #profileContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .evilDuck {
-  height: 100px;
-  width: 100px;
-  margin-left: 50px;
-  margin-right: 50px;
+	height: 100px;
+	width: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 .goodDuck {
-  height: 100px;
-  width: 100px;
-  margin-left: 50px;
-  margin-right: 50px;
+	height: 100px;
+	width: 100px;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 .runButton {
-  z-index: 1;
+	z-index: 1;
 }
 
 .duckDiv {
-  display: flex;
+	display: flex;
 }
 
 .generalJoe {
-  height: 200px;
-  width: 200px;
-  position: absolute;
+	height: 200px;
+	width: 200px;
+	position: absolute;
+}
+
+#success {
+	font-weight: bold;
+	margin: 15px;
+}
+
+.lvl-desc {
+	margin: 25px;
+}
+
+.next-level {
+	margin: 30px;
 }
 
 .openingOfficer {
