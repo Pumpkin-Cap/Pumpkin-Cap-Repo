@@ -27,12 +27,9 @@ const modalStyle = () => ({
     width: "400px",
     height: "350px",
     backgroundColor: "#A4AC86",
-    borderLeft: "10px solid",
-    borderRight: "10px solid",
-    borderTop: "5px solid",
-    borderBottom: "5px solid",
+    borderWidth: "10px",
     borderColor: "#582F0E",
-    color: "#A4AC86"
+    borderStyle: "ridge"
     },
 })
 

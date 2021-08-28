@@ -130,3 +130,17 @@ form div {
   height: 200px;
   margin-top: 50px;
 }
+
+.singleCardContainer {
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-color: #414833;
+  border-width: 15px;
+  border-style: groove;
+  color: #333d29;
+  background-color: #b6ad90;
+  width: 200px;
+}

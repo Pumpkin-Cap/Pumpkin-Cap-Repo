@@ -25,6 +25,10 @@ const modalStyle = () => ({
     zIndex: 10,
     width: "400px",
     height: "350px",
+    backgroundColor: "#A4AC86",
+    borderWidth: "10px",
+    borderColor: "#582F0E",
+    borderStyle: "ridge"
     },
 })
 
