@@ -156,6 +156,8 @@ form div {
 #profile-level-link {
   border-style: outset;
   background-color: #b6ad90;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 #profile-level-link:hover {
@@ -237,4 +239,9 @@ form div {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
+}
+
+#profile-completed-levels {
+  display: flex;
+  justify-content: space-between;
 }
