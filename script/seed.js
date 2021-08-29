@@ -73,7 +73,7 @@ async function seed() {
   //WILL HAVE TO CHANGE ALL DIV IDS BELOW TO BE UNIQUE FOR OUR SUCCESS MOVING FORWARD - test it have to match divID
   //Might have to refactor
   const Level1 = await Level.create({
-    name: "Level One",
+    name: "Level 1",
     prompt: "Prove to me you understand how to write conditional statements!",
     category: "Control Flow",
     password: "megaman",
@@ -151,7 +151,7 @@ async function seed() {
 
   // Level 2
   const Level2 = await Level.create({
-    name: "Level Two",
+    name: "Level 2",
     prompt: 'Following this condition, write a program that will aid in the quick delivery of orders to our troops. If a wave of ducks is advancing: fire!',
     category: "Control Flow",
     password: "protoman",
@@ -201,7 +201,7 @@ async function seed() {
 
   // Level 3
   const Level3 = await Level.create({
-    name: "Level Three",
+    name: "Level 3",
     prompt: `Following these conditions, write a program that will aid in the quick delivery of orders to our troops.
     When there are no ducks advancing, order a hold.
     When the duck wave is 1-2, fire the rifle for precise shots.
@@ -288,7 +288,7 @@ async function seed() {
 
   // Level 4
   const Level4 = await Level.create({
-    name: "Level Four",
+    name: "Level 4",
     prompt: 'Prove to me you understand how to JOIN conditional statements!',
     category: "Control Flow",
     password: "gutsman",
@@ -334,7 +334,7 @@ async function seed() {
 
   // Level 5
   const Level5 = await Level.create({
-    name: "Level Five",
+    name: "Level 5",
     prompt: `Following these conditions, write a program that will aid in the quick delivery of orders to our troops.
     As before,
     When there are no ducks advancing, order a hold.
