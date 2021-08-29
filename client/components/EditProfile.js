@@ -100,7 +100,7 @@ class EditProfile extends React.Component {
     render() {
         return (
             <>
-           <button onClick={this.openModal}>Edit Profile</button>
+           <button onClick={this.openModal} className="edit-profile-button">Edit Profile</button>
 
             <Modal
             isOpen={this.state.modalOpen}

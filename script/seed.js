@@ -73,7 +73,7 @@ async function seed() {
   //WILL HAVE TO CHANGE ALL DIV IDS BELOW TO BE UNIQUE FOR OUR SUCCESS MOVING FORWARD - test it have to match divID
   //Might have to refactor
   const Level1 = await Level.create({
-    name: "Level One",
+    name: "Level 1",
     category: "Control Flow",
     password: "megaman",
     startingJS: `function myLessThanFunction(){
@@ -150,7 +150,7 @@ async function seed() {
 
   // Level 2
   const Level2 = await Level.create({
-    name: "Level Two",
+    name: "Level 2",
     category: "Control Flow",
     password: "protoman",
     startingJS: `function myIfFunction(duckCount){
@@ -199,7 +199,7 @@ async function seed() {
 
   // Level 3
   const Level3 = await Level.create({
-    name: "Level Three",
+    name: "Level 3",
     category: "Control Flow",
     password: "sandman",
     startingJS: `function myIfElseFunction(duckCount){
@@ -281,7 +281,7 @@ async function seed() {
 
   // Level 4
   const Level4 = await Level.create({
-    name: "Level Four",
+    name: "Level 4",
     category: "Control Flow",
     password: "gutsman",
     startingJS: `function myAndFunction(){
@@ -326,7 +326,7 @@ async function seed() {
 
   // Level 5
   const Level5 = await Level.create({
-    name: "Level Five",
+    name: "Level 5",
     category: "Control Flow",
     password: "roll",
     startingJS: `function myIfElseFunction(duckCount, hasShield){
