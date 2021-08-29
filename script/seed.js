@@ -422,6 +422,14 @@ async function seed() {
     levelFiveTestFive
   ]);
 
+  await users[2].addLevels([
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+  ])
+  
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {

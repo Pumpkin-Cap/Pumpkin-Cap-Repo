@@ -7,9 +7,9 @@ export const setFriends = (friends) => ({
   friends,
 });
 
-export const fetchFriends = () => async (dispatch) => {
+export const fetchFriends = (id) => async (dispatch) => {
   try {
-  const { data } = await axios.get('/api/friends');
+  const { data } = await axios.get(`/api/friends/${id}`);
   dispatch(setFriends(data));
   } catch (e) {
     console.log(e)
@@ -18,7 +18,7 @@ export const fetchFriends = () => async (dispatch) => {
 
 const initialState = []
 
-export default function friendssReducer(state = initialState, action) {
+export default function friendsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_FRIENDS:
       return action.friends;
