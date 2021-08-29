@@ -9,7 +9,7 @@ const Level = db.define('level', {
     allowNull: false
   },
   prompt: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   category: {
     type: Sequelize.STRING,
