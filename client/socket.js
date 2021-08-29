@@ -1,6 +1,7 @@
 import io from "socket.io-client";
 import store from "./store";
 import { setCode } from './store/code'
+import { updateRoom } from "./store/room";
 
 const socket = io(window.location.origin);
 
@@ -14,6 +15,10 @@ socket.on("connect", () => {
 
   socket.on("change-code", eventObject => {
     store.dispatch(setCode(eventObject.code))
+  })
+
+  socket.on("room-update", eventObject => {
+    store.dispatch(updateRoom(eventObject.room))
   })
 
 });

@@ -160,24 +160,35 @@ form div {
 }
 
 #bottomBar {
-  display: flex;
-  flex-direction: row-reverse;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
+	display: flex;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    align-items: flex-end;
+  }
+  
+  #bottomBarInnerDiv {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	height: 25px;
+	background-color: royalblue;
+  }
+  
+  #bottomBarOpenSymbol {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+  }
 
-#bottomBarInnerDiv {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  height: 25px;
-  background-color: royalblue;
+  .userList {
+    display: flex;
+    flex-direction: column;
+    border-style: outset;
+    width: 200px;
+    text-align: center;
+    background: antiquewhite;
 }
-
-#bottomBarOpenSymbol {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-}
-

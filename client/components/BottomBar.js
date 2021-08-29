@@ -1,25 +1,51 @@
 import React from 'react'
 import socket from '../socket';
+import { connect } from 'react-redux'
 
 
-export default class BottomBar extends React.Component {
+export class BottomBar extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            isOpen: false
+            isOpen: false,
+            roomOpen: false,
+            inRoom: false,
+            roomName: 'megaman'
         }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleStartRoom = this.handleStartRoom.bind(this)
+        this.handleLeaveRoom = this.handleLeaveRoom.bind(this)
     }
 
 
 
     handleMessageRoom(e, roomName = "megaman") {
-        socket.emit('message-room', {roomName, userName: 'cody', message: "hello"});
+        socket.emit('message-room', {roomName, userName: this.props.user.username, message: "hello"});
     }
 
-    handleStartRoom(e, roomName = "megaman") {
+    handleStartRoom() {
+        const roomName = this.state.roomName
         console.log('I joined the room: ', roomName)
-        socket.emit('join-room', {roomName, userName: 'cody'});
+        socket.emit('join-room', {roomName, userName: this.props.user.username});
+        this.setState({
+            inRoom: true
+        })
+    }
+
+    handleChange(event) {
+        this.setState({
+            roomName: event.target.value
+        })
+    }
+
+    handleLeaveRoom() {
+        const roomName = this.state.roomName
+        console.log('I left the room: ', roomName)
+        socket.emit('leave-room', {roomName, userName: this.props.user.username});
+        this.setState({
+            inRoom: false
+        })
     }
 
 
@@ -28,12 +54,27 @@ export default class BottomBar extends React.Component {
             <div id="bottomBar">
 
                 {this.state.isOpen ? (
-                    <div id="bottomBarInnerDiv">
-                        <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button>
-                        This is the bottom bar
-                        <button onClick={(e) => this.handleStartRoom(e)}>START ROOM</button>
+                    <>
+                    <div>
+                        {this.state.roomOpen && <div className="userList">
+                            {this.props.room.users.map((userName,index) => (<div key={index}>{userName}</div>))}
+                            </div>}
+                        <button onClick={() => this.setState({roomOpen: !this.state.roomOpen})}>{this.props.room.users.length}</button>
+                    </div>
+                    <div>
+                        {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}
+                        {this.state.inRoom ? 
+                            <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
+                            : (
+                            <>
+                                <input name="roomName" type="text" value={this.state.roomName} onChange={this.handleChange} required></input>
+                                <button onClick={this.handleStartRoom}>START ROOM</button>
+                            </>
+                            )
+                            }
                         <button onClick={() => this.setState({isOpen: false})}>Close</button>
                     </div>
+                    </>
               ) : (
                   <button id="bottomBarOpenSymbol" onClick={() => this.setState({isOpen: true})}>Open Bar</button>
               )}
@@ -44,6 +85,13 @@ export default class BottomBar extends React.Component {
 
 }
 
+
+const mapState = state => ({
+    user: state.auth,
+    room: state.room
+})
+
+export default connect(mapState)(BottomBar)
 
 
 

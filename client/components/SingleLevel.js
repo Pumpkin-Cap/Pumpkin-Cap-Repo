@@ -19,17 +19,17 @@ class SingleLevel extends React.Component {
           js: '',
           doc: '',
           scale: 0,
-          animationIsDone: false,
+          animationIsDone: true,
           testResults: []
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
-    		this.handleNextLevel = this.handleNextLevel.bind(this);
+		this.handleNextLevel = this.handleNextLevel.bind(this);
       }
 
       async componentDidMount() {
-          setTimeout(this.setAnimationDone, 6300);
+        //   setTimeout(this.setAnimationDone, 6300);
           const userHasAccesToLevel = await this.props.getLevel(this.props.match.params.id)
 
           if (userHasAccesToLevel){
@@ -66,7 +66,7 @@ class SingleLevel extends React.Component {
       }
 
       onChange(newValue) {
-        socket.emit('change-code', {roomName: 'megaman', userName: 'cody', code: newValue})
+        socket.emit('change-code', {roomName: this.props.room.roomName, userName: this.props.user.username, code: newValue})
         this.props.changeCode(newValue)
       }
 
@@ -120,7 +120,7 @@ class SingleLevel extends React.Component {
       const level = this.props.level
         return (
           this.props.level.startingJS ?
-          <Anime duration={6000} opacity={[0,1]}>
+        //   <Anime duration={6000} opacity={[0,1]}>
           <div id="level">
             {(this.props.level.id) && <div>
                   <Anime duration={3000} translateX={[-1000,-500]} easing={'linear'}>
@@ -196,20 +196,22 @@ class SingleLevel extends React.Component {
                 lineHeight: 25,
               }}
             />
-          </div>
-          </Anime> : null
+          </div> : null
+        //   </Anime> : null
         )
       }
 }
 
 const mapState = state => ({
+	user: state.auth,
     level: state.level,
-    code: state.code
+    code: state.code,
+	room: state.room
 })
 
 const mapDispatch = dispatch => ({
     getLevel: (id) => dispatch(fetchLevel(id)),
-	  newLevel: (id) => dispatch(nextLevel(id)),
+	newLevel: (id) => dispatch(nextLevel(id)),
     changeCode: (code) => dispatch(changeCode(code))
 })
 

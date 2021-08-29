@@ -6,9 +6,9 @@ import auth from './auth'
 import level from './level'
 import user from './user'
 import code from './code'
-import socket from '../socket'
+import room from './room'
 
-const reducer = combineReducers({ auth, level, user, code })
+const reducer = combineReducers({ auth, level, user, code, room })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
