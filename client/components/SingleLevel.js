@@ -114,17 +114,16 @@ class SingleLevel extends React.Component {
           })
         }
       }
-  
+
     render () {
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
         return (
-          this.props.level.startingJS ?
-        //   <Anime duration={6000} opacity={[0,1]}>
-          <div id="level">
-           <Anime duration={3000} translateX={[-1000,-600]} easing={'linear'}>
+          this.props.level.startingJS ? <>
+        <Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
                     <img src="../generalJoe.png" className="generalJoe"></img>
                    </Anime>
+          <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
                   <h3>{this.props.level.prompt}</h3>
@@ -141,7 +140,7 @@ class SingleLevel extends React.Component {
             </div>
 
             <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
-            
+
 					<div className='duckDiv'>
 						{level.tests &&
 							level.tests.map((test, index) => {
@@ -197,8 +196,7 @@ class SingleLevel extends React.Component {
                 lineHeight: 25,
               }}
             />
-          </div> : null
-        //   </Anime> : null
+          </div> </> : null
         )
       }
 }
