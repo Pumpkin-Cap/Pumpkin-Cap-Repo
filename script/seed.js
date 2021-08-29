@@ -400,6 +400,7 @@ async function seed() {
 
   const levelFiveTestFive = await Test.create({
     name: "test five",
+    description: 'If there is a shield, you must use the grenade launcher regardless!',
     test: `it('returns Fire the grenade launcher!! when any amount of ducks are advancing with a shield', function(){
       expect(myIfElseFunction(1, true)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(2, true)).to.equal('Fire the grenade launcher!!');
@@ -421,6 +422,14 @@ async function seed() {
     levelFiveTestFour,
     levelFiveTestFive
   ]);
+
+  await users[2].addLevels([
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+  ])
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

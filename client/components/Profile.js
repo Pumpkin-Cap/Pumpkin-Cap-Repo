@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchUser } from '../store/user'
 import { fetchLevels } from '../store/level'
+import { fetchFriends } from '../store/friends'
 import { Link } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import VerifyPassword from './VerifyPassword'
@@ -22,6 +23,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.id)
         this.props.getLevels()
+        this.props.getFriends()
     }
 
     setVerified(bool){
