@@ -351,7 +351,10 @@ async function seed() {
       const cannon = 'Fire the cannon!!'
       const grenade = 'Fire the grenade launcher!!'
 
-      //write your code here!
+      //Your code below
+
+
+      //Your code above
       }
       `
   });
@@ -372,7 +375,9 @@ async function seed() {
     description: 'When the duck wave is 1-2, fire the rifle for precise shots.',
     test: `it('returns Fire the rifle!! when 1-2 ducks are advancing without a shield', function(){
       expect(myIfElseFunction(1, false)).to.equal('Fire the rifle!!');
+      expect(myIfElseFunction(1, true)).to.not.equal('Fire the rifle!!');
       expect(myIfElseFunction(2, false)).to.equal('Fire the rifle!!');
+      expect(myIfElseFunction(2, true)).to.not.equal('Fire the rifle!!');
     });`,
     divId: `returns Fire the rifle!! when 1-2 ducks are advancing without a shield`,
   });
@@ -384,6 +389,8 @@ async function seed() {
       expect(myIfElseFunction(3, false)).to.equal('Fire the cannon!!');
       expect(myIfElseFunction(4, false)).to.equal('Fire the cannon!!');
       expect(myIfElseFunction(5, false)).to.equal('Fire the cannon!!');
+      expect(myIfElseFunction(5, true)).to.not.equal('Fire the cannon!!');
+
     });`,
     divId: `returns Fire the cannon!! when 3-5 ducks are advancing without a shield`,
   });
@@ -402,13 +409,12 @@ async function seed() {
     name: "test five",
     description: 'If there is a shield, you must use the grenade launcher regardless!',
     test: `it('returns Fire the grenade launcher!! when any amount of ducks are advancing with a shield', function(){
+      expect(myIfElseFunction(0, true)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(1, true)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(2, true)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(3, true)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(5, true)).to.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(8, false)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(8, true)).to.equal('Fire the grenade launcher!!');
-      expect(myIfElseFunction(100, false)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(100, true)).to.equal('Fire the grenade launcher!!');
     });
   });`,
