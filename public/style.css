@@ -47,6 +47,7 @@ form div {
   background-color: #936639;
   font-size: larger;
   display: flex;
+  flex-direction: column;
   align-content: center;
   justify-content: center;
   padding-top: 30px;
@@ -298,7 +299,7 @@ form div {
     left: 10px;
     align-items: flex-end;
   }
-  
+
   #bottomBarInnerDiv {
 	display: flex;
 	justify-content: flex-end;
@@ -306,7 +307,7 @@ form div {
 	height: 25px;
 	background-color: royalblue;
   }
-  
+
   #bottomBarOpenSymbol {
 	position: fixed;
 	bottom: 10px;

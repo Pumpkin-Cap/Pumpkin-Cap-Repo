@@ -68,8 +68,8 @@ export class Home extends React.Component {
             <div style={{display: 'flex', justifyContent: "center"}}>
             <Link to={`/level/${nextLevel}`}>
               <div className="unlocked" style={{padding: "0px", marginTop: "20px", height: "120px"}}>
-                <h2>{levelCategory}</h2>
-                <h4 style={{marginBottom: "20px"}}>Level {levelNumber}</h4>
+                <h2 style={{marginBottom: "26px"}}>{levelCategory}</h2>
+                <h4 style={{marginTop: "-5px"}}>Level {levelNumber}</h4>
               </div>
             </Link>
             </div>
