@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchUser } from '../store/user'
 import { fetchLevels } from '../store/level'
+import { fetchFriends } from '../store/friends'
 import { Link } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import VerifyPassword from './VerifyPassword'
@@ -24,6 +25,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.id)
         this.props.getLevels()
+
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
 
@@ -31,6 +33,9 @@ class Profile extends React.Component {
         else if (completedLevels <= 9){ this.setRank('Private'); }
         else if (completedLevels <= 14){ this.setRank('Specialist'); }
         else if (completedLevels <= 16){ this.setRank('Code Cracker'); }
+
+        this.props.getFriends()
+
     }
 
     setVerified(bool){

@@ -74,6 +74,7 @@ async function seed() {
   //Might have to refactor
   const Level1 = await Level.create({
     name: "Level 1",
+    prompt: "Prove to me you understand how to write conditional statements!",
     category: "Control Flow",
     password: "megaman",
     startingJS: `function myLessThanFunction(){
@@ -151,6 +152,7 @@ async function seed() {
   // Level 2
   const Level2 = await Level.create({
     name: "Level 2",
+    prompt: 'Following this condition, write a program that will aid in the quick delivery of orders to our troops. If a wave of ducks is advancing: fire!',
     category: "Control Flow",
     password: "protoman",
     startingJS: `function myIfFunction(duckCount){
@@ -200,6 +202,11 @@ async function seed() {
   // Level 3
   const Level3 = await Level.create({
     name: "Level 3",
+    prompt: `Following these conditions, write a program that will aid in the quick delivery of orders to our troops.
+    When there are no ducks advancing, order a hold.
+    When the duck wave is 1-2, fire the rifle for precise shots.
+    When the duck wave is 3-5, fire the cannon for broader hits.
+    Otherwise, fire the grenade launcher!`,
     category: "Control Flow",
     password: "sandman",
     startingJS: `function myIfElseFunction(duckCount){
@@ -282,6 +289,7 @@ async function seed() {
   // Level 4
   const Level4 = await Level.create({
     name: "Level 4",
+    prompt: 'Prove to me you understand how to JOIN conditional statements!',
     category: "Control Flow",
     password: "gutsman",
     startingJS: `function myAndFunction(){
@@ -327,6 +335,13 @@ async function seed() {
   // Level 5
   const Level5 = await Level.create({
     name: "Level 5",
+    prompt: `Following these conditions, write a program that will aid in the quick delivery of orders to our troops.
+    As before,
+    When there are no ducks advancing, order a hold.
+    When the duck wave is 1-2, fire the rifle for precise shots.
+    When the duck wave is 3-5, fire the cannon for broader hits.
+    When it’s 5 or higher, fire the grenade launcher!
+    But now,If there’s a shield you must use the grenade launcher regardless!`,
     category: "Control Flow",
     password: "roll",
     startingJS: `function myIfElseFunction(duckCount, hasShield){
@@ -346,6 +361,7 @@ async function seed() {
 
   const levelFiveTestOne = await Test.create({
     name: "test one",
+    description: 'When there are no ducks advancing, order a hold.',
     test: `describe('myIfElseFunction', function(){
       it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0, false)).to.equal('Hold your fire!!');
@@ -356,6 +372,7 @@ async function seed() {
 
   const levelFiveTestTwo = await Test.create({
     name: "test two",
+    description: 'When the duck wave is 1-2, fire the rifle for precise shots.',
     test: `it('returns Fire the rifle!! when 1-2 ducks are advancing without a shield', function(){
       expect(myIfElseFunction(1, false)).to.equal('Fire the rifle!!');
       expect(myIfElseFunction(1, true)).to.not.equal('Fire the rifle!!');
@@ -367,17 +384,20 @@ async function seed() {
 
   const levelFiveTestThree = await Test.create({
     name: "test three",
+    description: 'When the duck wave is 3-5, fire the cannon for broader hits.',
     test: `it('returns Fire the cannon!! when 3-5 ducks are advancing without a shield', function(){
       expect(myIfElseFunction(3, false)).to.equal('Fire the cannon!!');
-      expect(myIfElseFunction(3, true)).to.not.equal('Fire the cannon!!');
+      expect(myIfElseFunction(4, false)).to.equal('Fire the cannon!!');
       expect(myIfElseFunction(5, false)).to.equal('Fire the cannon!!');
       expect(myIfElseFunction(5, true)).to.not.equal('Fire the cannon!!');
+
     });`,
     divId: `returns Fire the cannon!! when 3-5 ducks are advancing without a shield`,
   });
 
   const levelFiveTestFour = await Test.create({
     name: "test four",
+    description: 'When it’s 5 or higher, fire the grenade launcher!',
     test: `it('returns Fire the grenade launcher!! when 6+ ducks are advancing without a shield', function(){
       expect(myIfElseFunction(8, false)).to.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(100, false)).to.equal('Fire the grenade launcher!!');
@@ -387,6 +407,7 @@ async function seed() {
 
   const levelFiveTestFive = await Test.create({
     name: "test five",
+    description: 'If there is a shield, you must use the grenade launcher regardless!',
     test: `it('returns Fire the grenade launcher!! when any amount of ducks are advancing with a shield', function(){
       expect(myIfElseFunction(0, true)).to.not.equal('Fire the grenade launcher!!');
       expect(myIfElseFunction(1, true)).to.equal('Fire the grenade launcher!!');
@@ -407,6 +428,14 @@ async function seed() {
     levelFiveTestFour,
     levelFiveTestFive
   ]);
+
+  await users[2].addLevels([
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+  ])
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
