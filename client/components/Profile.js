@@ -18,12 +18,12 @@ class Profile extends React.Component {
 
         this.setVerified = this.setVerified.bind(this);
         this.setRank = this.setRank.bind(this);
+        this.grabUserAndFriends = this.grabUserAndFriends.bind(this);
     }
 
     componentDidMount() {
-        this.props.getUser(this.props.match.params.id)
         this.props.getLevels()
-        this.props.getFriends(this.props.match.params.id)
+        this.grabUserAndFriends(this.props.match.params.id);
 
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
@@ -32,9 +32,11 @@ class Profile extends React.Component {
         else if (completedLevels <= 9){ this.setRank('Private'); }
         else if (completedLevels <= 14){ this.setRank('Specialist'); }
         else if (completedLevels <= 16){ this.setRank('Code Cracker'); }
+    }
 
-        this.props.getFriends()
-
+    async grabUserAndFriends(userId){
+        await this.props.getUser(userId);
+        await this.props.getFriends(this.props.user);
     }
 
     setVerified(bool){
@@ -59,9 +61,8 @@ class Profile extends React.Component {
                 <div id="profileContainer">
                     <h1>{this.props.user.username}</h1>
                     {(this.props.auth.id === this.props.user.id) && (verified ? <EditProfile setVerified={this.setVerified} /> : <VerifyPassword setVerified={this.setVerified} />) }
-                     {this.props.auth.id !== this.props.user.id &&
-                (<button>Add Friend</button>)}
-                   <h4 style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                    {(this.props.auth.id !== this.props.user.id) && (<button>Add Friend</button>)}
+                    <h4 style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                         <div style={{display: "flex", justifyContent: "center"}}>Next Level:</div>
                         {this.props.levels[completedLevels] &&
                         <div id="profile-level-link"><Link to={`/level/${completedLevels+1}`}>
@@ -100,7 +101,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getUser: (id) => dispatch(fetchUser(id)),
   getLevels: () => dispatch(fetchLevels()),
-  getFriends: (id) => dispatch(fetchFriends(id))
+  getFriends: (user) => dispatch(fetchFriends(user))
 });
 
 export default connect(mapState, mapDispatch)(Profile);

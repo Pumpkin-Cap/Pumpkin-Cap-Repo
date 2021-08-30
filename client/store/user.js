@@ -52,12 +52,15 @@ export const verifyUser = (id, enteredPass) => async () =>{
     }
 }
 
-export const fetchFriends = (id) => async (dispatch) => {
+export const fetchFriends = (user) => async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
-    const { data } = await axios.get(`/api/users/${id}/friends`, { headers: { authorization: token } });
-    console.log('friends:', data)
-    dispatch(setFriends(data));
+        const token = window.localStorage.getItem('token');
+        // const user = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
+        const budArray = await axios.get(`/api/users/${user.id}/friends`, { headers: { authorization: token } });
+        console.log('user: ', user)
+        // user.data.friends = budArray.data;
+        console.log('friends: ', budArray.data)
+        dispatch(setFriends(budArray.data));
     } catch (e) {
       console.log(e)
     }
@@ -70,7 +73,7 @@ export default function( state = {}, action ) {
         case SET_USER:
             return action.user;
         case SET_FRIENDS:
-            return action.friends
+            return {...user, friends: action.friends }
         default:
             return state
     }

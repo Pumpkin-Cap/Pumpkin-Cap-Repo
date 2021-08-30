@@ -50,7 +50,6 @@ export const nextLevel = (id) => async (dispatch) => {
 		});
 		dispatch(setLevel(data));
 		return data;
-		//changeCode(data.startingJS);
 	} catch (levelError) {
 		console.log('These are not the ducks you are looking for', levelError);
 	}
