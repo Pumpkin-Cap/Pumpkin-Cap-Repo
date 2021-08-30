@@ -9,10 +9,12 @@ class ListLevels extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        openMenu: 'none'
+        openMenu: 'none',
+        levelPrompt: ''
     }
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
 }
 
   componentDidMount() {
@@ -21,6 +23,10 @@ class ListLevels extends React.Component {
 
   handleClick(event){
     this.setState({openMenu: event.target.value});
+  }
+
+  handleMouseOver(event){
+    this.setState({levelPrompt: event.target.value});
   }
 
   render() {
@@ -49,12 +55,12 @@ class ListLevels extends React.Component {
             return (
               <div className="levelCard" key={level.id}>
                 {levelUnlocked ? (
-                  <Link to={`/level/${level.id}`}>
+                  <Link to={`/level/${level.id}`} onMouseOver={this.handleMouseOver} value={level.prompt}>
                     <div className="unlocked">{level.name}</div>
                   </Link>
                 ) : (
                   <div className="locked">
-                    <div>{level.name}</div><div>Not yet unlocked</div>
+                    <div  style={{color: "#A9A9A9"}}>{level.name}</div><div><i style={{fontSize: "small", color: "#A9A9A9"}}>Locked</i></div>
                   </div>
                 )}
               </div>
@@ -62,6 +68,8 @@ class ListLevels extends React.Component {
           })}
 
           </div>
+
+          {this.state.levelPrompt !== '' ? (<div id="level-description">{this.state.levelPrompt}</div>) : (<div id="ghost-level-description"></div>)}
         </div>
       </Anime>
     );

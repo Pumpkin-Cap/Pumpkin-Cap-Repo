@@ -42,12 +42,14 @@ form div {
   border-radius: 15px;
   border-style: outset;
   border-width: 3px;
-  text-align: center;
   width: 200px;
   height: 50px;
-  padding: 15px;
   background-color: #936639;
   font-size: larger;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding-top: 30px;
 }
 
 .unlocked:hover {
@@ -60,7 +62,6 @@ form div {
   border-style: solid;
   border-width: 3px;
   text-align: center;
-  width: 200px;
   height: 50px;
   padding: 15px;
   background-color: #656d4a;
@@ -182,6 +183,8 @@ form div {
 #profile-level-link {
   border-style: outset;
   background-color: #b6ad90;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 #profile-level-link:hover {
@@ -206,13 +209,13 @@ form div {
 
 #level-menu {
   display: flex;
+  justify-content: space-between;
 }
 
 .topic-card {
   border-radius: 15px;
   border-style: outset;
   border-width: 3px;
-  text-align: center;
   width: 250px;
   height: 50px;
   margin: 10px;
@@ -220,12 +223,71 @@ form div {
   padding-top: 10px;
   background-color: #936639;
   font-size: large;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .topic-card:hover {
   border-style: inset;
   background-color: #582f0e;
 }
+
+
+#level-list-menu {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+#level-description {
+  width: 35%;
+  height: fit-content;
+  border-radius: 15px;
+  border-style: double;
+  border-width: 3px;
+  background-color: #936639;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px;
+}
+
+#ghost-level-description {
+  width: 35%;
+  height: fit-content;
+  border-radius: 15px;
+  border-style: double;
+  border-width: 3px;
+  border-color: #c2c5aa;
+  background-color: #c2c5aa;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px;
+}
+
+#profile-completed-levels {
+  display: flex;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+  max-width: 80%;
+}
+
+.profile-completed-level {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.profile-completed-title {
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 5px;
+}
+
 #bottomBar {
 	display: flex;
     display: flex;
@@ -258,5 +320,4 @@ form div {
     width: 200px;
     text-align: center;
     background: antiquewhite;
-
 }
