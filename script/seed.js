@@ -337,11 +337,11 @@ async function seed() {
     name: "Level 5",
     prompt: `Following these conditions, write a program that will aid in the quick delivery of orders to our troops.
     As before,
-    When there are no ducks advancing, order a hold.
+    when there are no ducks advancing, order a hold.
     When the duck wave is 1-2, fire the rifle for precise shots.
     When the duck wave is 3-5, fire the cannon for broader hits.
     When it’s 5 or higher, fire the grenade launcher!
-    But now,If there’s a shield you must use the grenade launcher regardless!`,
+    But now, if there’s a shield you must use the grenade launcher regardless!`,
     category: "Control Flow",
     password: "roll",
     startingJS: `function myIfElseFunction(duckCount, hasShield){
@@ -428,6 +428,205 @@ async function seed() {
     levelFiveTestFour,
     levelFiveTestFive
   ]);
+
+  // Level 6
+  const Level6 = await Level.create({
+    name: "Level 6",
+    prompt: 'Prove to me you understand how a for-loop works!',
+    category: "Loops",
+    startingJS: `function myForLoopFunction(){
+
+      let counter = 0
+
+      //insert starting and ending points to have the function return 10
+      for (let i = /*replace me!*/; i < /*replace me!*/; i++){
+
+      counter++
+      }
+
+      return counter
+      }
+    `,
+  });
+
+  // test specs for level6 go here
+  const levelSixTestOne = Test.create({
+    name: "test one",
+    description: '',
+    test: ``,
+  divId: ``,
+  })
+
+  await Level6.addTests([
+    levelSixTestOne
+  ]);
+
+// Level 7
+  const Level7 = await Level.create({
+    name: "Level 7",
+    prompt: 'Accounting for an unknown number of waves and ducks in each, write a program that will let our troops know how many grenades to prepare. Recall our conditions: when the duck wave is 1-2, fire the rifle for precise shots. When the duck wave is 3-5, fire the cannon for broader hits. When it’s 5 or higher, fire the grenade launcher! If there’s a shield you must use the grenade launcher regardless!',
+    category: "Loops",
+    startingJS: `function myIfElseForLoopFunction(duckWaves, ducksPerWave){
+
+      const grenades = 0
+
+      for (let i = 0; i < duckWaves; i++){
+
+      //Your code below this line
+
+
+      //Your code above this line
+        }
+      return grenades
+      }
+    `,
+  });
+
+// test specs for level 7 go here
+  const levelSevenTestOne = Test.create({
+    name: "test one",
+    description: '',
+    test: ``,
+  divId: ``,
+  })
+
+  await Level7.addTests([
+    levelSevenTestOne
+  ]);
+
+  // Level 8
+  const Level8 = await Level.create({
+    name: "Level 8",
+    prompt: `Write a program that will calculate the time before a duck reaches us, given the following information:
+    A duck travels at half a meter per second.
+    Knowing its starting distance, we’ll need to know the time to the nearest second, rounded up.
+    `,
+    category: "Loops",
+    startingJS: `function myWhileLoopFunction(duckDistance){
+
+      let duckIsWaddling = true
+      let time = 0
+
+      while (duckIsWaddling){
+      //Your code below this line
+
+
+      //Your code above this line
+      if (duckDistance <= 0){
+      duckIsWaddling = false
+      }
+      }
+
+      return time
+    }
+    `,
+  });
+
+// test specs for level 8 go here
+  const levelEightTestOne = Test.create({
+    name: "test one",
+    description: '',
+    test: ``,
+  divId: ``,
+  })
+
+  await Level8.addTests([
+    levelEightTestOne
+  ]);
+
+  // Level 9
+  const Level9 = await Level.create({
+    name: "Level 9",
+    prompt: `Write a program that will calculate the amount of guns required to take down a tough duck, given the following information:
+
+    A duck one-foot tall travels at half a meter per second.
+    Each increase of one foot doubles its speed from the previous height.
+    The duck’s height and distance.
+
+    A duck one-foot tall takes one bullet.
+    Each increase of one foot doubles the required hits from the previous height.
+    Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum 10 shots per load).
+    `,
+    category: "Loops",
+    startingJS: `function myIfWhileForLoopFunction(duckHeight, duckDistance){
+
+      let duckIsWaddling = true
+      let time = 0
+      let shotCount = 0
+      let gunsRequired = 0
+
+      //Your code below this line
+
+
+      //Your code above this line
+
+      return gunsRequired
+    }
+    `,
+  });
+
+// test specs for level 9 go here
+  const levelNineTestOne = Test.create({
+    name: "test one",
+    description: '',
+    test: ``,
+  divId: ``,
+  })
+
+  await Level9.addTests([
+    levelNineTestOne
+  ]);
+
+  // Level 10
+  const Level10 = await Level.create({
+    name: "Level 10",
+    prompt: `Prove to me you understand how arrays work!
+    `,
+    category: "Arrays",
+    startingJS: `const myArray = [20, 15, 300, 45, -50, 0, 15]
+
+    //make all functions return true
+
+    function myFirstArrayFunction(){
+
+    return (20 === myArray[/*replace me!*/])
+    }
+
+    function mySecondArrayFunction(){
+
+    return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    }
+
+    function myThirdArrayFunction(){
+
+    return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
+    }
+
+    function myFourthArrayFunction(){
+
+    return (myArray.length === /*replace me!*/)
+    }
+
+    function myFifthArrayFunction(){
+
+    return (/*replace me!*/ === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    }
+    `,
+  });
+
+// test specs for level 10 go here
+  const levelTenTestOne = Test.create({
+    name: "test one",
+    description: '',
+    test: ``,
+  divId: ``,
+  })
+
+  await Level10.addTests([
+    levelTenTestOne
+  ]);
+
+  // continue here VP
 
   await users[2].addLevels([
     Level1,
