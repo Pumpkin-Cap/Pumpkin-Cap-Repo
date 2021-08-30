@@ -4,10 +4,17 @@ import TOKEN from './auth'
 //// action types
 const SET_USER = "SET_USER"
 
+const SET_FRIENDS = 'SET_FRIENDS';
+
 
 /// action creators
 
 const setUser = user => ( {type: SET_USER, user} )
+
+const setFriends = (friends) => ({
+    type: SET_FRIENDS,
+    friends,
+  });
 
 // thunks
 
@@ -45,13 +52,25 @@ export const verifyUser = (id, enteredPass) => async () =>{
     }
 }
 
+export const fetchFriends = (id) => async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem('token');
+    const { data } = await axios.get(`/api/users/${id}/friends`, { headers: { authorization: token } });
+    console.log('friends:', data)
+    dispatch(setFriends(data));
+    } catch (e) {
+      console.log(e)
+    }
+  };
 
 // reducer
 
 export default function( state = {}, action ) {
     switch (action.type) {
         case SET_USER:
-            return action.user
+            return action.user;
+        case SET_FRIENDS:
+            return action.friends
         default:
             return state
     }
