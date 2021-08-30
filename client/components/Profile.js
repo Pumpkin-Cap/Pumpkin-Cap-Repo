@@ -1,13 +1,11 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { fetchUser } from '../store/user'
-import { fetchLevels } from '../store/level'
-import { fetchFriends } from '../store/friends'
-import { Link } from 'react-router-dom'
-import EditProfile from './EditProfile'
-import VerifyPassword from './VerifyPassword'
-import Anime from 'react-anime'
-
+import React from "react";
+import { connect } from "react-redux";
+import { fetchUser, fetchFriends } from "../store/user";
+import { fetchLevels } from "../store/level";
+import { Link } from "react-router-dom";
+import EditProfile from "./EditProfile";
+import VerifyPassword from "./VerifyPassword";
+import Anime from "react-anime";
 
 class Profile extends React.Component {
 
@@ -25,6 +23,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.id)
         this.props.getLevels()
+        this.props.getFriends(this.props.match.params.id)
 
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
@@ -60,7 +59,9 @@ class Profile extends React.Component {
                 <div id="profileContainer">
                     <h1>{this.props.user.username}</h1>
                     {(this.props.auth.id === this.props.user.id) && (verified ? <EditProfile setVerified={this.setVerified} /> : <VerifyPassword setVerified={this.setVerified} />) }
-                    <h4 style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                     {this.props.auth.id !== this.props.user.id &&
+                (<button>Add Friend</button>)}
+                   <h4 style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                         <div style={{display: "flex", justifyContent: "center"}}>Next Level:</div>
                         {this.props.levels[completedLevels] &&
                         <div id="profile-level-link"><Link to={`/level/${completedLevels+1}`}>
@@ -87,19 +88,19 @@ class Profile extends React.Component {
     }
 
 
+
 }
 
+const mapState = (state) => ({
+  auth: state.auth,
+  user: state.user,
+  levels: state.level,
+});
 
-const mapState = state => ({
-    auth: state.auth,
-    user: state.user,
-    levels: state.level
-})
+const mapDispatch = (dispatch) => ({
+  getUser: (id) => dispatch(fetchUser(id)),
+  getLevels: () => dispatch(fetchLevels()),
+  getFriends: (id) => dispatch(fetchFriends(id))
+});
 
-const mapDispatch = dispatch => ({
-    getUser: (id) => dispatch(fetchUser(id)),
-    getLevels: () => dispatch(fetchLevels())
-})
-
-
-export default connect(mapState,mapDispatch)(Profile)
+export default connect(mapState, mapDispatch)(Profile);

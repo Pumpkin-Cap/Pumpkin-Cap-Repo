@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { models: { User, Level }} = require('../db')
+const { models: { User, Level }} = require('../db');
+const Friend = require('../db/models/Friend');
 const { requireToken, requireAdmin, userIsUser } = require('./gatekeepingMiddleware');
 module.exports = router
 
@@ -20,7 +21,10 @@ router.get('/', requireToken, async (req, res, next) => {
 
 router.get('/:id', requireToken, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id, {include: Level})
+    const user = await User.findByPk(req.params.id, {include: {
+      all: true,
+      nested: true
+    }})
     res.json(user)
   } catch (err) {
     next(err)
@@ -47,7 +51,15 @@ router.put('/update/:id', requireToken, userIsUser, async (req, res, next) => {
   }
 })
 
-
+router.get('/:id/friends', requireToken, async(req, res, next) => {
+  try {
+    // doesn't work
+    const friends = await req.user.getFriends()
+    res.json(friends)
+  } catch (err) {
+    next(err)
+  }
+})
 
 
 

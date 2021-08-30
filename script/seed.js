@@ -437,6 +437,11 @@ async function seed() {
     Level5
   ])
 
+  await users[0].addFriends([
+    users[1],
+    users[2]
+  ])
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
