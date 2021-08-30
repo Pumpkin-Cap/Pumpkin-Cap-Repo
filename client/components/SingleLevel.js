@@ -73,10 +73,11 @@ class SingleLevel extends React.Component {
 
 
 	async handleNextLevel() {
-		await this.props.newLevel(this.props.level.id);
+		const nextLevel = await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
+    this.props.changeCode(nextLevel.startingJS);
 		this.setState({
-			js: this.props.level.startingJS,
+			js: nextLevel.startingJS,
 			testResults: [],
 			scale: 0,
 		});

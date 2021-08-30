@@ -242,7 +242,6 @@ async function seed() {
     test: `describe('myIfElseFunction', function(){
       it('returns Hold your fire!! when no ducks are advancing', function(){
         expect(myIfElseFunction(0)).to.equal('Hold your fire!!');
-        expect(myIfElseFunction(-10)).to.equal('Hold your fire!!');
       });`,
     divId: `returns Hold your fire!! when no ducks are advancing`,
   });
