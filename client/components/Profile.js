@@ -65,15 +65,15 @@ class Profile extends React.Component {
                     </h4>
                     <div style={{fontSize: "x-large", marginBottom: "10px"}}>Completion: {completedLevels / this.props.levels.length * 100} %</div>
                     <div style={{fontSize: "large", marginBottom: "20px", fontWeight: "bolder", border: "groove", padding: "3px"}}>Rank: {this.state.rank}</div>
-                    {completedLevels !== 0 && <div>Levels Completed:</div>}
+                    {completedLevels !== 0 && <div style={{marginBottom: "10px"}}>Levels Completed:</div>}
                     <div id="profile-completed-levels">
-                        <div>Control Flow
+                        <div className="profile-completed-level"><div className="profile-completed-title">Control Flow</div>
                         {Array.isArray(levels) && (levels.filter(element => element.category === 'Control Flow').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                        <div>Loops
+                        <div className="profile-completed-level"><div className="profile-completed-title">Loops</div>
                         {Array.isArray(levels) && (levels.filter(element => element.category === 'Loops').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                        <div>Arrays
+                        <div className="profile-completed-level"><div className="profile-completed-title">Arrays</div>
                         {Array.isArray(levels) && (levels.filter(element => element.category === 'Arrays').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                        <div>Objects
+                        <div className="profile-completed-level"><div className="profile-completed-title">Objects</div>
                         {Array.isArray(levels) && (levels.filter(element => element.category === 'Objects').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
                     </div>
                 </div>
