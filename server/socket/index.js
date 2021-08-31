@@ -35,6 +35,11 @@ module.exports = io => {
       socket.to(eventObject.roomName).emit('change-code', eventObject);
     });
 
+    socket.on('join-call', callObject => {
+      // const socketIds = rooms[callObject.roomName]
+      socket.to(callObject.roomName).emit('call-socket', socket.id)
+    })
+
   });
 
   io.of("/").adapter.on("create-room", (room) => {
@@ -49,7 +54,7 @@ module.exports = io => {
 
     let userArray = rooms[room].map(socketId => users[socketId])
 
-    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray}})
+    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray, sockets: rooms[room]}})
     console.log('room members: ', rooms[room])
   });
   
@@ -58,9 +63,9 @@ module.exports = io => {
     console.log(`socket ${id} has left the room ${room}`);
     rooms[room].splice(rooms[room].indexOf(id),1)
 
-    io.to(id).emit("room-update", {userName: 'server', room: {roomName: '', users: []}})
+    io.to(id).emit("room-update", {userName: 'server', room: {roomName: '', users: [], sockets: []}})
     let userArray = rooms[room].map(socketId => users[socketId])
-    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray}})
+    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray, sockets: rooms[room]}})
     console.log('room members: ', rooms[room])
   });
 

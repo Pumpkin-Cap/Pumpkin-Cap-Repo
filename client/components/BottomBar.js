@@ -1,6 +1,7 @@
 import React from 'react'
 import socket from '../socket';
 import { connect } from 'react-redux'
+import VideoFrame from './VideoChat/VideoFrame';
 
 
 export class BottomBar extends React.Component {
@@ -11,7 +12,8 @@ export class BottomBar extends React.Component {
             isOpen: false,
             roomOpen: false,
             inRoom: false,
-            roomName: 'megaman'
+            roomName: 'megaman',
+            inCall: true,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleStartRoom = this.handleStartRoom.bind(this)
@@ -29,7 +31,7 @@ export class BottomBar extends React.Component {
         console.log('I joined the room: ', roomName)
         socket.emit('join-room', {roomName, userName: this.props.user.username});
         this.setState({
-            inRoom: true
+            inRoom: true,
         })
     }
 
@@ -44,7 +46,7 @@ export class BottomBar extends React.Component {
         console.log('I left the room: ', roomName)
         socket.emit('leave-room', {roomName, userName: this.props.user.username});
         this.setState({
-            inRoom: false
+            inRoom: false,
         })
     }
 
@@ -63,9 +65,13 @@ export class BottomBar extends React.Component {
                     </div>
                     <div>
                         {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}
-                        {this.state.inRoom ? 
-                            <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
-                            : (
+                        {this.state.inRoom ? (
+                            <>
+                                {this.state.inCall && <div><VideoFrame /></div> }
+                                <div style={{backgroundColor: 'blanchedalmond'}}>{this.state.roomName}</div>
+                                <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
+                            </>
+                            ) : (
                             <>
                                 <input name="roomName" type="text" value={this.state.roomName} onChange={this.handleChange} required></input>
                                 <button onClick={this.handleStartRoom}>START ROOM</button>
