@@ -272,7 +272,9 @@ form div {
   display: flex;
   justify-content: space-between;
   width: -webkit-fill-available;
-  max-width: 80%;
+  max-width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .profile-completed-level {
@@ -321,12 +323,6 @@ form div {
   background: antiquewhite;
 }
 
-/* #profileContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
 #top-profileContainer {
   display: flex;
   flex-direction: row;
@@ -351,27 +347,56 @@ form div {
   border-style: inset;
 }
 
+.ghost-friends-button {
+  border-color: #c2c5aa;
+  background-color: #c2c5aa;
+  width: 25px;
+}
+
 #friend-list {
-  width: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
   height: 100px;
-  border-radius: 15px;
-  border-style: double;
-  border-width: 3px;
-  background-color: #936639;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #b6ad90;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  justify-content: flex-start;
+  align-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#friend-list::-webkit-scrollbar {
+  display: none;
 }
 
 #ghost-friend-list {
-  width: 100px;
+  width: 150px;
   height: 100px;
-  border-radius: 15px;
-  border-style: double;
-  border-width: 3px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
   border-color: #c2c5aa;
   background-color: #c2c5aa;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#ghost-friend-list-title {
+  color: #c2c5aa;
+}
+
+#top-profileContainer-rightSection {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
 }

@@ -24,6 +24,7 @@ export const fetchUser = (id) => async dispatch => {
         const token = window.localStorage.getItem('token');
         const { data } = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
         dispatch(setUser(data))
+        return data;
     } catch (userError) {
         console.log("COULD NOT GET USER ", userError)
     }
