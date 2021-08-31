@@ -434,12 +434,13 @@ async function seed() {
     name: "Level 6",
     prompt: 'Prove to me you understand how a for-loop works!',
     category: "Loops",
+    password: 'elecman',
     startingJS: `function myForLoopFunction(){
 
       let counter = 0
 
-      //insert starting and ending points to have the function return 10
-      for (let i = /*replace me!*/; i < /*replace me!*/; i++){
+      //Insert starting and ending points to have the function return 10
+      for (let i = */replace me*/; i < */replace me*/; i++){
 
       counter++
       }
@@ -450,49 +451,58 @@ async function seed() {
   });
 
   // test specs for level6 go here
-  const levelSixTestOne = Test.create({
+  const levelSixTestOne = await Test.create({
     name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
+    description: `When we return counter with the correct code, it should evaluate to 10`,
+    test: `describe('myForLoopFunction', function(){
+      it('returns 10', function(){
+        expect(myForLoopFunction()).to.equal(10);
+      });
+    });`,
+  divId: 'returns 10',
   })
 
   await Level6.addTests([
     levelSixTestOne
   ]);
 
-// Level 7
-  const Level7 = await Level.create({
-    name: "Level 7",
-    prompt: 'Accounting for an unknown number of waves and ducks in each, write a program that will let our troops know how many grenades to prepare. Recall our conditions: when the duck wave is 1-2, fire the rifle for precise shots. When the duck wave is 3-5, fire the cannon for broader hits. When it’s 5 or higher, fire the grenade launcher! If there’s a shield you must use the grenade launcher regardless!',
-    category: "Loops",
-    startingJS: `function myIfElseForLoopFunction(duckWaves, ducksPerWave){
+// // Level 7
+//   const Level7 = await Level.create({
+//     name: "Level 7",
+//     prompt: 'Accounting for an unknown number of waves and ducks in each, write a program that will let our troops know how many grenades to prepare. Recall our conditions: when the duck wave is 1-2, fire the rifle for precise shots. When the duck wave is 3-5, fire the cannon for broader hits. When it’s 5 or higher, fire the grenade launcher!',
+//     category: "Loops",
+//     password: 'roboman',
+//     startingJS: `function myIfElseForLoopFunction(duckWaves, ducksPerWave){
 
-      const grenades = 0
+//       const grenades = 0
 
-      for (let i = 0; i < duckWaves; i++){
+//       for (let i = 0; i < duckWaves; i++){
 
-      //Your code below this line
+//       //Your code below this line
 
 
-      //Your code above this line
-        }
-      return grenades
-      }
-    `,
-  });
+//       //Your code above this line
+//         }
+//       return grenades
+//       }
+//     `,
+//   });
 
-// test specs for level 7 go here
-  const levelSevenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
+// // test specs for level 7 go here
+//   const levelSevenTestOne = Test.create({
+//     name: "test one",
+//     description: `describe('myIfElseForLoopFunction', function(){
+//       it('returns 10', function(){
+//         expect(myForLoopFunction()).to.equal(10);
+//       });
+//     });`,
+//     test: ``,
+//   divId: ``,
+//   })
 
-  await Level7.addTests([
-    levelSevenTestOne
-  ]);
+//   await Level7.addTests([
+//     levelSevenTestOne
+//   ]);
 
   // Level 8
   const Level8 = await Level.create({
@@ -502,6 +512,7 @@ async function seed() {
     Knowing its starting distance, we’ll need to know the time to the nearest second, rounded up.
     `,
     category: "Loops",
+    password: 'iceman',
     startingJS: `function myWhileLoopFunction(duckDistance){
 
       let duckIsWaddling = true
@@ -523,11 +534,19 @@ async function seed() {
   });
 
 // test specs for level 8 go here
-  const levelEightTestOne = Test.create({
+  const levelEightTestOne = await Test.create({
     name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
+    description: `When time is returned, it should evalute to an output corresponding to the known duckDistance`,
+    test: `describe('myWhileLoopFunction', function(){
+      it("returns the appropriate time that it will take for a duck to reach us", function(){
+        expect(myWhileLoopFunction(20)).to.equal(40);
+        expect(myWhileLoopFunction(10)).to.equal(20);
+        expect(myWhileLoopFunction(4)).to.equal(8);
+        expect(myWhileLoopFunction(7)).to.equal(14)
+      });
+    });
+    `,
+  divId: "returns the appropriate time that it will take for a duck to reach us",
   })
 
   await Level8.addTests([
@@ -539,38 +558,62 @@ async function seed() {
     name: "Level 9",
     prompt: `Write a program that will calculate the amount of guns required to take down a tough duck, given the following information:
 
-    A duck one-foot tall travels at half a meter per second.
-    Each increase of one foot doubles its speed from the previous height.
-    The duck’s height and distance.
-
-    A duck one-foot tall takes one bullet.
-    Each increase of one foot doubles the required hits from the previous height.
-    Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum 10 shots per load).
+    A duck travels at half a meter per second.
+A duck one-foot tall takes one bullet.
+Each increase of one foot doubles the required hits from the previous height.
+Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum 10 shots per load).
     `,
     category: "Loops",
+    password: 'fireman',
     startingJS: `function myIfWhileForLoopFunction(duckHeight, duckDistance){
 
+      //boolean to track when duck reaches us
       let duckIsWaddling = true
+
+      //time required for duck to reach us
       let time = 0
-      let shotCount = 0
+
+      //total shots taken at a duck
+      let shotCount = 1
+
+      //total guns required to take a duck down in time
       let gunsRequired = 0
 
-      //Your code below this line
+      //Provided is a set of two loops suggested for use, but you may solve it any way you can come up with!
+
+      while(duckIsWaddling) {
+        //Your code below this line
 
 
-      //Your code above this line
+        //Your code above this line
+      if (duckDistance <= 0) {
+        duckIsWaddling = false
+      }
+      }
 
+      for (let i = 0; i < duckHeight; i++){
+        //Your code below this line
+
+      }
+
+        //Do not edit below here
       return gunsRequired
     }
     `,
   });
 
 // test specs for level 9 go here
-  const levelNineTestOne = Test.create({
+  const levelNineTestOne = await Test.create({
     name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
+    description: 'When gunsRequired is returned, it should evaluate to the appropriate amount on guns needed to take down a tough duck',
+    test: `describe('myIfWhileForLoopFunction', function(){
+      it("returns the appropriate time that it will take for a duck to reach us", function(){
+        expect(myIfWhileForLoopFunction(2, 4)).to.equal(2);
+        expect(myIfWhileForLoopFunction(4, 24)).to.equal(3);
+        expect(myIfWhileForLoopFunction(1, 5)).to.equal(5);
+      });
+    });`,
+  divId: `returns the appropriate time that it will take for a duck to reach us`,
   })
 
   await Level9.addTests([
@@ -583,6 +626,7 @@ async function seed() {
     prompt: `Prove to me you understand how arrays work!
     `,
     category: "Arrays",
+    password: 'beautyman',
     startingJS: `const myArray = [20, 15, 300, 45, -50, 0, 15]
 
     //make all functions return true
@@ -597,6 +641,7 @@ async function seed() {
     return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
     }
 
+    // For the following questions, I expect you to use integers to solve for true. THERE IS NO ROOM FOR LAZINESS!
     function myThirdArrayFunction(){
 
     return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
@@ -615,303 +660,359 @@ async function seed() {
   });
 
 // test specs for level 10 go here
-  const levelTenTestOne = Test.create({
+  const levelTenTestOne = await Test.create({
     name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    test: `describe('myFirstArrayFunction', function(){
+      it('return TRUE when both values are equal to 20', function(){
+        expect(myFirstArrayFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when both values are equal to 20`,
+  })
+
+  const levelTenTestTwo = await Test.create({
+    name: "test two",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    test: `describe('mySecondArrayFunction', function(){
+      it('return TRUE when both values are equal to 345', function(){
+        expect(mySecondArrayFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when both values are equal to 345`,
+  })
+
+  const levelTenTestThree = await Test.create({
+    name: "test three",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    test: `describe('myThirdArrayFunction', function(){
+      it('return TRUE when both conditional statements evaluate to true', function(){
+        expect(myThirdArrayFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when both conditional statements evaluate to true`,
+  })
+
+  const levelTenTestFour = await Test.create({
+    name: "test four",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    test: `describe('myFourthArrayFunction', function(){
+      it('return TRUE when the correct array length is plugged in', function(){
+        expect(myFourthArrayFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when the correct array length is plugged in`,
+  })
+
+  const levelTenTestFive = await Test.create({
+    name: "test five",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    test: `describe('myFifthArrayFunction', function(){
+      it("return TRUE when the integer is equal to the sum of the two array value", function(){
+        expect(myFifthArrayFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when the integer is equal to the sum of the two array value`,
   })
 
   await Level10.addTests([
-    levelTenTestOne
+    levelTenTestOne,
+    levelTenTestTwo,
+    levelTenTestThree,
+    levelTenTestFour,
+    levelTenTestFive
   ]);
 
-  // continue here VP - level 11
-  const Level11 = await Level.create({
-    name: "Level 11",
-    prompt: `By using an array to reference the enemy ranks, use the pizza/party hat to identify and extract our operative.`,
-    category: "Arrays",
-    startingJS: `function myArrayFunction(arrayOfEnemies){
+//   // continue here VP - level 11
+//   const Level11 = await Level.create({
+//     name: "Level 11",
+//     prompt: `By using an array to reference the enemy ranks, use the pizza/party hat to identify and extract our operative.`,
+//     category: "Arrays",
+//     startingJS: `function myArrayFunction(arrayOfEnemies){
 
-      let extraction = 0
+//       let extraction = 0
 
-      //Each element in the input array is a boolean, each reflecting if the duck is wearing a pizza/party hat
+//       //Each element in the input array is a boolean, each reflecting if the duck is wearing a pizza/party hat
 
-      //Your code below
+//       //Your code below
 
 
-      //Your code above
+//       //Your code above
 
-      return arrayOfEnemies[extraction]
-      }
-    `,
-  });
+//       return arrayOfEnemies[extraction]
+//       }
+//     `,
+//   });
 
-// test specs for level 11 go here
-  const levelElevenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
+// // test specs for level 11 go here
+//   const levelElevenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
 
-  await Level11.addTests([
-    levelElevenTestOne
-  ]);
+//   await Level11.addTests([
+//     levelElevenTestOne
+//   ]);
 
-  //level 12
-  const Level12 = await Level.create({
-    name: "Level 12",
-    prompt: `Show me you understand how to use these array methods!`,
-    category: "Arrays",
-    startingJS: `//make all functions return true
+//   //level 12
+//   const Level12 = await Level.create({
+//     name: "Level 12",
+//     prompt: `Show me you understand how to use these array methods!`,
+//     category: "Arrays",
+//     startingJS: `//make all functions return true
 
-    function myLengthFunction(){
+//     function myLengthFunction(){
 
-    const myArray = [8, 7]
+//     const myArray = [8, 7]
 
-    //We’ve already dealt with .length, but it’s so important it’s here again!
-    //myArray.length will set a variable equal to the length.
+//     //We’ve already dealt with .length, but it’s so important it’s here again!
+//     //myArray.length will set a variable equal to the length.
 
-    return (myArray.length === /*replace me!*/)
-    }
+//     return (myArray.length === /*replace me!*/)
+//     }
 
 
-    function myPushFunction(){
+//     function myPushFunction(){
 
-    const myArray = [8, 7]
+//     const myArray = [8, 7]
 
-    //myArray.push(x) will add x to the end of the array
-    //In addition, this will set a variable equal to the new length (let newLength = myArray.push(x))
+//     //myArray.push(x) will add x to the end of the array
+//     //In addition, this will set a variable equal to the new length (let newLength = myArray.push(x))
 
-    //Your code below
+//     //Your code below
 
 
-    //Your code above
+//     //Your code above
 
-    return (myArray[2] === 6)
-    }
+//     return (myArray[2] === 6)
+//     }
 
-    function myPopFunction(){
+//     function myPopFunction(){
 
-    const myArray = [8, 7]
+//     const myArray = [8, 7]
 
-    //myArray.pop() will remove the last element of the array
-    //In addition, this will set a variable equal to that removed element (let popped = myArray.pop())
-    //Your code below
+//     //myArray.pop() will remove the last element of the array
+//     //In addition, this will set a variable equal to that removed element (let popped = myArray.pop())
+//     //Your code below
 
 
-    //Your code above
+//     //Your code above
 
-    return (myArray[myArray.length - 1] === 8)
-    }
+//     return (myArray[myArray.length - 1] === 8)
+//     }
 
-    function myIncludesFunction(){
+//     function myIncludesFunction(){
 
-    const myArray = [8, 7]
+//     const myArray = [8, 7]
 
-    //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
+//     //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
 
-    return (myArray.includes(/*replace me!*/))
-    }
+//     return (myArray.includes(/*replace me!*/))
+//     }
 
-    function myIndexOfFunction(){
+//     function myIndexOfFunction(){
 
-    const myArray = [8, 7]
+//     const myArray = [8, 7]
 
-    //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
+//     //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
 
-    return (myArray.indexOf(/*replace me!*/) === 1)
-    }
+//     return (myArray.indexOf(/*replace me!*/) === 1)
+//     }
 
-    `,
-  });
+//     `,
+//   });
 
-// test specs for level 12 go here
-  const levelTwelveTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level12.addTests([
-    levelTwelveTestOne
-  ]);
-
-  //level 13
-  const Level13 = await Level.create({
-    name: "Level 13",
-    prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings.`,
-    category: "Arrays",
-    startingJS: `function mySeekingFunction(deploymentArray){
-      //Enter your code
-      } `,
-  });
-
-// test specs for level 13 go here
-  const levelThirteenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level13.addTests([
-    levelThriteenTestOne
-  ]);
-
-  //level 14
-  const Level14 = await Level.create({
-    name: "Level 14",
-    prompt: `Given an array where each element could be an array of elements itself, return the location of “gary” so he can be rescued. All individual values will be strings.`,
-    category: "Arrays",
-    startingJS: `function myFindingFunction(encryptedArray){
-      //Enter your code
-      }`,
-  });
-
-// test specs for level 14 go here
-  const levelFourteenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level14.addTests([
-    levelFourteenTestOne
-  ]);
-
-  //level 15
-  const Level15 = await Level.create({
-    name: "Level 15",
-    prompt: `Prove to me you understand how objects work!`,
-    category: "Objects",
-    startingJS: `const myObject = {
-      duck: “rubber”,
-      wizard: “Harry”,
-      3: 55,
-      true: false
-      }
-
-
-      //make all functions return true
-
-      function myFirstObjectFunction(){
-
-      return (“rubber” === (myObject./*replace me!*/)
-      }
-
-      function mySecondObjectFunction(){
-
-      return (“rubber” === myObject[/*replace me!*/])
-
-      }
-
-      function myThirdObjectFunction(){
-
-      return (55 === myObject[/*replace me!*/])
-      }
-
-      function myFourthObjectFunction(){
-
-      return (/*replace me!*/ === myObject[“true”])
-      }
-
-      function myFifthObjectFunction(){
-
-      return (myObject[((!myObject.true).toString())] === /*replace me!*/)
-      }
-      `,
-  });
-
-// test specs for level 15 go here
-  const levelFifteenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level15.addTests([
-    levelFifteenTestOne
-  ]);
-
-  //level 16
-  const Level16 = await Level.create({
-    name: "Level 16",
-    prompt: `Given the data on an enemy duck, return an object with the following structure:
-
-    key: type		value: string
-    key: attributes	value: object
-            key: height		value: integer
-            key: distance	value: integer
-    `,
-    category: "Objects",
-    startingJS: `/*
-    type: “toughDuck”
-    height: 50 feet
-    distance: 100 feet
-    */
-
-    myBuildAnObjectFunction(){
-    //Your code below
-
-
-    //Your code above
-    }
-    `,
-  });
-
-// test specs for level 16 go here
-  const levelSixteenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level16.addTests([
-    levelSixteenTestOne
-  ]);
-
-  //level 17
-  const Level17 = await Level.create({
-    name: "Level 17",
-    prompt: `Given an array where each duck is given as an object,
-
-    Find the index of each “squeaker” and which weapon to use based on how many are in a row and if they have shields.
-    Fire at the first of a cluster to hit all of them.
-    If any one duck in a cluster has a shield, it is the same as if all of them do.
-
-    Find the index of each “toughDuck” and how many guns will need to be focused on them based on their particular height and distance.
-    `,
-    category: "Objects",
-    startingJS: `myFinalFunction(arrayOfEnemies){
-      //Do it. Do it.
-      }
-      `,
-  });
-
-// test specs for level 17 go here
-  const levelSeventeenTestOne = Test.create({
-    name: "test one",
-    description: '',
-    test: ``,
-  divId: ``,
-  })
-
-  await Level17.addTests([
-    levelSeventeenTestOne
-  ]);
+// // test specs for level 12 go here
+//   const levelTwelveTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level12.addTests([
+//     levelTwelveTestOne
+//   ]);
+
+//   //level 13
+//   const Level13 = await Level.create({
+//     name: "Level 13",
+//     prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings.`,
+//     category: "Arrays",
+//     startingJS: `function mySeekingFunction(deploymentArray){
+//       //Enter your code
+//       } `,
+//   });
+
+// // test specs for level 13 go here
+//   const levelThirteenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level13.addTests([
+//     levelThriteenTestOne
+//   ]);
+
+//   //level 14
+//   const Level14 = await Level.create({
+//     name: "Level 14",
+//     prompt: `Given an array where each element could be an array of elements itself, return the location of “gary” so he can be rescued. All individual values will be strings.`,
+//     category: "Arrays",
+//     startingJS: `function myFindingFunction(encryptedArray){
+//       //Enter your code
+//       }`,
+//   });
+
+// // test specs for level 14 go here
+//   const levelFourteenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level14.addTests([
+//     levelFourteenTestOne
+//   ]);
+
+//   //level 15
+//   const Level15 = await Level.create({
+//     name: "Level 15",
+//     prompt: `Prove to me you understand how objects work!`,
+//     category: "Objects",
+//     startingJS: `const myObject = {
+//       duck: “rubber”,
+//       wizard: “Harry”,
+//       3: 55,
+//       true: false
+//       }
+
+
+//       //make all functions return true
+
+//       function myFirstObjectFunction(){
+
+//       return (“rubber” === (myObject./*replace me!*/)
+//       }
+
+//       function mySecondObjectFunction(){
+
+//       return (“rubber” === myObject[/*replace me!*/])
+
+//       }
+
+//       function myThirdObjectFunction(){
+
+//       return (55 === myObject[/*replace me!*/])
+//       }
+
+//       function myFourthObjectFunction(){
+
+//       return (/*replace me!*/ === myObject[“true”])
+//       }
+
+//       function myFifthObjectFunction(){
+
+//       return (myObject[((!myObject.true).toString())] === /*replace me!*/)
+//       }
+//       `,
+//   });
+
+// // test specs for level 15 go here
+//   const levelFifteenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level15.addTests([
+//     levelFifteenTestOne
+//   ]);
+
+//   //level 16
+//   const Level16 = await Level.create({
+//     name: "Level 16",
+//     prompt: `Given the data on an enemy duck, return an object with the following structure:
+
+//     key: type		value: string
+//     key: attributes	value: object
+//             key: height		value: integer
+//             key: distance	value: integer
+//     `,
+//     category: "Objects",
+//     startingJS: `/*
+//     type: “toughDuck”
+//     height: 50 feet
+//     distance: 100 feet
+//     */
+
+//     myBuildAnObjectFunction(){
+//     //Your code below
+
+
+//     //Your code above
+//     }
+//     `,
+//   });
+
+// // test specs for level 16 go here
+//   const levelSixteenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level16.addTests([
+//     levelSixteenTestOne
+//   ]);
+
+//   //level 17
+//   const Level17 = await Level.create({
+//     name: "Level 17",
+//     prompt: `Given an array where each duck is given as an object,
+
+//     Find the index of each “squeaker” and which weapon to use based on how many are in a row and if they have shields.
+//     Fire at the first of a cluster to hit all of them.
+//     If any one duck in a cluster has a shield, it is the same as if all of them do.
+
+//     Find the index of each “toughDuck” and how many guns will need to be focused on them based on their particular height and distance.
+//     `,
+//     category: "Objects",
+//     startingJS: `myFinalFunction(arrayOfEnemies){
+//       //Do it. Do it.
+//       }
+//       `,
+//   });
+
+// // test specs for level 17 go here
+//   const levelSeventeenTestOne = Test.create({
+//     name: "test one",
+//     description: '',
+//     test: ``,
+//   divId: ``,
+//   })
+
+//   await Level17.addTests([
+//     levelSeventeenTestOne
+//   ]);
 
   await users[2].addLevels([
     Level1,
     Level2,
     Level3,
     Level4,
-    Level5
+    Level5,
+    Level6,
+    Level8,
+    Level9,
+    Level10
   ])
 
   await users[0].addFriends([
