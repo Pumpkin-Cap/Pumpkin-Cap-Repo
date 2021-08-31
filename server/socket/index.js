@@ -37,7 +37,8 @@ module.exports = io => {
 
     socket.on('join-call', callObject => {
       // const socketIds = rooms[callObject.roomName]
-      socket.to(callObject.roomName).emit('call-socket', socket.id)
+      console.log(`${callObject.peerId} is trying to join the call in room ${callObject.roomName}` )
+      socket.to(callObject.roomName).emit('call-socket', callObject)
     })
 
   });

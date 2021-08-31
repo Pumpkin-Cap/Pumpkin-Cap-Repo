@@ -16,8 +16,7 @@ class Video extends React.Component {
 
         const roomName = this.props.roomName
         const peer = this.props.peer
-
-        console.log("SOCKET STUFF: ", socket.id === this.props.thing)
+        const streamVideo = this.state.streamVideo
 
         if (socket.id === this.props.thing) {
             navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
@@ -25,10 +24,11 @@ class Video extends React.Component {
 
                 peer.on('open', function (id) {
                     // socket.emit('joinHost', this.props.userId);
+                    console.log("HELLO")
 
-                    socket.on('call-socket', ( socketId ) => {
-                        console.log('request received', socketId);
-                        peer.call(socketId, currentStream);
+                    socket.on('call-socket', ( { peerId } ) => {
+                        console.log('request received', peerId);
+                        peer.call(peerId, currentStream);
                     });
                 });
 
@@ -37,14 +37,15 @@ class Video extends React.Component {
 
             peer.on('open', function (id) {
                 // console.log(this.props.roomName)
-                socket.emit('join-call', { roomName: roomName });
+                socket.emit('join-call', { roomName, peerId: id });
     
               peer.on('call', function (call) {
                 console.log('received call');
                 call.answer();
     
                 call.on('stream', function (stream) {
-                  this.state.streamVideo.current.srcObject = stream;
+                    console.log(stream)
+                  streamVideo.current.srcObject = stream;
                 });
               });
             });
