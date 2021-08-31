@@ -26,7 +26,6 @@ class ListLevels extends React.Component {
   }
 
   handleMouseOver(event){
-    console.log(event.target.id)
     this.setState({levelPrompt: event.target.id});
   }
 

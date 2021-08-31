@@ -29,7 +29,7 @@ export class Home extends React.Component {
       levelCategory = "Arrays";
       levelNumber = nextLevel - 9;
     }
-    else if (nextLevel <= 16){
+    else if (nextLevel <= 17){
       levelCategory = "Objects";
       levelNumber = nextLevel - 14;
     }
