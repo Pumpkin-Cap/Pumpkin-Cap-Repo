@@ -52,6 +52,12 @@ export class BottomBar extends React.Component {
 
 
     render() {
+
+        let roomUsers = 0
+        if (this.props.room.users) {
+            roomUsers = this.props.room.users.length
+        }
+
         return (
             <div id="bottomBar">
 
@@ -61,7 +67,7 @@ export class BottomBar extends React.Component {
                         {this.state.roomOpen && <div className="userList">
                             {this.props.room.users.map((userName,index) => (<div key={index}>{userName}</div>))}
                             </div>}
-                        <button onClick={() => this.setState({roomOpen: !this.state.roomOpen})}>{this.props.room.users.length}</button>
+                        <button onClick={() => this.setState({roomOpen: !this.state.roomOpen})}>{roomUsers}</button>
                     </div>
                     <div>
                         {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}

@@ -4,7 +4,7 @@
 module.exports = io => {
 
   const rooms = {}
-  const users = {}
+  const userNames = {}
 
   io.on('connection', socket => {
 
@@ -12,7 +12,7 @@ module.exports = io => {
 
     socket.on('join-room', joinObject => {
         console.log(` ${joinObject.userName} has joined the room: ${joinObject.roomName} `)
-        users[socket.id] = joinObject.userName
+        userNames[socket.id] = joinObject.userName
         socket.join(joinObject.roomName)
         socket.to(joinObject.roomName).emit(` ${joinObject.userName} has joined the room: ${joinObject.roomName} `)
     })
@@ -35,10 +35,18 @@ module.exports = io => {
       socket.to(eventObject.roomName).emit('change-code', eventObject);
     });
 
-    socket.on('join-call', callObject => {
+    socket.on('join-call', roomName => {
       // const socketIds = rooms[callObject.roomName]
-      console.log(`${callObject.peerId} is trying to join the call in room ${callObject.roomName}` )
-      socket.to(callObject.roomName).emit('call-socket', callObject)
+      // console.log(`${callObject.peerId} is trying to join the call in room ${callObject.roomName}` )
+      socket.emit('all-users', rooms[roomName])
+    })
+
+    socket.on("sending-single", payload => {
+      io.to(payload.userToSignal).emit('user-joined', { signal: payload.signal, callerId: payload.callerId })
+    })
+
+    socket.on('returning-signal', payload => {
+      io.to(payload.callerId).emit('receiving-returned-signal', { signal: payload.signal, id: socket.id })
     })
 
   });
@@ -53,9 +61,9 @@ module.exports = io => {
     console.log(`socket ${id} has joined room ${room}`);
     rooms[room].push(id)
 
-    let userArray = rooms[room].map(socketId => users[socketId])
+    let userArray = rooms[room].map(socketId => userNames[socketId])
 
-    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray, sockets: rooms[room]}})
+    io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, userNames: userArray, sockets: rooms[room]}})
     console.log('room members: ', rooms[room])
   });
   
@@ -65,7 +73,7 @@ module.exports = io => {
     rooms[room].splice(rooms[room].indexOf(id),1)
 
     io.to(id).emit("room-update", {userName: 'server', room: {roomName: '', users: [], sockets: []}})
-    let userArray = rooms[room].map(socketId => users[socketId])
+    let userArray = rooms[room].map(socketId => userNames[socketId])
     io.to(room).emit("room-update", {userName: 'server', room: {roomName: room, users: userArray, sockets: rooms[room]}})
     console.log('room members: ', rooms[room])
   });
