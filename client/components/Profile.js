@@ -9,7 +9,6 @@ import VerifyPassword from "./VerifyPassword";
 import Anime from "react-anime";
 
 class Profile extends React.Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -159,8 +158,6 @@ class Profile extends React.Component {
         )
     }
 
-
-
 }
 
 const mapState = (state) => ({
@@ -173,8 +170,10 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getUser: (id) => dispatch(fetchUser(id)),
   getLevels: () => dispatch(fetchLevels()),
+
   getFriends: (user) => dispatch(fetchFriends(user)),
   getAllUsers: () => dispatch(fetchAllUsers(users))
+
 });
 
 export default connect(mapState, mapDispatch)(Profile);
