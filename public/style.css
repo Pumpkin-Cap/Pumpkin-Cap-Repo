@@ -322,3 +322,8 @@ form div {
     text-align: center;
     background: antiquewhite;
 }
+
+.videoFrame {
+  display: flex;
+  flex-direction: column;
+}

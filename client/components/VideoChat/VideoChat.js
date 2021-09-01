@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import styled from "styled-components";
+import socket from "../../socket";
 
 const Container = styled.div`
     padding: 20px;
@@ -13,8 +14,8 @@ const Container = styled.div`
 `;
 
 const StyledVideo = styled.video`
-    height: 40%;
-    width: 50%;
+    height: 113;
+    width: 200;
 `;
 
 const Video = (props) => {
@@ -27,7 +28,14 @@ const Video = (props) => {
     }, []);
 
     return (
-        <StyledVideo playsInline autoPlay ref={ref} />
+        <video width="200" height="113"
+            playsInline
+            muted={false}
+            ref={ref}
+            autoPlay
+            style={{ objectFit: 'cover' }}
+        />
+        // <StyledVideo playsInline autoPlay ref={ref} />
     );
 }
 
@@ -45,7 +53,7 @@ const VideoChat = (props) => {
     const roomID = props.roomID;
 
     useEffect(() => {
-        socketRef.current = io.connect("/");
+        socketRef.current = socket
         navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true }).then(stream => {
             userVideo.current.srcObject = stream;
             socketRef.current.emit("join room", roomID);
@@ -57,7 +65,10 @@ const VideoChat = (props) => {
                         peerID: userID,
                         peer,
                     })
-                    peers.push(peer);
+                    peers.push({
+                        peerID: userID,
+                        peer
+                    });
                 })
                 setPeers(peers);
             })
@@ -69,13 +80,31 @@ const VideoChat = (props) => {
                     peer,
                 })
 
-                setPeers(users => [...users, peer]);
+                const peerObj = {
+                    peer,
+                    peerID: payload.callerID
+                }
+
+                setPeers(users => [...users, peerObj]);
             });
 
             socketRef.current.on("receiving returned signal", payload => {
                 const item = peersRef.current.find(p => p.peerID === payload.id);
                 item.peer.signal(payload.signal);
             });
+
+
+            socketRef.current.on("user left", id => {
+                const peerObj = peersRef.current.find(p => p.peerID === id)
+                if (peerObj) {
+                    peerObj.peer.destoy()
+                }
+                const peers = peersRef.current.filter(p => p.peerID !== id)
+                peersRef.current = peers
+                setPeers(peers)
+            })
+
+
         })
     }, []);
 
@@ -110,14 +139,21 @@ const VideoChat = (props) => {
     }
 
     return (
-        <Container>
-            <StyledVideo muted ref={userVideo} autoPlay playsInline />
-            {peers.map((peer, index) => {
+        <div className='videoFrame'>
+            {/* <StyledVideo muted ref={userVideo} autoPlay playsInline /> */}
+            <video width="200" height="113"
+            playsInline
+            muted={true}
+            ref={userVideo}
+            autoPlay
+            style={{ objectFit: 'cover' }}
+            />
+            {peers.map(peer => {
                 return (
-                    <Video key={index} peer={peer} />
+                    <Video key={peer.peerID} peer={peer.peer} />
                 );
             })}
-        </Container>
+        </div>
     );
 };
 
