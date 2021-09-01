@@ -7,6 +7,7 @@ const Level = require('./models/Level')
 const Test = require('./models/Test')
 const Request = require('./models/Request')
 const Friend = require('./models/Friend')
+const Dialog = require('./models/Dialog')
 
 //associations could go here!
 
@@ -18,6 +19,9 @@ User.belongsToMany(User, {as: 'friends', through: Friend})
 Level.hasMany(Test)
 Test.belongsTo(Level)
 
+Test.hasMany(Dialog)
+Dialog.belongsTo(Test)
+
 
 
 module.exports = {
@@ -27,6 +31,7 @@ module.exports = {
     Level,
     Test,
     Request,
-    Friend
+    Friend,
+    Dialog
   },
 }
