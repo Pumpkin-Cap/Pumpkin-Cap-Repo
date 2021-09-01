@@ -155,7 +155,7 @@ class SingleLevel extends React.Component {
 											loop={true}
 											direction={'alternate'}>
 											<img
-												src='../theDocileRubberDuck.jpg'
+												src='../theDocileRubberDuck.png'
 												className='goodDuck'></img>
 										</Anime>
 									);
