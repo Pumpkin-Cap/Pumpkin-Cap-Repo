@@ -118,6 +118,11 @@ const VideoChat = (props) => {
     useEffect(() => {
 
         return () => {
+
+            userVideo.current.srcObject.getTracks().forEach(function(track) {
+                track.stop();
+              });
+
             socketRef.current.destroy()
         }
     }, [])

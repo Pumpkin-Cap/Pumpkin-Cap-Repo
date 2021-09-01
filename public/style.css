@@ -290,14 +290,14 @@ form div {
 }
 
 #bottomBar {
-	display: flex;
     display: flex;
     position: fixed;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     bottom: 10px;
     right: 10px;
-    left: 10px;
-    align-items: flex-end;
+    /* left: 10px; */
+    /* align-items: flex-end; */
+    width: 200px;
   }
 
   #bottomBarInnerDiv {
