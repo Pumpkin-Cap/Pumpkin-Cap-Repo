@@ -956,98 +956,150 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     levelFourteenTestOne
   ]);
 
-//   //level 15
-//   const Level15 = await Level.create({
-//     name: "Level 15",
-//     prompt: `Prove to me you understand how objects work!`,
-//     category: "Objects",
-//     startingJS: `const myObject = {
-//       duck: “rubber”,
-//       wizard: “Harry”,
-//       3: 55,
-//       true: false
-//       }
+  //level 15
+  const Level15 = await Level.create({
+    name: "Level 15",
+    prompt: `Prove to me you understand how objects work!`,
+    category: "Objects",
+    password: 'icewoman',
+    startingJS: `const myObject = {
+      duck: "rubber",
+      wizard: "Harry",
+      3: 55,
+      true: false
+      }
 
 
-//       //make all functions return true
+      //make all functions return true
 
-//       function myFirstObjectFunction(){
+      function myFirstObjectFunction(){
 
-//       return (“rubber” === (myObject./*replace me!*/)
-//       }
+      return "rubber" === myObject./*replace me!*/
+      }
 
-//       function mySecondObjectFunction(){
+      function mySecondObjectFunction(){
 
-//       return (“rubber” === myObject[/*replace me!*/])
+      return "rubber" === myObject[/*replace me!*/]
 
-//       }
+      }
 
-//       function myThirdObjectFunction(){
+      function myThirdObjectFunction(){
 
-//       return (55 === myObject[/*replace me!*/])
-//       }
+      return 55 === myObject[/*replace me!*/]
+      }
 
-//       function myFourthObjectFunction(){
+      function myFourthObjectFunction(){
 
-//       return (/*replace me!*/ === myObject[“true”])
-//       }
+      return /*replace me!*/ === myObject["true"]
+      }
 
-//       function myFifthObjectFunction(){
+      function myFifthObjectFunction(){
 
-//       return (myObject[((!myObject.true).toString())] === /*replace me!*/)
-//       }
-//       `,
-//   });
+      return myObject[((!myObject.true).toString())] === /*replace me!*/
+      }
+      `,
+  });
 
-// // test specs for level 15 go here
-//   const levelFifteenTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+// test specs for level 15 go here
+  const levelFifteenTestOne = await Test.create({
+    name: "test one",
+    description: 'By this point, you know what to do when you see a replace me. REPLACE IT! Hint - both sides must equal the string rubber',
+    test: `describe('myFirstObjectFunction', function(){
+      it("return true when both values evaluate to the string rubber", function(){
+        expect(myFirstObjectFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return true when both values evaluate to the string rubber`,
+  })
 
-//   await Level15.addTests([
-//     levelFifteenTestOne
-//   ]);
+  const levelFifteenTestTwo = await Test.create({
+    name: "test two",
+    description: 'By this point you know what to do when you see a replace me. REPLACE IT! Hint - both sides must equal the string rubber',
+    test: `describe('mySecondObjectFunction', function(){
+      it("return true when both values evaluate to the string rubber again", function(){
+        expect(mySecondObjectFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return true when both values evaluate to the string rubber again`,
+  })
 
-//   //level 16
-//   const Level16 = await Level.create({
-//     name: "Level 16",
-//     prompt: `Given the data on an enemy duck, return an object with the following structure:
+  const levelFifteenTestThree = await Test.create({
+    name: "test three",
+    description: 'By this point you know what to do when you see a replace me. REPLACE IT! Hint - both sides must equal the number 55',
+    test: `describe('myThirdObjectFunction', function(){
+      it("return true when both values evaluate to 55", function(){
+        expect(myThirdObjectFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return true when both values evaluate to 55`,
+  })
 
-//     key: type		value: string
-//     key: attributes	value: object
-//             key: height		value: integer
-//             key: distance	value: integer
-//     `,
-//     category: "Objects",
-//     startingJS: `/*
-//     type: “toughDuck”
-//     height: 50 feet
-//     distance: 100 feet
-//     */
+  const levelFifteenTestFour = await Test.create({
+    name: "test four",
+    description: 'By this point you know what to do when you see a replace me. REPLACE IT! Hint - No hint for this one.',
+    test: `describe('myFourthObjectFunction', function(){
+      it("return true when both values evaluate to false", function(){
+        expect(myFourthObjectFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return true when both values evaluate to false`,
+  })
 
-//     myBuildAnObjectFunction(){
-//     //Your code below
+  const levelFifteenTestFive = await Test.create({
+    name: "test five",
+    description: 'By this point you know what to do when you see a replace me. REPLACE IT! Hint - No hint for this one.',
+    test: `describe('myFifthObjectFunction', function(){
+      it("return true when both values evaluate to false again", function(){
+        expect(myFifthObjectFunction()).to.equal(true)
+      });
+    })`,
+  divId: `return true when both values evaluate to false again`,
+  })
+
+  await Level15.addTests([
+    levelFifteenTestOne,
+    levelFifteenTestTwo,
+    levelFifteenTestThree,
+    levelFifteenTestFour,
+    levelFifteenTestFive
+  ]);
+
+  //level 16
+  const Level16 = await Level.create({
+    name: "Level 16",
+    prompt: `Given the data on an enemy duck, return an object representing the intel gathered. The first key value pair would be the type of duck it is. The second key value pair would be another object with the key of 'attributes' that will then have two more key value pairs to represent the ducks height and distance
+    `,
+    category: "Objects",
+    password: 'earthman',
+    startingJS: `/*
+    type: “toughDuck”
+    attributes: (insert second object here)
+    */
+
+    function myBuildAnObjectFunction(){
+    //Your code below
 
 
-//     //Your code above
-//     }
-//     `,
-//   });
+    //Your code above
+    }
+    `,
+  });
 
-// // test specs for level 16 go here
-//   const levelSixteenTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+// test specs for level 16 go here
+  const levelSixteenTestOne = await Test.create({
+    name: "test one",
+    description: 'When you return your object, note that your value for attributes will be another object containing the height and distance key value pairs respectively',
+    test: `describe('myBuildAnObjectFunction', function(){
+      it("return an object with the correct key value pairs", function(){
+        expect(myBuildAnObjectFunction()).to.eql({ type: 'toughDuck', attributes: { height: 50, distance: 100 } })
+      });
+    })`,
+  divId: `return an object with the correct key value pairs`,
+  })
 
-//   await Level16.addTests([
-//     levelSixteenTestOne
-//   ]);
+  await Level16.addTests([
+    levelSixteenTestOne
+  ]);
 
 //   //level 17
 //   const Level17 = await Level.create({
@@ -1092,7 +1144,9 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Level11,
     Level12,
     Level13,
-    Level14
+    Level14,
+    Level15,
+    Level16
   ])
 
   await users[0].addFriends([
