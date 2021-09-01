@@ -18,16 +18,18 @@ class SingleLevel extends React.Component {
     constructor() {
         super()
         this.state = {
-          js: '',
-          doc: '',
-          scale: 0,
-          animationIsDone: true,
-          testResults: []
+			js: '',
+			doc: '',
+			scale: 0,
+			animationIsDone: true,
+			testResults: [],
+			dialogOpen: true
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
 		this.handleNextLevel = this.handleNextLevel.bind(this);
+		this.closeDialog = this.closeDialog.bind(this)
       }
 
       async componentDidMount() {
@@ -83,8 +85,15 @@ class SingleLevel extends React.Component {
 			js: this.props.level.startingJS,
 			testResults: [],
 			scale: 0,
+			dialogOpen: true
 		});
 		this.setDoc(true);
+	}
+
+	closeDialog() {
+		this.setState({
+			dialogOpen: false
+		})
 	}
 
 
@@ -127,7 +136,7 @@ class SingleLevel extends React.Component {
 			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
-			<Dialog />
+			{this.state.dialogOpen && <Dialog closeDialog={this.closeDialog}/>}
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>

@@ -7,16 +7,21 @@ class Dialog extends React.Component {
     constructor() {
         super()
         this.state = {
-            dialogIndex: 0
+            dialogIndex: 0,
         }
         this.nextDialog = this.nextDialog.bind(this)
     }
 
-    nextDialog() {
+    nextDialog(dialogs) {
         this.setState({
             dialogIndex: this.state.dialogIndex + 1
         })
+
+        if (this.state.dialogIndex + 1 === dialogs.length) {
+            this.props.closeDialog()
+        }
     }
+
 
 
     render() {
@@ -29,10 +34,10 @@ class Dialog extends React.Component {
         ]
 
         if (this.state.dialogIndex < dialogs.length) {
-            return <>
-                <div>{dialogs[this.state.dialogIndex]}</div>
-                <button onClick={this.nextDialog} >Next</button>
-                </>
+            return <div style={{backgroundColor: 'blanchedalmond'}}>
+                    <div>{dialogs[this.state.dialogIndex]}</div>
+                    <button onClick={() => this.nextDialog(dialogs)} >Next</button>
+                </div>
         } else {
             return null
         }
