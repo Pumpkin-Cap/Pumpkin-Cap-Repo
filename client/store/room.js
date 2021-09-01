@@ -21,7 +21,7 @@
  /**
   * REDUCER
   */
- export default function(state = {roomName: '', users: []}, action) {
+ export default function(state = {roomName: '', users: [], sockets: []}, action) {
    switch (action.type) {
      case SET_ROOM:
        return action.room

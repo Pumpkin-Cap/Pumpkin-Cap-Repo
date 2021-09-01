@@ -1,5 +1,4 @@
 body {
-
   font-family: sans-serif;
   margin: 0;
   background-color: #c2c5aa;
@@ -8,16 +7,16 @@ body {
 }
 
 .hidden {
-	color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
 }
 
 a {
-	text-decoration: none;
-	color: black;
+  text-decoration: none;
+  color: black;
 }
 
 label {
-	display: block;
+  display: block;
 }
 
 .nav {
@@ -27,15 +26,24 @@ label {
   background-color: #414833;
 }
 
+.nav-button {
+  background-color: #414833;
+  border-radius: 10px;
+  border-style: none;
+}
+
+.nav-button:hover {
+}
+
 nav a {
-	display: inline-block;
-	margin: 1em;
-	color: blanchedalmond;
+  display: inline-block;
+  margin: 1em;
+  color: blanchedalmond;
 }
 
 form div {
-	margin: 1em;
-	display: inline-block;
+  margin: 1em;
+  display: inline-block;
 }
 
 .unlocked {
@@ -67,24 +75,22 @@ form div {
   padding: 15px;
   background-color: #656d4a;
   font-size: larger;
-
 }
 
 .levelListContainer {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .levelCard {
-
   padding: 10px;
 }
 
 #level {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #level h2 {
@@ -100,66 +106,60 @@ form div {
   z-index: 1;
   position: relative;
   margin-left: 25%;
-  margin-right: 25%
+  margin-right: 25%;
 }
 
 #codeIframe {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 20px;
-	z-index: 1;
-	background-color: rgba(255, 238, 189, 0.555);
-	border: 5px double;
-	width: 600px;
-	height: 250px;
-}
-
-#profileContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  z-index: 1;
+  background-color: rgba(255, 238, 189, 0.555);
+  border: 5px double;
+  width: 600px;
+  height: 250px;
 }
 
 .evilDuck {
-	height: 100px;
-	width: 100px;
-	margin-left: 50px;
-	margin-right: 50px;
+  height: 100px;
+  width: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .goodDuck {
-	height: 100px;
-	width: 100px;
-	margin-left: 50px;
-	margin-right: 50px;
+  height: 100px;
+  width: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .runButton {
-	z-index: 1;
+  z-index: 1;
 }
 
 .duckDiv {
-	display: flex;
+  display: flex;
 }
 
 .generalJoe {
-	height: 200px;
-	width: 200px;
-	position: absolute;
+  height: 200px;
+  width: 200px;
+  position: absolute;
 }
 
 #success {
-	font-weight: bold;
-	margin: 15px;
+  font-weight: bold;
+  margin: 15px;
 }
 
 .lvl-desc {
-	margin: 25px;
+  margin: 25px;
 }
 
 .next-level {
-	margin: 30px;
+  margin: 30px;
 }
 
 .openingOfficer {
@@ -172,13 +172,24 @@ form div {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   border-color: #414833;
   border-width: 15px;
   border-style: groove;
   color: #333d29;
   background-color: #b6ad90;
   width: 200px;
+  height: 400px;
+}
+
+.singleCardText {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.singleCardText::-webkit-scrollbar {
+  display: none;
 }
 
 #profile-level-link {
@@ -200,7 +211,7 @@ form div {
 
 .edit-profile-button:hover {
   border-style: inset;
-  background-color: #b6ad90;
+  background-color: #a68a64;
 }
 
 #level-topics {
@@ -233,7 +244,6 @@ form div {
   border-style: inset;
   background-color: #582f0e;
 }
-
 
 #level-list-menu {
   display: flex;
@@ -274,7 +284,9 @@ form div {
   display: flex;
   justify-content: space-between;
   width: -webkit-fill-available;
-  max-width: 80%;
+  max-width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .profile-completed-level {
@@ -290,14 +302,123 @@ form div {
 }
 
 #bottomBar {
-	display: flex;
+  display: flex;
+  position: fixed;
+  /* justify-content: space-between; */
+  bottom: 10px;
+  right: 10px;
+  /* left: 10px; */
+  align-items: flex-end;
+  width: 200px
+}
+
+#bottomBarInnerDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 25px;
+  background-color: royalblue;
+}
+
+#bottomBarOpenSymbol {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  border-style: outset;
+  width: 200px;
+  text-align: center;
+  background: antiquewhite;
+}
+
+#top-profileContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#top-profileContainer-mainSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friends-button {
+  background-color: #b6ad90;
+  border-style: outset;
+  width: 100px;
+}
+
+.friends-button:hover {
+  background-color: #a68a64;
+  border-style: inset;
+}
+
+.ghost-friends-button {
+  border-color: #c2c5aa;
+  background-color: #c2c5aa;
+  width: 25px;
+}
+
+#friend-list {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #b6ad90;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  justify-content: flex-start;
+  align-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#friend-list::-webkit-scrollbar {
+  display: none;
+}
+
+#ghost-friend-list {
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c2c5aa;
+  background-color: #c2c5aa;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#ghost-friend-list-title {
+  color: #c2c5aa;
+}
+
+#top-profileContainer-rightSection {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
     display: flex;
     position: fixed;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     bottom: 10px;
     right: 10px;
-    left: 10px;
-    align-items: flex-end;
+    /* left: 10px; */
+    /* align-items: flex-end; */
+    width: 200px;
   }
 
   #bottomBarInnerDiv {
@@ -321,4 +442,9 @@ form div {
     width: 200px;
     text-align: center;
     background: antiquewhite;
+}
+
+.videoFrame {
+  display: flex;
+  flex-direction: column;
 }

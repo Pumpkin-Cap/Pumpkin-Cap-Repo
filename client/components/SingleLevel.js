@@ -8,6 +8,7 @@ import Anime from 'react-anime';
 import socket from '../socket';
 import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
+import BottomBar from './BottomBar';
 
 
 class SingleLevel extends React.Component {
@@ -73,10 +74,12 @@ class SingleLevel extends React.Component {
 
 
 	async handleNextLevel() {
-		await this.props.newLevel(this.props.level.id);
+		const nextLevel = await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
+
+    this.props.changeCode(nextLevel.startingJS);
 		this.setState({
-			js: this.props.level.startingJS,
+			js: nextLevel.startingJS,
 			testResults: [],
 			scale: 0,
 		});
@@ -120,9 +123,9 @@ class SingleLevel extends React.Component {
       const level = this.props.level
         return (
           this.props.level.startingJS ? <>
-        <Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
-                    <img src="../generalJoe.png" className="generalJoe"></img>
-                   </Anime>
+			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
+				<img src="../generalJoe.png" className="generalJoe"></img>
+			</Anime>
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
@@ -196,6 +199,8 @@ class SingleLevel extends React.Component {
                 lineHeight: 25,
               }}
             />
+
+			<BottomBar />
           </div> </> : null
         )
       }
