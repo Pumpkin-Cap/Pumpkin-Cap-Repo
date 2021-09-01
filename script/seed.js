@@ -662,7 +662,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 // test specs for level 10 go here
   const levelTenTestOne = await Test.create({
     name: "test one",
-    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me. Hint - both values must be equal to 20",
     test: `describe('myFirstArrayFunction', function(){
       it('return TRUE when both values are equal to 20', function(){
         expect(myFirstArrayFunction()).to.equal(true)
@@ -673,7 +673,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
   const levelTenTestTwo = await Test.create({
     name: "test two",
-    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me. Hint - both values must be equal to 345",
     test: `describe('mySecondArrayFunction', function(){
       it('return TRUE when both values are equal to 345', function(){
         expect(mySecondArrayFunction()).to.equal(true)
@@ -684,7 +684,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
   const levelTenTestThree = await Test.create({
     name: "test three",
-    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me. Hint - both conditional statements must evaluate to true",
     test: `describe('myThirdArrayFunction', function(){
       it('return TRUE when both conditional statements evaluate to true', function(){
         expect(myThirdArrayFunction()).to.equal(true)
@@ -695,7 +695,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
   const levelTenTestFour = await Test.create({
     name: "test four",
-    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me. Hint - you must plug in the correct array length",
     test: `describe('myFourthArrayFunction', function(){
       it('return TRUE when the correct array length is plugged in', function(){
         expect(myFourthArrayFunction()).to.equal(true)
@@ -706,179 +706,255 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
   const levelTenTestFive = await Test.create({
     name: "test five",
-    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me",
+    description: "To pass this test, you must insert the appropriate values or indeces wherever there is a replace me. Hint - the integer must be equal to the sum to the two array values",
     test: `describe('myFifthArrayFunction', function(){
-      it("return TRUE when the integer is equal to the sum of the two array value", function(){
+      it("return TRUE when the integer is equal to the sum of the two array values", function(){
         expect(myFifthArrayFunction()).to.equal(true)
       });
     })`,
-  divId: `return TRUE when the integer is equal to the sum of the two array value`,
+  divId: `return TRUE when the integer is equal to the sum of the two array values`,
   })
 
+
   await Level10.addTests([
-    levelTenTestOne,
+    levelTenTestOne
+  ]);
+  await Level10.addTests([
     levelTenTestTwo,
+  ]);
+  await Level10.addTests([
     levelTenTestThree,
+  ]);
+  await Level10.addTests([
     levelTenTestFour,
+  ]);
+  await Level10.addTests([
     levelTenTestFive
   ]);
 
-//   // continue here VP - level 11
-//   const Level11 = await Level.create({
-//     name: "Level 11",
-//     prompt: `By using an array to reference the enemy ranks, use the pizza/party hat to identify and extract our operative.`,
-//     category: "Arrays",
-//     startingJS: `function myArrayFunction(arrayOfEnemies){
+// level 11
+  const Level11 = await Level.create({
+    name: "Level 11",
+    prompt: `By using an array to reference the enemy ranks, use the pizza/party hat to identify and extract our operative.`,
+    category: "Arrays",
+    password: 'beautywoman',
+    startingJS: `function myArrayFunction(arrayOfEnemies){
 
-//       let extraction = 0
+      let extraction = 0
 
-//       //Each element in the input array is a boolean, each reflecting if the duck is wearing a pizza/party hat
+      //Each element in the input array is a boolean, each reflecting if the duck is wearing a pizza/party hat
 
-//       //Your code below
-
-
-//       //Your code above
-
-//       return arrayOfEnemies[extraction]
-//       }
-//     `,
-//   });
-
-// // test specs for level 11 go here
-//   const levelElevenTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
-
-//   await Level11.addTests([
-//     levelElevenTestOne
-//   ]);
-
-//   //level 12
-//   const Level12 = await Level.create({
-//     name: "Level 12",
-//     prompt: `Show me you understand how to use these array methods!`,
-//     category: "Arrays",
-//     startingJS: `//make all functions return true
-
-//     function myLengthFunction(){
-
-//     const myArray = [8, 7]
-
-//     //We’ve already dealt with .length, but it’s so important it’s here again!
-//     //myArray.length will set a variable equal to the length.
-
-//     return (myArray.length === /*replace me!*/)
-//     }
+      //Your code below
 
 
-//     function myPushFunction(){
+      //Your code above
 
-//     const myArray = [8, 7]
+      return arrayOfEnemies[extraction]
+      }
+    `,
+  });
 
-//     //myArray.push(x) will add x to the end of the array
-//     //In addition, this will set a variable equal to the new length (let newLength = myArray.push(x))
+// test specs for level 11 go here
+  const levelElevenTestOne = await Test.create({
+    name: "test one",
+    description: 'To pass this test, you must extract our operative by returning the true value within the array',
+    test: `describe('myArrayFunction', function(){
+      it("return TRUE when you find our operative", function(){
+        expect(myArrayFunction([false, false, true, false, false])).to.equal(true)
+      });
+    })`,
+  divId: `return TRUE when you find our operative`,
+  })
 
-//     //Your code below
+  await Level11.addTests([
+    levelElevenTestOne
+  ]);
+
+  //level 12
+  const Level12 = await Level.create({
+    name: "Level 12",
+    prompt: `Show me you understand how to use these array methods!`,
+    category: "Arrays",
+    password: 'Colonel',
+    startingJS: `//make all functions return true
+
+    function myLengthFunction(){
+
+    const myArray = [8, 7]
+
+    //We’ve already dealt with .length, but it’s so important it’s here again!
+    //myArray.length will set a variable equal to the length.
+
+    return (myArray.length === /*replace me!*/)
+    }
 
 
-//     //Your code above
+    function myPushFunction(){
 
-//     return (myArray[2] === 6)
-//     }
+    const myArray = [8, 7]
 
-//     function myPopFunction(){
+    //myArray.push(x) will add x to the end of the array
 
-//     const myArray = [8, 7]
-
-//     //myArray.pop() will remove the last element of the array
-//     //In addition, this will set a variable equal to that removed element (let popped = myArray.pop())
-//     //Your code below
+    //Your code below
 
 
-//     //Your code above
+    //Your code above
 
-//     return (myArray[myArray.length - 1] === 8)
-//     }
+    return (myArray[2] === 6)
+    }
 
-//     function myIncludesFunction(){
+    function myPopFunction(){
 
-//     const myArray = [8, 7]
+    const myArray = [8, 7]
 
-//     //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
+    //myArray.pop() will remove the last element of the array
+    //In addition, this will set a variable equal to that removed element (let popped = myArray.pop())
+    //Your code below
 
-//     return (myArray.includes(/*replace me!*/))
-//     }
 
-//     function myIndexOfFunction(){
+    //Your code above
 
-//     const myArray = [8, 7]
+    return (myArray[myArray.length - 1] === 8)
+    }
 
-//     //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
+    function myIncludesFunction(){
 
-//     return (myArray.indexOf(/*replace me!*/) === 1)
-//     }
+    const myArray = [8, 7]
 
-//     `,
-//   });
+    //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
 
-// // test specs for level 12 go here
-//   const levelTwelveTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+    return (myArray.includes(/*replace me!*/))
+    }
 
-//   await Level12.addTests([
-//     levelTwelveTestOne
-//   ]);
+    function myIndexOfFunction(){
 
-//   //level 13
-//   const Level13 = await Level.create({
-//     name: "Level 13",
-//     prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings.`,
-//     category: "Arrays",
-//     startingJS: `function mySeekingFunction(deploymentArray){
-//       //Enter your code
-//       } `,
-//   });
+    const myArray = [8, 7]
 
-// // test specs for level 13 go here
-//   const levelThirteenTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+    //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
 
-//   await Level13.addTests([
-//     levelThriteenTestOne
-//   ]);
+    return (myArray.indexOf(/*replace me!*/) === 1)
+    }
 
-//   //level 14
-//   const Level14 = await Level.create({
-//     name: "Level 14",
-//     prompt: `Given an array where each element could be an array of elements itself, return the location of “gary” so he can be rescued. All individual values will be strings.`,
-//     category: "Arrays",
-//     startingJS: `function myFindingFunction(encryptedArray){
-//       //Enter your code
-//       }`,
-//   });
+    `,
+  });
 
-// // test specs for level 14 go here
-//   const levelFourteenTestOne = Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+// test specs for level 12 go here
+const levelTwelveTestOne = await Test.create({
+  name: "test one",
+  description: 'To pass this test, you must enter the correct integer in the replace me.',
+  test: `describe('myLengthFunction', function(){
+    it("return TRUE when both values are equal", function(){
+      expect(myLengthFunction()).to.equal(true)
+    });
+  })`,
+divId: `return TRUE when both values are equal`,
+})
 
-//   await Level14.addTests([
-//     levelFourteenTestOne
-//   ]);
+const levelTwelveTestTwo = await Test.create({
+  name: "test two",
+  description: 'To pass this test, you must implement the .push method so that the function can return true.',
+  test: `describe('myPushFunction', function(){
+    it("return TRUE when .push is correctly implemented", function(){
+      expect(myPushFunction()).to.equal(true)
+    });
+  })`,
+divId: `return TRUE when .push is correctly implemented`,
+})
+
+const levelTwelveTestThree = await Test.create({
+  name: "test three",
+  description: 'To pass this test, you must implement the .pop method so that the function can return true.',
+  test: `describe('myPopFunction', function(){
+    it("return TRUE when .pop is correctly implemented", function(){
+      expect(myPopFunction()).to.equal(true)
+    });
+  })`,
+divId: `return TRUE when .pop is correctly implemented`,
+})
+
+const levelTwelveTestFour = await Test.create({
+  name: "test four",
+  description: 'To pass this test, you must insert an appropriate integer in the replace me for it to evaluate to true',
+  test: `describe('myIncludesFunction', function(){
+    it("return TRUE when .includes is correctly implemented", function(){
+      expect(myIncludesFunction()).to.equal(true)
+    });
+  })`,
+divId: `return TRUE when .includes is correctly implemented`,
+})
+
+const levelTwelveTestFive = await Test.create({
+  name: "test five",
+  description: 'To pass this test, you must insert the appropriate integer in the replace me for it to evaluate to true',
+  test: `describe('myIndexOfFunction', function(){
+    it("return TRUE when .indexOf is correctly implemented", function(){
+      expect(myIndexOfFunction()).to.equal(true)
+    });
+  })`,
+divId: `return TRUE when .indexOf is correctly implemented`,
+})
+
+  await Level12.addTests([
+    levelTwelveTestOne,
+    levelTwelveTestTwo,
+    levelTwelveTestThree,
+    levelTwelveTestFour,
+    levelTwelveTestFive
+  ]);
+
+  //level 13
+  const Level13 = await Level.create({
+    name: "Level 13",
+    prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings.`,
+    category: "Arrays",
+    password: 'waterman',
+    startingJS: `function mySeekingFunction(deploymentArray){
+      //Enter your code
+      } `,
+  });
+
+// test specs for level 13 go here
+  const levelThirteenTestOne = await Test.create({
+    name: "test one",
+    description: 'Return a new array that contains the indices that represents where the toughDuck(s) are positioned.',
+    test: `describe('mySeekingFunction', function(){
+      it("return the indices in a new array", function(){
+        expect(mySeekingFunction(['hi', 'happy', 'toughDuck', 'toughDuck', 'sure'])).to.eql([2, 3])
+      });
+    })`,
+  divId: `return the indices in a new array`,
+  })
+
+  await Level13.addTests([
+    levelThirteenTestOne
+  ]);
+
+  //level 14
+  const Level14 = await Level.create({
+    name: "Level 14",
+    prompt: `Given an array where each element could be an array of elements itself, return the location of “gary” so he can be rescued. All individual values will be strings.`,
+    category: "Arrays",
+    password: 'waterwoman',
+    startingJS: `function myFindingFunction(encryptedArray){
+      //Enter your code
+      }`,
+  });
+
+// test specs for level 14 go here
+  const levelFourteenTestOne = await Test.create({
+    name: "test one",
+    description: 'You must find the position of Gary. He can either be a string in array, or a string in a nested array (yes, you can have an array within an array). The world is counting on you!',
+    test: `describe('myFindingFunction', function(){
+      it("return the index of where Gary is within the array", function(){
+        expect(myFindingFunction(['hi', 'so', ['gary'], 'toughDuck', 'sure'])).to.equal(2)
+      });
+    })`,
+  divId: `return the index of where Gary is within the array`,
+  })
+
+  await Level14.addTests([
+    levelFourteenTestOne
+  ]);
 
 //   //level 15
 //   const Level15 = await Level.create({
@@ -1012,7 +1088,11 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
     Level6,
     Level8,
     Level9,
-    Level10
+    Level10,
+    Level11,
+    Level12,
+    Level13,
+    Level14
   ])
 
   await users[0].addFriends([
