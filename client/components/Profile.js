@@ -40,7 +40,6 @@ class Profile extends React.Component {
 
     async updateDisplayName(){
         const newUser = await this.props.getUser(this.props.match.params.id);
-        console.log(newUser.username)
         this.setState({displayName: newUser.username})
     }
 
@@ -115,7 +114,7 @@ class Profile extends React.Component {
                                 <input name='search' className='search-input-box' onChange={this.handleSearchChange} value={this.state.search || ''}/>
                             </form>
                         </div>
-                        <div id="search-list">{this.props.search !== '' && this.search(allUsers).map((element) => { return (
+                        <div id="search-list">{this.state.search !== '' && this.search(allUsers).map((element) => { return (
 									<div key={element.id} id='user'>
                                         <Link to={`/user/${element.id}`}>{element.username}</Link>
 									</div>

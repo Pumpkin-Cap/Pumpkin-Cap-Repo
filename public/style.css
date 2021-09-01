@@ -171,13 +171,24 @@ form div {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   border-color: #414833;
   border-width: 15px;
   border-style: groove;
   color: #333d29;
   background-color: #b6ad90;
   width: 200px;
+  height: 400px;
+}
+
+.singleCardText {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.singleCardText::-webkit-scrollbar {
+  display: none;
 }
 
 #profile-level-link {
