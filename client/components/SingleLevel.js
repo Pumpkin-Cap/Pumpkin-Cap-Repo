@@ -9,6 +9,7 @@ import socket from '../socket';
 import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
 import BottomBar from './BottomBar';
+import Dialog from './Dialog';
 
 
 class SingleLevel extends React.Component {
@@ -126,6 +127,7 @@ class SingleLevel extends React.Component {
 			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
+			<Dialog />
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
