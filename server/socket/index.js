@@ -6,6 +6,9 @@ module.exports = io => {
   const rooms = {}
   const userNames = {}
 
+  const users = {};
+  const socketToRoom = {};
+
   io.on('connection', socket => {
 
     console.log(socket.id, ' has made a persistent connection to the server!');
@@ -35,19 +38,69 @@ module.exports = io => {
       socket.to(eventObject.roomName).emit('change-code', eventObject);
     });
 
-    socket.on('join-call', roomName => {
+    socket.on('join-call', payload => {
       // const socketIds = rooms[callObject.roomName]
       // console.log(`${callObject.peerId} is trying to join the call in room ${callObject.roomName}` )
-      socket.emit('all-users', rooms[roomName])
+      console.log(payload)
+      const usersInRoom = rooms[payload] || []
+      console.log(usersInRoom)
+      socket.emit('all-users', usersInRoom)
     })
 
     socket.on("sending-single", payload => {
+      console.log("SIGNAL WAS SENT FROM ", payload.userToSignal)
       io.to(payload.userToSignal).emit('user-joined', { signal: payload.signal, callerId: payload.callerId })
     })
 
     socket.on('returning-signal', payload => {
       io.to(payload.callerId).emit('receiving-returned-signal', { signal: payload.signal, id: socket.id })
     })
+
+
+
+
+
+    socket.on("join room", roomID => {
+      if (users[roomID]) {
+          const length = users[roomID].length;
+          if (length === 4) {
+              socket.emit("room full");
+              return;
+          }
+          users[roomID].push(socket.id);
+      } else {
+          users[roomID] = [socket.id];
+      }
+      socketToRoom[socket.id] = roomID;
+      const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
+
+      socket.emit("all users", usersInThisRoom);
+  });
+
+  socket.on("sending signal", payload => {
+      io.to(payload.userToSignal).emit('user joined', { signal: payload.signal, callerID: payload.callerID });
+  });
+
+  socket.on("returning signal", payload => {
+      io.to(payload.callerID).emit('receiving returned signal', { signal: payload.signal, id: socket.id });
+  });
+
+  socket.on('disconnect', () => {
+      const roomID = socketToRoom[socket.id];
+      let room = users[roomID];
+      if (room) {
+          room = room.filter(id => id !== socket.id);
+          users[roomID] = room;
+      }
+  });
+
+
+
+
+
+
+
+
 
   });
 

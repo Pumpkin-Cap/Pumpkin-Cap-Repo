@@ -1,7 +1,30 @@
 import socket from "../../socket";
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Peer from 'peerjs';
 import { connect } from 'react-redux'
+
+
+const VideoPlayer = (props) => {
+    const ref = useRef();
+
+    useEffect(() => {
+        props.peer.on("stream", stream => {
+            ref.current.srcObject = stream;
+        })
+    }, []);
+
+    return (
+        <video width="200" height="113"
+        playsInline
+        muted={true}
+        ref={ref}
+        autoPlay
+        style={{ objectFit: 'cover' }}
+        />
+    )
+}
+
+
 
 class Video extends React.Component {
 
@@ -10,24 +33,25 @@ class Video extends React.Component {
         this.state = {
             streamVideo: React.createRef(),
             peers: [],
-            peersRef: React.createRef()
+            peersRef: React.createRef(),
+            roomName: this.props.roomName
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         const roomName = this.props.roomName
         const peer = this.props.peer
         // const streamVideo = this.state.streamVideo
         this.state.peersRef.current = []
         const peersRef = this.state.peersRef
-        console.log(peersRef)
 
         // if (socket.id === this.props.thing) {
             navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((currentStream) => {
                 this.state.streamVideo.current.srcObject = currentStream;
-                socket.emit("join-call", roomName)
+                socket.emit("join-call", {roomName: this.props.stuff})
                 socket.on("all-users", users => {
+                    console.log("RECEIVING LIST OF ALL USERS", users)
                     const peersForPeers = []
                     users.forEach(userId => {
                         const newPeer = this.createPeer(userId, socket.id, currentStream)
@@ -37,8 +61,9 @@ class Video extends React.Component {
                         })
 
                     peersForPeers.push(newPeer)
-                        
                     })
+
+                    console.log("LIST OF ALL THE PEERS: ", peersForPeers)
 
                     this.setState({
                         peers: peersForPeers
@@ -47,6 +72,7 @@ class Video extends React.Component {
                 })
 
                 socket.on("user-joined", payload => {
+                    console.log("USER JOINED THE CALL")
                     const peer = this.addPeer(payload.signal, payload.callerId, currentStream)
                     peersRef.current.push({
                         peerId: payload.callerId,
@@ -102,10 +128,10 @@ class Video extends React.Component {
             trickle: false,
             stream
         })
-
         peer.on("signal", signal => {
             socket.emit("sending-signal", { userToSignal, callerId, stream})
         })
+        return peer
     }
 
     addPeer(incomingSignal, callerId, stream) {
@@ -114,12 +140,12 @@ class Video extends React.Component {
             trickle: false,
             stream
         })
-
         peer.on('signal', signal => {
             socket.emit('returning-signal', {signal, callerId})
         })
 
         peer.signal(incomingSignal)
+        return peer
     }
     
     componentWillUnmount() {
@@ -132,20 +158,32 @@ class Video extends React.Component {
 
     render() {
         return (
+            <div>
             <video width="200" height="113"
             playsInline
-            muted={socket.id === this.props.thing}
+            muted={true}
             ref={this.state.streamVideo}
             autoPlay
             style={{ objectFit: 'cover' }}
             />
+            {this.state.peers.map( (peer,index) => {
+                if (index !== 0) {
+                    return (
+                        <VideoPlayer key={index} peer={peer} />
+                    )
+                } else {
+                    return null
+                }
+            })}
+        </div>
         )
     }
 }
 
 
 const mapState = state => ({
-    userId: state.auth.id
+    userId: state.auth.id,
+    roomName: state.room.roomName
 })
 
 

@@ -2,6 +2,8 @@ import React from 'react'
 import socket from '../socket';
 import { connect } from 'react-redux'
 import VideoFrame from './VideoChat/VideoFrame';
+import Video from './VideoChat/Video';
+import VideoChat from './VideoChat/VideoChat';
 
 
 export class BottomBar extends React.Component {
@@ -73,7 +75,8 @@ export class BottomBar extends React.Component {
                         {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}
                         {this.state.inRoom ? (
                             <>
-                                {this.state.inCall && <div><VideoFrame /></div> }
+                            {console.log(this.state.roomName)}
+                                {this.state.inCall && <div><VideoChat roomID={this.state.roomName}/></div> }
                                 <div style={{backgroundColor: 'blanchedalmond'}}>{this.state.roomName}</div>
                                 <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
                             </>
