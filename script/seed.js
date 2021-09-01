@@ -466,43 +466,47 @@ async function seed() {
     levelSixTestOne
   ]);
 
-// // Level 7
-//   const Level7 = await Level.create({
-//     name: "Level 7",
-//     prompt: 'Accounting for an unknown number of waves and ducks in each, write a program that will let our troops know how many grenades to prepare. Recall our conditions: when the duck wave is 1-2, fire the rifle for precise shots. When the duck wave is 3-5, fire the cannon for broader hits. When it’s 5 or higher, fire the grenade launcher!',
-//     category: "Loops",
-//     password: 'roboman',
-//     startingJS: `function myIfElseForLoopFunction(duckWaves, ducksPerWave){
+// Level 7
+  const Level7 = await Level.create({
+    name: "Level 7",
+    prompt: `Accounting for an unknown number of waves, write a program that will let us know how many troops will be required.
+    1 wave needs 5 troops. Each wave in addition will require an additional troop, e.g., 4 waves will require 26 troops (wave 1: 5 troops, wave 2: 6 troops, wave 3: 7 troops, wave 4: 8 troops).
+    `,
+    category: "Loops",
+    password: 'roboman',
+    startingJS: `function myForLoopFunction(duckWaves){
 
-//       const grenades = 0
+      let requiredTroops = 0
 
-//       for (let i = 0; i < duckWaves; i++){
+      for (let i = 0; i < duckWaves; i++){
 
-//       //Your code below this line
+      //Your code below this line
 
 
-//       //Your code above this line
-//         }
-//       return grenades
-//       }
-//     `,
-//   });
+      //Your code above this line
+        }
+      return requiredTroops
+      }
+    `,
+  });
 
-// // test specs for level 7 go here
-//   const levelSevenTestOne = Test.create({
-//     name: "test one",
-//     description: `describe('myIfElseForLoopFunction', function(){
-//       it('returns 10', function(){
-//         expect(myForLoopFunction()).to.equal(10);
-//       });
-//     });`,
-//     test: ``,
-//   divId: ``,
-//   })
+// test specs for level 7 go here
+  const levelSevenTestOne = await Test.create({
+    name: "test one",
+    description: `Return the correct number of troops to fight off the duckWave(s)`,
+    test: `describe('myForLoopFunction', function(){
+      it('returns the correct number of troops', function(){
+        expect(myForLoopFunction(1)).to.equal(5);
+        expect(myForLoopFunction(2)).to.equal(11);
+        expect(myForLoopFunction(4)).to.equal(26);
+      });
+    });`,
+  divId: `returns the correct number of troops`,
+  })
 
-//   await Level7.addTests([
-//     levelSevenTestOne
-//   ]);
+  await Level7.addTests([
+    levelSevenTestOne
+  ]);
 
   // Level 8
   const Level8 = await Level.create({
@@ -1106,7 +1110,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 //     name: "Level 17",
 //     prompt: `Given an array where each duck is given as an object,
 
-//     Find the index of each “squeaker” and which weapon to use based on how many are in a row and if they have shields.
+//     Find the index of each 'squeaker' and which weapon to use based on how many are in a row and if they have shields.
 //     Fire at the first of a cluster to hit all of them.
 //     If any one duck in a cluster has a shield, it is the same as if all of them do.
 
@@ -1120,7 +1124,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 //   });
 
 // // test specs for level 17 go here
-//   const levelSeventeenTestOne = Test.create({
+//   const levelSeventeenTestOne = await Test.create({
 //     name: "test one",
 //     description: '',
 //     test: ``,
@@ -1138,6 +1142,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Level4,
     Level5,
     Level6,
+    Level7,
     Level8,
     Level9,
     Level10,
@@ -1146,7 +1151,8 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Level13,
     Level14,
     Level15,
-    Level16
+    Level16,
+    // Level17
   ])
 
   await users[0].addFriends([
