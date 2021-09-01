@@ -42,7 +42,7 @@ module.exports = io => {
       // const socketIds = rooms[callObject.roomName]
       // console.log(`${callObject.peerId} is trying to join the call in room ${callObject.roomName}` )
       console.log(payload)
-      const usersInRoom = rooms[payload] || []
+      const usersInRoom = rooms[payload]
       console.log(usersInRoom)
       socket.emit('all-users', usersInRoom)
     })
@@ -60,7 +60,9 @@ module.exports = io => {
 
 
 
-    socket.on("join room", roomID => {
+    socket.on("join room", roomName => {
+      const roomID = roomName + "Video"
+      console.log('TRYING TO JOING THE ROOM: ', roomID)
       if (users[roomID]) {
           const length = users[roomID].length;
           if (length === 4) {
@@ -73,7 +75,7 @@ module.exports = io => {
       }
       socketToRoom[socket.id] = roomID;
       const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
-
+      console.log("ALL USERS IN THE ROOM: ", usersInThisRoom)
       socket.emit("all users", usersInThisRoom);
   });
 
@@ -87,11 +89,14 @@ module.exports = io => {
 
   socket.on('disconnect', () => {
       const roomID = socketToRoom[socket.id];
+      console.log(`${socket.id} is disconnecting from ${roomID}`)
       let room = users[roomID];
       if (room) {
           room = room.filter(id => id !== socket.id);
           users[roomID] = room;
+          console.log(`room from users[roomID]: ${room}`)
       }
+      
       socket.broadcast.emit('user left', socket.id)
   });
 

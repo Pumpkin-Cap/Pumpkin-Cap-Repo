@@ -52,40 +52,46 @@ const VideoChat = (props) => {
     const peersRef = useRef([]);
     const roomID = props.roomID;
 
+
     useEffect(() => {
-        socketRef.current = socket
+
+        socketRef.current = io.connect('/')
         navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true }).then(stream => {
             userVideo.current.srcObject = stream;
             socketRef.current.emit("join room", roomID);
             socketRef.current.on("all users", users => {
-                const peers = [];
+                const peersList = [];
+
                 users.forEach(userID => {
                     const peer = createPeer(userID, socketRef.current.id, stream);
                     peersRef.current.push({
                         peerID: userID,
                         peer,
                     })
-                    peers.push({
+                    peersList.push({
                         peerID: userID,
                         peer
                     });
                 })
-                setPeers(peers);
+                setPeers(peersList);
             })
 
             socketRef.current.on("user joined", payload => {
-                const peer = addPeer(payload.signal, payload.callerID, stream);
-                peersRef.current.push({
-                    peerID: payload.callerID,
-                    peer,
-                })
+                const refrence = peersRef.current.map(obj => obj.peerID)
+                if (!refrence.includes(payload.callerID)) {
+                    const peer = addPeer(payload.signal, payload.callerID, stream);
+                    peersRef.current.push({
+                        peerID: payload.callerID,
+                        peer,
+                    })
 
-                const peerObj = {
-                    peer,
-                    peerID: payload.callerID
+                    const peerObj = {
+                        peer,
+                        peerID: payload.callerID
+                    }
+
+                    setPeers(users => [...users, peerObj]);
                 }
-
-                setPeers(users => [...users, peerObj]);
             });
 
             socketRef.current.on("receiving returned signal", payload => {
@@ -96,8 +102,9 @@ const VideoChat = (props) => {
 
             socketRef.current.on("user left", id => {
                 const peerObj = peersRef.current.find(p => p.peerID === id)
+
                 if (peerObj) {
-                    peerObj.peer.destoy()
+                    peerObj.peer.destroy()
                 }
                 const peers = peersRef.current.filter(p => p.peerID !== id)
                 peersRef.current = peers
@@ -107,6 +114,13 @@ const VideoChat = (props) => {
 
         })
     }, []);
+
+    useEffect(() => {
+
+        return () => {
+            socketRef.current.destroy()
+        }
+    }, [])
 
     function createPeer(userToSignal, callerID, stream) {
         const peer = new Peer({
@@ -138,9 +152,27 @@ const VideoChat = (props) => {
         return peer;
     }
 
+
+    function getUniquePeers() {
+
+        const peerIds = []
+
+        const uniquePeers = peers.filter(peer => {
+            if (peerIds.includes(peer.peerID)) {
+                return false
+            } else {
+                peerIds.push(peer.peerID)
+                return true
+            }
+        })
+        return uniquePeers
+    }
+
+
+    const uniquePeers = getUniquePeers()
+
     return (
         <div className='videoFrame'>
-            {/* <StyledVideo muted ref={userVideo} autoPlay playsInline /> */}
             <video width="200" height="113"
             playsInline
             muted={true}
@@ -148,7 +180,7 @@ const VideoChat = (props) => {
             autoPlay
             style={{ objectFit: 'cover' }}
             />
-            {peers.map(peer => {
+            {uniquePeers.map(peer => {
                 return (
                     <Video key={peer.peerID} peer={peer.peer} />
                 );
