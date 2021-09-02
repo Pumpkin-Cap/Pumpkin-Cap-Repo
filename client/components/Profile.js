@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import VerifyPassword from "./VerifyPassword";
 import Anime from "react-anime";
+import LoadingPage from "./LoadingPage";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class Profile extends React.Component {
             rank: 'Cadet',
             friendList: 'hidden',
             search: '',
-            displayName: ''
+            displayName: '',
+            isLoaded: false
         }
 
         this.setVerified = this.setVerified.bind(this);
@@ -42,10 +44,10 @@ class Profile extends React.Component {
         this.setState({displayName: newUser.username})
     }
 
-    componentDidMount() {
-        this.props.getLevels()
-        this.grabUserAndFriends(this.props.match.params.id);
-
+    async componentDidMount() {
+        await this.props.getLevels()
+        await this.grabUserAndFriends(this.props.match.params.id);
+        this.setState({ isLoaded: true })
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
 
@@ -96,13 +98,16 @@ class Profile extends React.Component {
     render() {
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
-        const { verified } = this.state;
+        const { verified, isLoaded } = this.state;
         const { levels, friends } = this.props.user;
         const { allUsers } = this.props;
         const allLevels = this.props.levels;
 
         return (
-
+            <div>
+                {!isLoaded ? (
+                    <LoadingPage />
+                ) : (
             <Anime duration={6000} opacity={[0,1]}>
 
                 <div id="profileContainer">
@@ -155,6 +160,8 @@ class Profile extends React.Component {
                     </div>
                 </div>
             </Anime>
+                )}
+            </div>
         )
     }
 

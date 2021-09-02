@@ -7,7 +7,7 @@ import BioCard from './BioCard'
 
 
 export class Home extends React.Component {
-
+  
   render() {
     console.log(this.props.user)
     let nextLevel = 1;
