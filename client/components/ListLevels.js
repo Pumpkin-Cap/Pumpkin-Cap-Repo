@@ -26,7 +26,7 @@ class ListLevels extends React.Component {
   }
 
   handleMouseOver(event){
-    this.setState({levelPrompt: event.target.value});
+    this.setState({levelPrompt: event.target.id});
   }
 
   render() {
@@ -35,7 +35,7 @@ class ListLevels extends React.Component {
 
     return (
 
-      <Anime duration={6000} opacity={[0,1]}>
+      <Anime duration={1000} opacity={[0,1]}>
         <div id="level-menu">
           <div id="level-topics">
             <button className="topic-card" onClick={this.handleClick} value="Tutorials">Tutorials</button>
@@ -55,8 +55,8 @@ class ListLevels extends React.Component {
             return (
               <div className="levelCard" key={level.id}>
                 {levelUnlocked ? (
-                  <Link to={`/level/${level.id}`} onMouseOver={this.handleMouseOver} value={level.prompt}>
-                    <div className="unlocked">{level.name}</div>
+                  <Link to={`/level/${level.id}`} >
+                    <div className="unlocked" onMouseOver={this.handleMouseOver} id={level.prompt}>{level.name}</div>
                   </Link>
                 ) : (
                   <div className="locked">

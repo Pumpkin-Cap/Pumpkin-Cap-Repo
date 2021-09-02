@@ -53,7 +53,7 @@ router.put('/update/:id', requireToken, userIsUser, async (req, res, next) => {
 
 router.get('/:id/friends', requireToken, async(req, res, next) => {
   try {
-    // doesn't work
+    // doesn't work OR DOES IT???
     const friends = await req.user.getFriends()
     res.json(friends)
   } catch (err) {

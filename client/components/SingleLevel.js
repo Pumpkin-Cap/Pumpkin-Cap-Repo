@@ -77,12 +77,12 @@ class SingleLevel extends React.Component {
 
 
 	async handleNextLevel() {
-		await this.props.newLevel(this.props.level.id);
+		const nextLevel = await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
-		console.log(this.props.level.startingJS)
-		this.props.changeCode(this.props.level.startingJS)
+
+    this.props.changeCode(nextLevel.startingJS);
 		this.setState({
-			js: this.props.level.startingJS,
+			js: nextLevel.startingJS,
 			testResults: [],
 			scale: 0,
 			dialogOpen: true
@@ -166,7 +166,7 @@ class SingleLevel extends React.Component {
 											loop={true}
 											direction={'alternate'}>
 											<img
-												src='../theDocileRubberDuck.jpg'
+												src='../theDocileRubberDuck.png'
 												className='goodDuck'></img>
 										</Anime>
 									);
