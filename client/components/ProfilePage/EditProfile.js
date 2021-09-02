@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from "react-modal"
-import {authenticate} from '../store'
+import {authenticate} from '../../store'
 import {
   Button,
   Input,
@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { connect } from 'react-redux';
-import { updateUser } from '../store/user';
+import { updateUser } from '../../store/user';
 
 const modalStyle = () => ({
     content: {

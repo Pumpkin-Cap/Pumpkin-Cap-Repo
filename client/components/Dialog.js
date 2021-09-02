@@ -27,10 +27,17 @@ class Dialog extends React.Component {
     render() {
 
         const dialogs = [
-            "hello",
-            "hi",
-            "how are you?",
-            "good, and you?"
+            `It’s important to understand how to compare values. We will often want to do different things depending on if something is greater than, less than, or equal to another value.`,
+            `In JavaScript, these conditional operators are written like this:
+
+            Less than:				<
+            Less than or equal to:		<=
+            Equal to:				===
+            Not equal to:			!==
+            Greater than:			>
+            Greater than or equal to:		>=
+            `,
+            `And always remember the documentation is there if you need it!`
         ]
 
         if (this.state.dialogIndex < dialogs.length) {
