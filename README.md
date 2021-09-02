@@ -23,7 +23,6 @@ https://fullstack-warfare.herokuapp.com/
 * We were all interested in designing a 'game'.
 * We acknowledged that learning how to code offers very little gratification in the early stages.
 * We wanted to explore outside of what technologies we were most comfortable with, i.e., the implementation of WebSockets, Animejs, and Monaco-Editor. 
-* Sarah is making us.
 
 
 ## Key Features
