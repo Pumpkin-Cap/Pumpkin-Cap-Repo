@@ -136,7 +136,7 @@ class SingleLevel extends React.Component {
 			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
-			{this.state.dialogOpen && <Dialog closeDialog={this.closeDialog}/>}
+			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> : 
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
@@ -212,9 +212,9 @@ class SingleLevel extends React.Component {
             />
 
 			<BottomBar />
-          </div> </> : null
+          </div> } </> : null
         )
-      }
+      } 
 }
 
 const mapState = state => ({
