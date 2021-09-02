@@ -74,27 +74,31 @@ async function seed() {
   //Might have to refactor
   const Level1 = await Level.create({
     name: "Level 1",
-    prompt: "Prove to me you understand how to write conditional statements!",
+    prompt: "Prove to me you understand how to write conditional statements! Remove the comment (//) on the return statements when you're ready to submit the function.",
     category: "Control Flow",
     password: "megaman",
     startingJS: `function myLessThanFunction(){
     //insert appropriate numbers to make it TRUE
-    return (/*replace me!*/ < /*replace me!*/)
+
+    // return (/*replace me!*/ < /*replace me!*/)
     }
 
     function myGreaterThanFunction(){
     //insert appropriate numbers to make it TRUE
-    return (/*replace me!*/ > /*replace me!*/)
+
+    // return (/*replace me!*/ > /*replace me!*/)
     }
 
     function myEqualToFunction(){
     //insert appropriate numbers to make it TRUE
-    return (/*replace me!*/ === /*replace me!*/)
+
+    // return (/*replace me!*/ === /*replace me!*/)
     }
 
     function myNotEqualToFunction(){
     //insert appropriate numbers to make it TRUE
-    return (/*replace me!*/ !== /*replace me!*/)
+
+    // return (/*replace me!*/ !== /*replace me!*/)
     }`,
   });
 
@@ -160,7 +164,7 @@ async function seed() {
     const fire = 'Fire!!'
     const hold = 'Hold your fire!!'
 
-
+/*
     if (/*replace me with your condition!*/){
 
     return /*replace me with your order!*/
@@ -169,6 +173,7 @@ async function seed() {
 
     return /*replace me with your order!*/
     }
+*/
   }
     `,
   });
@@ -288,19 +293,21 @@ async function seed() {
   // Level 4
   const Level4 = await Level.create({
     name: "Level 4",
-    prompt: 'Prove to me you understand how to JOIN conditional statements!',
+    prompt: 'Prove to me you understand how to JOIN conditional statements! Remove the comment (//) on the return statements when you\'re ready to submit the function.',
     category: "Control Flow",
     password: "gutsman",
     startingJS: `function myAndFunction(){
 
       //insert appropriate numbers to make it TRUE
-      return (/*replace me!*/ <= /*replace me!*/ && /*replace me!*/ >= /*replace me!*/)
+
+      // return (/*replace me!*/ <= /*replace me!*/ && /*replace me!*/ >= /*replace me!*/)
       }
 
       function myOrFunction(){
 
       //insert appropriate numbers to make it FALSE
-      return (/*replace me!*/ <= /*replace me!*/ || /*replace me!*/ >= /*replace me!*/)
+
+      // return (/*replace me!*/ <= /*replace me!*/ || /*replace me!*/ >= /*replace me!*/)
       }
       `
   });
@@ -339,7 +346,7 @@ async function seed() {
     when there are no ducks advancing, order a hold.
     When the duck wave is 1-2, fire the rifle for precise shots.
     When the duck wave is 3-5, fire the cannon for broader hits.
-    When it’s 5 or higher, fire the grenade launcher!
+    When it’s 6 or higher, fire the grenade launcher!
     But now, if there’s a shield you must use the grenade launcher regardless!`,
     category: "Control Flow",
     password: "roll",
@@ -437,13 +444,13 @@ async function seed() {
     startingJS: `function myForLoopFunction(){
 
       let counter = 0
-
+/*
       //Insert starting and ending points to have the function return 10
-      for (let i = */replace me*/; i < */replace me*/; i++){
+      for (let i = /*replace me*/; i < /*replace me*/; i++){
 
       counter++
       }
-
+*/
       return counter
       }
     `,
@@ -564,7 +571,7 @@ async function seed() {
     A duck travels at half a meter per second.
 A duck one-foot tall takes one bullet.
 Each increase of one foot doubles the required hits from the previous height.
-Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum 10 shots per load).
+Each bullet takes 1 second to fire.
     `,
     category: "Loops",
     password: 'fireman',
@@ -626,7 +633,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
   // Level 10
   const Level10 = await Level.create({
     name: "Level 10",
-    prompt: `Prove to me you understand how arrays work!
+    prompt: `Prove to me you understand how arrays work! Remove the comment (//) on the return statements when you're ready to submit the function.
     `,
     category: "Arrays",
     password: 'beautyman',
@@ -636,28 +643,28 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
     function myFirstArrayFunction(){
 
-    return (20 === myArray[/*replace me!*/])
+    // return (20 === myArray[/*replace me!*/])
     }
 
     function mySecondArrayFunction(){
 
-    return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    // return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
     }
 
     // For the following questions, I expect you to use integers to solve for true. THERE IS NO ROOM FOR LAZINESS!
     function myThirdArrayFunction(){
 
-    return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
+    // return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
     }
 
     function myFourthArrayFunction(){
 
-    return (myArray.length === /*replace me!*/)
+    // return (myArray.length === /*replace me!*/)
     }
 
     function myFifthArrayFunction(){
 
-    return (/*replace me!*/ === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    // return (/*replace me!*/ === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
     }
     `,
   });
@@ -776,7 +783,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
   //level 12
   const Level12 = await Level.create({
     name: "Level 12",
-    prompt: `Show me you understand how to use these array methods!`,
+    prompt: `Show me you understand how to use these array methods! Remove the comment (//) on the return statements when you're ready to submit the function.`,
     category: "Arrays",
     password: 'Colonel',
     startingJS: `//make all functions return true
@@ -788,7 +795,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
     //We’ve already dealt with .length, but it’s so important it’s here again!
     //myArray.length will set a variable equal to the length.
 
-    return (myArray.length === /*replace me!*/)
+    // return (myArray.length === /*replace me!*/)
     }
 
 
@@ -803,7 +810,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
     //Your code above
 
-    return (myArray[2] === 6)
+    // return (myArray[2] === 6)
     }
 
     function myPopFunction(){
@@ -817,7 +824,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
     //Your code above
 
-    return (myArray[myArray.length - 1] === 8)
+    // return (myArray[myArray.length - 1] === 8)
     }
 
     function myIncludesFunction(){
@@ -826,7 +833,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
     //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
 
-    return (myArray.includes(/*replace me!*/))
+    // return (myArray.includes(/*replace me!*/))
     }
 
     function myIndexOfFunction(){
@@ -835,7 +842,7 @@ Each bullet takes 1 second to fire, and a gun takes 5 seconds to reload (maximum
 
     //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
 
-    return (myArray.indexOf(/*replace me!*/) === 1)
+    // return (myArray.indexOf(/*replace me!*/) === 1)
     }
 
     `,
@@ -908,7 +915,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
   //level 13
   const Level13 = await Level.create({
     name: "Level 13",
-    prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings.`,
+    prompt: `Given an array of duck types, write a program that will return a new array containing the “toughDuck” positions (indices). The duck types are given as strings (so you're looking for the elements "toughDuck").`,
     category: "Arrays",
     password: 'waterman',
     startingJS: `function mySeekingFunction(deploymentArray){
@@ -962,7 +969,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
   //level 15
   const Level15 = await Level.create({
     name: "Level 15",
-    prompt: `Prove to me you understand how objects work!`,
+    prompt: `Prove to me you understand how objects work! Remove the comment (//) on the return statements when you're ready to submit the function.`,
     category: "Objects",
     password: 'icewoman',
     startingJS: `const myObject = {
@@ -977,28 +984,28 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 
       function myFirstObjectFunction(){
 
-      return "rubber" === myObject./*replace me!*/
+      // return "rubber" === myObject./*replace me!*/
       }
 
       function mySecondObjectFunction(){
 
-      return "rubber" === myObject[/*replace me!*/]
+      // return "rubber" === myObject[/*replace me!*/]
 
       }
 
       function myThirdObjectFunction(){
 
-      return 55 === myObject[/*replace me!*/]
+      // return 55 === myObject[/*replace me!*/]
       }
 
       function myFourthObjectFunction(){
 
-      return /*replace me!*/ === myObject["true"]
+      // return /*replace me!*/ === myObject["true"]
       }
 
       function myFifthObjectFunction(){
 
-      return myObject[((!myObject.true).toString())] === /*replace me!*/
+      // return myObject[((!myObject.true).toString())] === /*replace me!*/
       }
       `,
   });
@@ -1070,7 +1077,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
   //level 16
   const Level16 = await Level.create({
     name: "Level 16",
-    prompt: `Given the data on an enemy duck, return an object representing the intel gathered. The first key value pair would be the type of duck it is. The second key value pair would be another object with the key of 'attributes' that will then have two more key value pairs to represent the ducks height and distance
+    prompt: `Given the data on an enemy duck, return an object representing the intel gathered. The first key value pair would be the type of duck it is. The second key value pair would be another object with the key of 'attributes' that will then have two more key value pairs to represent the duck's height and distance.
     `,
     category: "Objects",
     password: 'earthman',
@@ -1079,7 +1086,8 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     attributes: (insert second object here)
     */
 
-    function myBuildAnObjectFunction(){
+    function myBuildAnObjectFunction(duckHeight, duckDistance){
+
     //Your code below
 
 
@@ -1094,7 +1102,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     description: 'When you return your object, note that your value for attributes will be another object containing the height and distance key value pairs respectively',
     test: `describe('myBuildAnObjectFunction', function(){
       it("return an object with the correct key value pairs", function(){
-        expect(myBuildAnObjectFunction()).to.eql({ type: 'toughDuck', attributes: { height: 50, distance: 100 } })
+        expect(myBuildAnObjectFunction(50, 100)).to.eql({ type: 'toughDuck', attributes: { height: 50, distance: 100 } })
       });
     })`,
   divId: `return an object with the correct key value pairs`,
@@ -1104,35 +1112,192 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     levelSixteenTestOne
   ]);
 
-//   //level 17
-//   const Level17 = await Level.create({
-//     name: "Level 17",
-//     prompt: `Given an array where each duck is given as an object,
+  //level 17
+  const Level17 = await Level.create({
+    name: "Level 17",
+    prompt: `Given an array where each duck is given as an object,
 
-//     Find the index of each 'squeaker' and which weapon to use based on how many are in a row and if they have shields.
-//     Fire at the first of a cluster to hit all of them.
-//     If any one duck in a cluster has a shield, it is the same as if all of them do.
+    - Find the index of each “squeaker” and which weapon to use based on how many are in a row and if they have shields.
 
-//     Find the index of each “toughDuck” and how many guns will need to be focused on them based on their particular height and distance.
-//     `,
-//     category: "Objects",
-//     startingJS: `myFinalFunction(arrayOfEnemies){
-//       //Do it. Do it.
-//       }
-//       `,
-//   });
+    When the duck wave is 1-2, fire the rifle for precise shots. ("rifle")
+    When the duck wave is 3-5, fire the cannon for broader hits. ("cannon")
+    When it’s 6 or higher, fire the grenade launcher. ("grenade")
+    And if there’s a shield you must use the grenade launcher regardless! ("grenade")
 
-// // test specs for level 17 go here
-//   const levelSeventeenTestOne = await Test.create({
-//     name: "test one",
-//     description: '',
-//     test: ``,
-//   divId: ``,
-//   })
+    Fire at the first of a cluster to hit all of them. Mark the remainder with “none”
+    If any one duck in a cluster has a shield, it is the same as if all of them do.
 
-//   await Level17.addTests([
-//     levelSeventeenTestOne
-//   ]);
+    - Find the index of each “toughDuck” and how many guns will need to be focused on it based on its particular height and distance.
+
+    A duck travels at half a meter per second.
+    A duck one-foot tall takes one bullet.
+    Each increase of one foot doubles the required hits from the previous height.
+    Each bullet takes 1 second to fire.
+
+    `,
+    category: "Objects",
+    password: 'wily',
+    startingJS: `function myFinalFunction(arrayOfEnemies){
+      //Do it. Do it.
+      }
+      `,
+  });
+
+// test specs for level 17 go here
+  const levelSeventeenTestOne = await Test.create({
+    name: "test one",
+    description: 'The returned array successfully locates all \"squeakers\" and \"toughDucks\"',
+    test: `describe('myFinalFunction', function(){
+
+      const testArray = [
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 10, distance: 20 } },
+        { type: "toughDuck", attributes: { height: 15, distance: 22 } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 10, distance: 30 } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 28, distance: 12 } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 25, distance: 25 } },
+        { type: "toughDuck", attributes: { height: 2, distance: 200 } },
+        { type: "normal" }
+      ]
+
+      it("returns an array with objects with accurate index fields", function(){
+        expect(myFinalFunction(testArray)
+        .map((element) =>(element.attributes.index)))
+        .to.eql( [0, 1, 2, 6, 7, 8, 9, 10, 11, 14, 15, 16, 20, 21, 22, 24, 26, 28, 29, 30] )
+      });
+    })`,
+  divId: `returns an array with objects with accurate index fields`,
+  });
+
+  const levelSeventeenTestTwo = await Test.create({
+    name: "test two",
+    description: 'The returned array assigns appropriate weapons against all squeakers',
+    test: `describe('myFinalFunction', function(){
+
+      const testArray = [
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 10, distance: 20 } },
+        { type: "toughDuck", attributes: { height: 15, distance: 20 } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 10, distance: 40 } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 20, distance: 10 } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 20, distance: 50 } },
+        { type: "toughDuck", attributes: { height: 2, distance: 200 } },
+        { type: "normal" }
+      ]
+
+      it("returns an array with accurate weapon assignments for each squeaker", function(){
+        expect(myFinalFunction(testArray)
+        .filter((element) => (element.type === "squeaker"))
+        .map((element) =>(element.attributes.weapon)))
+        .to.eql( ['grenade', 'grenade', 'none', 'none', 'none', 'none', 'none', 'rifle', 'none', 'cannon', 'none', 'none', 'grenade', 'grenade'] )
+      });
+    })`,
+  divId: `returns an array with accurate weapon assignments for each squeaker`,
+  });
+
+  const levelSeventeenTestThree = await Test.create({
+    name: "test three",
+    description: 'The returned array assigns an appropriate gun amount against each toughDuck',
+    test: `describe('myFinalFunction', function(){
+
+      const testArray = [
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 10, distance: 20 } },
+        { type: "toughDuck", attributes: { height: 15, distance: 20 } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 10, distance: 40 } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "squeaker", attributes: { hasShield: false } },
+        { type: "normal" },
+        { type: "toughDuck", attributes: { height: 20, distance: 10 } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "normal" },
+        { type: "squeaker", attributes: { hasShield: true } },
+        { type: "toughDuck", attributes: { height: 20, distance: 50 } },
+        { type: "toughDuck", attributes: { height: 2, distance: 200 } },
+        { type: "normal" }
+      ]
+
+      it("returns an array with accurate gun amounts for each toughDuck", function(){
+        expect(myFinalFunction(testArray)
+        .filter((element) => (element.type === "toughDuck"))
+        .map((element) =>(element.attributes.guns)))
+        .to.eql( [12.8, 409.6, 6.4, 26214.4, 5242.88, .005] )
+      });
+    })`,
+  divId: `returns an array with accurate gun amounts for each toughDuck`,
+  });
+
+  await Level17.addTests([
+    levelSeventeenTestOne,
+    levelSeventeenTestTwo,
+    levelSeventeenTestThree
+  ]);
 
   await users[2].addLevels([
     Level1,
@@ -1151,7 +1316,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Level14,
     Level15,
     Level16,
-    // Level17
+    Level17
   ])
 
   await users[0].addFriends([
