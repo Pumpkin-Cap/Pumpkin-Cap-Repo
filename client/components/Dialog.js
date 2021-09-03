@@ -25,24 +25,12 @@ class Dialog extends React.Component {
 
 
     render() {
-
-        const dialogs = [
-            `It’s important to understand how to compare values. We will often want to do different things depending on if something is greater than, less than, or equal to another value.`,
-            `In JavaScript, these conditional operators are written like this:
-
-            Less than:				<
-            Less than or equal to:		<=
-            Equal to:				===
-            Not equal to:			!==
-            Greater than:			>
-            Greater than or equal to:		>=
-            `,
-            `And always remember the documentation is there if you need it!`
-        ]
+        console.log(this.props.level)
+        const dialogs = this.props.level.dialogs || []
 
         if (this.state.dialogIndex < dialogs.length) {
             return <div style={{backgroundColor: 'blanchedalmond'}}>
-                    <div>{dialogs[this.state.dialogIndex]}</div>
+                    <div className="dialogue">{dialogs[this.state.dialogIndex].content}</div>
                     <button onClick={() => this.nextDialog(dialogs)} >Next</button>
                 </div>
         } else {

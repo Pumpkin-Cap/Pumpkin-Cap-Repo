@@ -37,7 +37,10 @@ router.get('/complete/:id', requireToken, async (req, res, next) => {
 
 router.get('/:id', requireToken, userHasLevel, async (req, res, next) => {
 	try {
-		const level = await Level.findByPk(req.params.id, { include: Test,});
+		const level = await Level.findByPk(req.params.id, { include: {
+			all: true,
+			nested: true
+		}});
 		res.json(level);
 	} catch (err) {
 		next(err);

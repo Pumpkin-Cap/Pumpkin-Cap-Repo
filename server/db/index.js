@@ -19,8 +19,8 @@ User.belongsToMany(User, {as: 'friends', through: Friend})
 Level.hasMany(Test)
 Test.belongsTo(Level)
 
-Test.hasMany(Dialog)
-Dialog.belongsTo(Test)
+Level.hasMany(Dialog)
+Dialog.belongsTo(Level)
 
 
 
