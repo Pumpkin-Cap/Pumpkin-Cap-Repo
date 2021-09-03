@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import VerifyPassword from "./VerifyPassword";
 import Anime from "react-anime";
-import LoadingPage from "./LoadingPage";
+import LoadingPage from "../LoadingPage";
 import ProfileLevels from "./ProfileLevels";
 import FriendsList from "./FriendsList";
+import UsersList from "./UsersList";
 
 class Profile extends React.Component {
 
@@ -39,6 +40,7 @@ class Profile extends React.Component {
     async componentDidMount() {
         await this.props.getLevels()
         await this.props.getUser(this.props.match.params.id);
+        await this.props.getAllUsers();
         this.setState({ isLoaded: true })
 
         let completedLevels = 0
@@ -61,11 +63,13 @@ class Profile extends React.Component {
 	}
 
 	search(origiRay) {
+        console.log('input in parent function ', origiRay)
 		let mutaRay = [...origiRay];
-
-		if (this.state.search !== '') {
-			mutaRay = mutaRay.filter((element) => element.username.toLowerCase().startsWith(this.state.search.toLowerCase()));
-		}
+        mutaRay = mutaRay.filter((element) => element.username.toLowerCase().includes(this.state.search.toLowerCase()));
+        console.log('filtered array in parent function ', mutaRay)
+		// if (this.state.search !== '') {
+		// 	mutaRay = mutaRay.filter((element) => element.username.toLowerCase().includes(this.state.search.toLowerCase()));
+		// }
 
 		return mutaRay;
 	}
@@ -83,7 +87,6 @@ class Profile extends React.Component {
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
         const { verified, isLoaded } = this.state;
         const { levels } = this.props.user;
-        const { allUsers } = this.props;
         const allLevels = this.props.levels;
 
         return (
@@ -91,27 +94,23 @@ class Profile extends React.Component {
                 {!isLoaded ? (
                     <LoadingPage />
                 ) : (
-            <Anime duration={6000} opacity={[0,1]}>
+            <Anime duration={6000}>
 
                 <div id="profileContainer">
                   <div id="top-profileContainer">
                     <div id="top-profileContainer-leftSection">
                         <div className='search'>
-                            <form id='search-form'><label htmlFor='search' className='search-input-label'>Search Users...</label>
-                                <input name='search' className='search-input-box' onChange={this.handleSearchChange} value={this.state.search || ''}/>
-                            </form>
+                            <label htmlFor='search' className='search-input-label'>Search Users...</label>
+                                <input name='search' className='search-input-box' onChange={this.handleSearchChange} value={this.state.search}/>
+
                         </div>
-                        <div id="search-list">{this.state.search !== '' && this.search(allUsers).map((element) => { return (
-									<div key={element.id} id='user'>
-                                        <Link to={`/user/${element.id}`}>{element.username}</Link>
-									</div>
-								);})}
+                        <div id="search-list"><UsersList search={this.search} searchParam={this.state.search} />
                         </div>
                     </div>
                     <div id="top-profileContainer-mainSection">
-                        <h1>{this.props.user.username}</h1>
-                        {(this.props.auth.id === this.props.user.id) && (verified ? <EditProfile setVerified={this.setVerified} /> : <VerifyPassword setVerified={this.setVerified} />) }
-                        {(this.props.auth.id !== this.props.user.id) && (<button>Add Friend</button>)}
+                        <h1>{this.props.user.username}</h1><>
+                        {(this.props.auth.id === this.props.user.id) && (verified ? <EditProfile setVerified={this.setVerified} /> : <VerifyPassword setVerified={this.setVerified} />) }</><>
+                        {(this.props.auth.id !== this.props.user.id) && (<button>Add Friend</button>)}</>
                         <h4 style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                             <div style={{display: "flex", justifyContent: "center"}}>Next Level:</div>
                             {this.props.levels[completedLevels] &&

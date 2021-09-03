@@ -6,7 +6,7 @@ const GET_ALL_USERS = "GET_ALL_USERS"
 
 /// action creators
 
-const getAllUsers = () => ( {type: GET_ALL_USERS, users} )
+const getAllUsers = (users) => ( {type: GET_ALL_USERS, users} )
 
 // thunks
 

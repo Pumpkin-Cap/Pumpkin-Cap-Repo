@@ -219,7 +219,7 @@ class SingleLevel extends React.Component {
             />
 
 			<BottomBar />
-          </div> </> : null
+          </div>} </> : null
             )}
       </div>
         )
