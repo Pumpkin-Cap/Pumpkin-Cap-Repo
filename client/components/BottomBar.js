@@ -1,6 +1,7 @@
 import React from 'react'
 import socket from '../socket';
 import { connect } from 'react-redux'
+import VideoChat from './VideoChat/VideoChat';
 
 
 export class BottomBar extends React.Component {
@@ -11,7 +12,8 @@ export class BottomBar extends React.Component {
             isOpen: false,
             roomOpen: false,
             inRoom: false,
-            roomName: 'megaman'
+            roomName: 'megaman',
+            inCall: true,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleStartRoom = this.handleStartRoom.bind(this)
@@ -29,7 +31,7 @@ export class BottomBar extends React.Component {
         console.log('I joined the room: ', roomName)
         socket.emit('join-room', {roomName, userName: this.props.user.username});
         this.setState({
-            inRoom: true
+            inRoom: true,
         })
     }
 
@@ -44,28 +46,39 @@ export class BottomBar extends React.Component {
         console.log('I left the room: ', roomName)
         socket.emit('leave-room', {roomName, userName: this.props.user.username});
         this.setState({
-            inRoom: false
+            inRoom: false,
         })
     }
 
 
     render() {
+
+        let roomUsers = 0
+        if (this.props.room.users) {
+            roomUsers = this.props.room.users.length
+        }
+
         return (
             <div id="bottomBar">
 
                 {this.state.isOpen ? (
                     <>
-                    <div>
+                    {/* <div>
                         {this.state.roomOpen && <div className="userList">
                             {this.props.room.users.map((userName,index) => (<div key={index}>{userName}</div>))}
                             </div>}
-                        <button onClick={() => this.setState({roomOpen: !this.state.roomOpen})}>{this.props.room.users.length}</button>
-                    </div>
+                        <button onClick={() => this.setState({roomOpen: !this.state.roomOpen})}>{roomUsers}</button>
+                    </div> */}
                     <div>
                         {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}
-                        {this.state.inRoom ? 
-                            <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
-                            : (
+                        {this.state.inRoom ? (
+                            <>
+                            {console.log(this.state.roomName)}
+                                {this.state.inCall && <div><VideoChat roomID={this.state.roomName}/></div> }
+                                <div style={{backgroundColor: 'blanchedalmond'}}>{this.state.roomName}</div>
+                                <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
+                            </>
+                            ) : (
                             <>
                                 <input name="roomName" type="text" value={this.state.roomName} onChange={this.handleChange} required></input>
                                 <button onClick={this.handleStartRoom}>START ROOM</button>

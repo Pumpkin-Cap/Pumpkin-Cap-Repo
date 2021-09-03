@@ -15,8 +15,8 @@ class BioCard extends React.Component {
         return (
             <div className="singleCardContainer">
                 <h3>{this.props.name}</h3>
-                <img src={this.props.picture} style={{width: "200px", paddingBottom: "15px"}}/>
-                <div>{this.props.bio}</div>
+                <div style={{height: "200px", display:"flex", justifyContent:"center", paddingBottom: "15px"}}><img src={this.props.picture}/></div>
+                <div style={{display:"flex", alignContent:"flex-end"}}><div className="singleCardText">{this.props.bio}</div></div>
             </div>
         )
     }

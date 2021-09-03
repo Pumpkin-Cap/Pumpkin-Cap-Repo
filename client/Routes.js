@@ -4,10 +4,11 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import ListLevels from './components/ListLevels';
-import Profile from './components/Profile';
+import Profile from './components/ProfilePage/Profile';
 import SingleLevel from './components/SingleLevel';
 import UnauthorizedLevel from './components/UnauthorizedLevel';
 import PageNotFound from './components/PageNotFound';
+import BioPage from './components/BioPage'
 import {me} from './store'
 
 /**
@@ -33,6 +34,7 @@ class Routes extends Component {
             <Route path="/level/unauthorized" component={UnauthorizedLevel} />
             <Route path="/level/:id" component={SingleLevel} />
             <Route path="/user/:id" component={Profile} />
+            <Route path="/aboutTheAuthor" component={BioPage} />
             <Route component={PageNotFound} />
             <Redirect to="/home" />
           </Switch>

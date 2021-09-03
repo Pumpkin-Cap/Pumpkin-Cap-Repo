@@ -24,6 +24,19 @@ export class Home extends React.Component {
 		} else if (nextLevel <= 14) {
 			levelCategory = 'Arrays';
 			levelNumber = nextLevel - 9;
+		} else if (nextLevel <= 17) {
+			levelCategory = 'Objects';
+			levelNumber = nextLevel - 14;
+		}
+
+		if (nextLevel <= 5) {
+			levelNumber = nextLevel;
+		} else if (nextLevel <= 9) {
+			levelCategory = 'Loops';
+			levelNumber = nextLevel - 5;
+		} else if (nextLevel <= 14) {
+			levelCategory = 'Arrays';
+			levelNumber = nextLevel - 9;
 		} else if (nextLevel <= 16) {
 			levelCategory = 'Objects';
 			levelNumber = nextLevel - 14;
@@ -172,6 +185,21 @@ export class Home extends React.Component {
 			// 	</div>
 			// )}
 			// </div> */}
+			//  <div style={{display: 'flex', justifyContent: 'center', marginTop: "20px"}}>
+			// 	<Anime duration={6000} translateX={[-7000,0]} easing={'linear'}>
+			//     <BioCard name={"Sarah Zhao"} picture={"../sargeantSarah.png"}  bio={"\"Brings a whole new meaning to 'Rubber Duck Debugging.'\""}/>
+			//   </Anime>
+			//   <Anime duration={6100} translateX={[-7200,0]} easing={'linear'}>
+			//     <BioCard name={"Joe Alves"} picture={"../generalJoe.png"}  bio={"\"Dev tested; Penny approved.\""}/>
+			//   </Anime>
+			//   <Anime duration={6200} translateX={[-7400,0]} easing={'linear'}>
+			//     <BioCard name={"Gary Kertis"} picture={"../theEvilRubberDuck.png"}  bio={"\"Would play again. All you really need to know for my credibility is that my name is Gary.\""}/>
+			//   </Anime>
+			//   <Anime duration={6300} translateX={[-7600,0]} easing={'linear'}>
+			//     <BioCard name={"Serena Sussman"} picture={"../theDocileRubberDuck.png"}  bio={"\"Better than iced coffee on a hot day!!\""}/>
+			//   </Anime>
+			// </div>
+			// <Link to='/aboutTheAuthor' style={{position:"fixed", bottom:"10px", left:"10px"}}><button>Meet the Dev Team</button></Link>
 			// </Anime>
 		);
 	}

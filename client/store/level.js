@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { TOKEN } from './auth';
+import { changeCode } from './code'
 
 //action types
 
@@ -48,6 +49,7 @@ export const nextLevel = (id) => async (dispatch) => {
 			headers: { authorization: token },
 		});
 		dispatch(setLevel(data));
+		return data;
 	} catch (levelError) {
 		console.log('These are not the ducks you are looking for', levelError);
 	}

@@ -8,6 +8,9 @@ import Anime from 'react-anime';
 import socket from '../socket';
 import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
+import BottomBar from './BottomBar';
+import Dialog from './Dialog';
+import LoadingPage from './LoadingPage';
 
 
 class SingleLevel extends React.Component {
@@ -16,16 +19,19 @@ class SingleLevel extends React.Component {
     constructor() {
         super()
         this.state = {
-          js: '',
-          doc: '',
-          scale: 0,
-          animationIsDone: true,
-          testResults: []
+			js: '',
+			doc: '',
+			scale: 0,
+			animationIsDone: true,
+			testResults: [],
+			dialogOpen: true,
+      isLoaded: false
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
         this.setAnimationDone = this.setAnimationDone.bind(this)
 		this.handleNextLevel = this.handleNextLevel.bind(this);
+		this.closeDialog = this.closeDialog.bind(this)
       }
 
       async componentDidMount() {
@@ -50,7 +56,7 @@ class SingleLevel extends React.Component {
 
           // Listen to message from child window
           eventer(messageEvent,eventFunction.bind(this),false);
-
+          this.setState({ isLoaded: true });
       }
 
       componentDidUpdate() {
@@ -73,14 +79,23 @@ class SingleLevel extends React.Component {
 
 
 	async handleNextLevel() {
-		await this.props.newLevel(this.props.level.id);
+		const nextLevel = await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
+
+    this.props.changeCode(nextLevel.startingJS);
 		this.setState({
-			js: this.props.level.startingJS,
+			js: nextLevel.startingJS,
 			testResults: [],
 			scale: 0,
+			dialogOpen: true
 		});
 		this.setDoc(true);
+	}
+
+	closeDialog() {
+		this.setState({
+			dialogOpen: false
+		})
 	}
 
 
@@ -118,11 +133,17 @@ class SingleLevel extends React.Component {
     render () {
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
+      const { isLoaded } = this.state
         return (
+          <div>
+            {!isLoaded ? (
+              <LoadingPage />
+            ) : (
           this.props.level.startingJS ? <>
-        <Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
-                    <img src="../generalJoe.png" className="generalJoe"></img>
-                   </Anime>
+			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
+				<img src="../generalJoe.png" className="generalJoe"></img>
+			</Anime>
+			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> :
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
@@ -152,7 +173,7 @@ class SingleLevel extends React.Component {
 											loop={true}
 											direction={'alternate'}>
 											<img
-												src='../theDocileRubberDuck.jpg'
+												src='../theDocileRubberDuck.png'
 												className='goodDuck'></img>
 										</Anime>
 									);
@@ -196,7 +217,11 @@ class SingleLevel extends React.Component {
                 lineHeight: 25,
               }}
             />
+
+			<BottomBar />
           </div> </> : null
+            )}
+      </div>
         )
       }
 }

@@ -23,7 +23,9 @@ export const fetchUser = (id) => async dispatch => {
     try {
         const token = window.localStorage.getItem('token');
         const { data } = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
+        console.log("SET USER IN FETCH USER")
         dispatch(setUser(data))
+        return data;
     } catch (userError) {
         console.log("COULD NOT GET USER ", userError)
     }
@@ -34,6 +36,7 @@ export const updateUser = (id, newName, newPass) => async dispatch => {
         const token = window.localStorage.getItem('token')
         console.log(token)
         const { data } = await axios.put(`/api/users/update/${id}`,{username: newName, password: newPass}, { headers: { authorization: token } });
+        console.log("SET USER IN THE UPDATE USER")
         dispatch(setUser(data))
     } catch (err) {
         console.log('THERE WAS A PROBLEM UPDATING THE USER: ', err)
@@ -52,12 +55,15 @@ export const verifyUser = (id, enteredPass) => async () =>{
     }
 }
 
-export const fetchFriends = (id) => async (dispatch) => {
+export const fetchFriends = (user) => async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
-    const { data } = await axios.get(`/api/users/${id}/friends`, { headers: { authorization: token } });
-    console.log('friends:', data)
-    dispatch(setFriends(data));
+        const token = window.localStorage.getItem('token');
+        // const user = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
+        const budArray = await axios.get(`/api/users/${user.id}/friends`, { headers: { authorization: token } });
+        console.log('user: ', user)
+        // user.data.friends = budArray.data;
+        console.log('friends: ', budArray.data)
+        dispatch(setFriends(budArray.data));
     } catch (e) {
       console.log(e)
     }
@@ -70,7 +76,7 @@ export default function( state = {}, action ) {
         case SET_USER:
             return action.user;
         case SET_FRIENDS:
-            return action.friends
+            return {...user, friends: action.friends }
         default:
             return state
     }
