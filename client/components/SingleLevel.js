@@ -13,92 +13,94 @@ import Dialog from './Dialog';
 import LoadingPage from './LoadingPage';
 import DuckList from './LevelPage/DuckList';
 
-
 class SingleLevel extends React.Component {
-
-
-    constructor() {
-        super()
-        this.state = {
+	constructor() {
+		super();
+		this.state = {
 			js: '',
 			doc: '',
 			scale: 0,
 			animationIsDone: true,
 			testResults: [],
 			dialogOpen: true,
-      isLoaded: false
-        }
-        this.onChange = this.onChange.bind(this)
-        this.setDoc = this.setDoc.bind(this)
-        this.setAnimationDone = this.setAnimationDone.bind(this)
+			isLoaded: false,
+		};
+		this.onChange = this.onChange.bind(this);
+		this.setDoc = this.setDoc.bind(this);
+		this.setAnimationDone = this.setAnimationDone.bind(this);
 		this.handleNextLevel = this.handleNextLevel.bind(this);
-		this.closeDialog = this.closeDialog.bind(this)
-      }
+		this.closeDialog = this.closeDialog.bind(this);
+	}
 
-      async componentDidMount() {
-        //   setTimeout(this.setAnimationDone, 6300);
-          const userHasAccesToLevel = await this.props.getLevel(this.props.match.params.id)
+	async componentDidMount() {
+		//   setTimeout(this.setAnimationDone, 6300);
+		const userHasAccesToLevel = await this.props.getLevel(
+			this.props.match.params.id
+		);
 
-          if (userHasAccesToLevel){
-            this.setDoc(true)
-          } else{
-            this.props.history.push("/level/unauthorized")
-          }
+		if (userHasAccesToLevel) {
+			this.setDoc(true);
+		} else {
+			this.props.history.push('/level/unauthorized');
+		}
 
-          // Create IE + others compatible event handler
-          var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-          var eventer = window[eventMethod];
-          var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-          function eventFunction(e) {
-            if (typeof e.data === 'string') {
-              this.setState({testResults: JSON.parse(e.data)})
-            }
-          }
+		// Create IE + others compatible event handler
+		var eventMethod = window.addEventListener
+			? 'addEventListener'
+			: 'attachEvent';
+		var eventer = window[eventMethod];
+		var messageEvent = eventMethod == 'attachEvent' ? 'onmessage' : 'message';
+		function eventFunction(e) {
+			if (typeof e.data === 'string') {
+				this.setState({ testResults: JSON.parse(e.data) });
+			}
+		}
 
-          // Listen to message from child window
-          eventer(messageEvent,eventFunction.bind(this),false);
-          this.setState({ isLoaded: true });
-      }
+		// Listen to message from child window
+		eventer(messageEvent, eventFunction.bind(this), false);
+		this.setState({ isLoaded: true });
+	}
 
-      componentDidUpdate() {
-        if (this.props.code != this.state.js) {
-          this.setState({js: this.props.code})
-        }
-      }
+	componentDidUpdate() {
+		if (this.props.code != this.state.js) {
+			this.setState({ js: this.props.code });
+		}
+	}
 
-      setAnimationDone() {
-        this.setState({
-          animationIsDone: true
-        })
-      }
+	setAnimationDone() {
+		this.setState({
+			animationIsDone: true,
+		});
+	}
 
-      onChange(newValue) {
-        socket.emit('change-code', {roomName: this.props.room.roomName, userName: this.props.user.username, code: newValue})
-        this.props.changeCode(newValue)
-      }
-
-
+	onChange(newValue) {
+		socket.emit('change-code', {
+			roomName: this.props.room.roomName,
+			userName: this.props.user.username,
+			code: newValue,
+		});
+		this.props.changeCode(newValue);
+	}
 
 	async handleNextLevel() {
 		const nextLevel = await this.props.newLevel(this.props.level.id);
 		this.props.history.push(`/level/${this.props.level.id}`);
 
-    this.props.changeCode(nextLevel.startingJS);
+		this.props.changeCode(nextLevel.startingJS);
 		this.setState({
 			js: nextLevel.startingJS,
 			testResults: [],
 			scale: 0,
-			dialogOpen: true
+			dialogOpen: true,
 		});
 		this.setDoc(true);
 	}
 
 	closeDialog() {
 		this.setState({
-			dialogOpen: false
-		})
+			dialogOpen: false,
+		});
 	}
-
 
 	setDoc(canDo) {
 		const doc = `
@@ -116,6 +118,7 @@ class SingleLevel extends React.Component {
 
           </script>
         </html>
+
       `
         if (canDo) {
           let scale = this.state.scale
@@ -197,18 +200,17 @@ class SingleLevel extends React.Component {
       }
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
 	user: state.auth,
-    level: state.level,
-    code: state.code,
-	room: state.room
-})
+	level: state.level,
+	code: state.code,
+	room: state.room,
+});
 
-const mapDispatch = dispatch => ({
-    getLevel: (id) => dispatch(fetchLevel(id)),
+const mapDispatch = (dispatch) => ({
+	getLevel: (id) => dispatch(fetchLevel(id)),
 	newLevel: (id) => dispatch(nextLevel(id)),
-    changeCode: (code) => dispatch(changeCode(code))
-})
-
+	changeCode: (code) => dispatch(changeCode(code)),
+});
 
 export default connect(mapState, mapDispatch)(SingleLevel);
