@@ -10,6 +10,7 @@ import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
 import BottomBar from './BottomBar';
 import Dialog from './Dialog';
+import LoadingPage from './LoadingPage';
 
 
 class SingleLevel extends React.Component {
@@ -23,7 +24,8 @@ class SingleLevel extends React.Component {
 			scale: 0,
 			animationIsDone: true,
 			testResults: [],
-			dialogOpen: true
+			dialogOpen: true,
+      isLoaded: false
         }
         this.onChange = this.onChange.bind(this)
         this.setDoc = this.setDoc.bind(this)
@@ -54,7 +56,7 @@ class SingleLevel extends React.Component {
 
           // Listen to message from child window
           eventer(messageEvent,eventFunction.bind(this),false);
-
+          this.setState({ isLoaded: true });
       }
 
       componentDidUpdate() {
@@ -131,12 +133,17 @@ class SingleLevel extends React.Component {
     render () {
       const sampleCode = this.props.level.startingJS
       const level = this.props.level
+      const { isLoaded } = this.state
         return (
+          <div>
+            {!isLoaded ? (
+              <LoadingPage />
+            ) : (
           this.props.level.startingJS ? <>
 			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
-			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> : 
+			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> :
           <div id="level">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
@@ -212,9 +219,11 @@ class SingleLevel extends React.Component {
             />
 
 			<BottomBar />
-          </div> } </> : null
+          </div> </> : null
+            )}
+      </div>
         )
-      } 
+      }
 }
 
 const mapState = state => ({

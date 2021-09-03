@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import VerifyPassword from "./VerifyPassword";
 import Anime from "react-anime";
+import LoadingPage from "./LoadingPage";
 import ProfileLevels from "./ProfileLevels";
 import FriendsList from "./FriendsList";
 
@@ -18,6 +19,7 @@ class Profile extends React.Component {
             verified: false,
             rank: 'Cadet',
             search: '',
+            isLoaded: false
         }
 
         this.setVerified = this.setVerified.bind(this);
@@ -34,9 +36,10 @@ class Profile extends React.Component {
         if ((prevProps.location.key !== this.props.location.key) && this.state.friendList !== 'hidden') { this.setState({ friendList: 'hidden' }) }
     }
 
-    componentDidMount() {
-        this.props.getLevels()
-        this.props.getUser(this.props.match.params.id);
+    async componentDidMount() {
+        await this.props.getLevels()
+        await this.props.getUser(this.props.match.params.id);
+        this.setState({ isLoaded: true })
 
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
@@ -78,14 +81,17 @@ class Profile extends React.Component {
     render() {
         let completedLevels = 0
         if (this.props.user.levels && this.props.user.id) (completedLevels = this.props.user.levels.length)
-        const { verified } = this.state;
+        const { verified, isLoaded } = this.state;
         const { levels } = this.props.user;
         const { allUsers } = this.props;
         const allLevels = this.props.levels;
 
         return (
-
-            // <Anime duration={6000} opacity={[0,1]}>
+            <div>
+                {!isLoaded ? (
+                    <LoadingPage />
+                ) : (
+            <Anime duration={6000} opacity={[0,1]}>
 
                 <div id="profileContainer">
                   <div id="top-profileContainer">
@@ -121,7 +127,9 @@ class Profile extends React.Component {
                 </div>
                     {completedLevels !== 0 && <ProfileLevels />}
                 </div>
-            // </Anime>
+            </Anime>
+                )}
+            </div>
         )
     }
 
