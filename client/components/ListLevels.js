@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchLevels } from "../store/level";
 import { Link } from "react-router-dom";
 import Anime from "react-anime";
+import LoadingPage from "./LoadingPage";
 
 class ListLevels extends React.Component {
 
@@ -10,15 +11,19 @@ class ListLevels extends React.Component {
     super(props)
     this.state = {
         openMenu: 'none',
-        levelPrompt: ''
+        levelPrompt: '',
+        isLoaded: false,
     }
 
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
 }
 
-  componentDidMount() {
-    this.props.getLevels();
+  async componentDidMount() {
+    await this.props.getLevels();
+    this.setState({
+      isLoaded: true
+    })
   }
 
   handleClick(event){
@@ -31,10 +36,14 @@ class ListLevels extends React.Component {
 
   render() {
     const { levels } = this.props;
+    const { isLoaded } = this.state
     let lastCompleted = 1;
 
     return (
-
+      <div>
+        {!isLoaded ? (
+          <LoadingPage />
+        ) : (
       <Anime duration={1000} opacity={[0,1]}>
         <div id="level-menu">
           <div id="level-topics">
@@ -72,6 +81,8 @@ class ListLevels extends React.Component {
           {this.state.levelPrompt !== '' ? (<div id="level-description">{this.state.levelPrompt}</div>) : (<div id="ghost-level-description"></div>)}
         </div>
       </Anime>
+        )}
+        </div>
     );
   }
 }
