@@ -4,6 +4,7 @@ body {
 	background-color: #ebe9d5;
 	max-width: 100%;
 	overflow-x: hidden;
+	background-image: url('duckbackground.jpg');
 }
 
 #bg-img {
@@ -115,7 +116,7 @@ form div {
 }
 
 #level-left {
-  margin: 15px;
+	margin: 15px;
 }
 
 /*to alter*/
@@ -186,8 +187,8 @@ form div {
 /*to alter*/
 .duckDiv {
 	display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+	flex-wrap: wrap;
+	justify-content: space-around;
 	/* z-index: -1; */
 }
 
@@ -383,7 +384,6 @@ form div {
 	align-items: flex-end;
 }
 
-
 #bottomBarOpenSymbol {
 	position: fixed;
 	bottom: 10px;
@@ -471,6 +471,10 @@ form div {
 	color: #c2c5aa;
 }
 
+.top-profileContainer-leftSection {
+	position: absolute;
+}
+
 #top-profileContainer-rightSection {
 	display: flex;
 	align-content: center;
@@ -482,26 +486,24 @@ form div {
 }
 
 .videoChatControls {
-  display: flex;
-  text-align: center;
-  justify-content: flex-end;
+	display: flex;
+	text-align: center;
+	justify-content: flex-end;
 }
 
 .duckTestCard {
-  display: flex;
-  flex-direction: column;
-  max-width: 200px;
-  align-items: center;
-  margin: 20px;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+	align-items: center;
+	margin: 20px;
+	text-align: center;
 }
 
 .testDescription {
-  z-index: 1;
-  background-color: #f0f8ffbd;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid;
+	z-index: 1;
+	background-color: #f0f8ffbd;
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid;
 }
-
-
