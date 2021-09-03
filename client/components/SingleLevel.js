@@ -149,6 +149,7 @@ class SingleLevel extends React.Component {
 			</Anime>
 			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> :
           <div id="level">
+            <div id="level-left">
             {(this.props.level.id) && <div>
                   <h2>{this.props.level.name}</h2>
                   <h3>{this.props.level.prompt}</h3>
@@ -164,7 +165,6 @@ class SingleLevel extends React.Component {
               />
             </div>
 
-            <DuckList results={this.state.testResults} scale={this.state.scale}/>
 
             <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
 
@@ -176,25 +176,25 @@ class SingleLevel extends React.Component {
 								}
 							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
 					</div>
-
-            <Editor
-              height="50vh"
-              width="75vw"
-              fontsize="12px"
-              value={this.state.js}
-              defaultLanguage="javascript"
-              theme="vs-dark"
-              onChange={this.onChange}
-              defaultValue={sampleCode}
-              options={{
-                readOnly: false,
-                lineHeight: 25,
-              }}
-            />
-
-			<BottomBar />
-          </div> } </>  : null
-            )}
+              <Editor
+                height="50vh"
+                width="50vw"
+                fontsize="12px"
+                value={this.state.js}
+                defaultLanguage="javascript"
+                theme="vs-dark"
+                onChange={this.onChange}
+                defaultValue={sampleCode}
+                options={{
+                  readOnly: false,
+                  lineHeight: 25,
+                }}
+              />
+          </div>
+          <DuckList results={this.state.testResults} scale={this.state.scale}/>
+          <BottomBar />
+          </div>
+          } </>  : null)}
       </div>
         )
       }
