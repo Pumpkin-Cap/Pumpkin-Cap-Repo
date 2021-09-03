@@ -9,7 +9,6 @@ const App = () => {
 			{/* <img id='bg-img' src='/duckbackground.jpg' /> */}
 			<Navbar />
 			<Routes />
-			<BottomBar />
 		</div>
 	);
 };
