@@ -23,6 +23,7 @@ export const fetchUser = (id) => async dispatch => {
     try {
         const token = window.localStorage.getItem('token');
         const { data } = await axios.get(`/api/users/${id}`, { headers: { authorization: token } });
+        console.log("SET USER IN FETCH USER")
         dispatch(setUser(data))
         return data;
     } catch (userError) {
@@ -35,6 +36,7 @@ export const updateUser = (id, newName, newPass) => async dispatch => {
         const token = window.localStorage.getItem('token')
         console.log(token)
         const { data } = await axios.put(`/api/users/update/${id}`,{username: newName, password: newPass}, { headers: { authorization: token } });
+        console.log("SET USER IN THE UPDATE USER")
         dispatch(setUser(data))
     } catch (err) {
         console.log('THERE WAS A PROBLEM UPDATING THE USER: ', err)
