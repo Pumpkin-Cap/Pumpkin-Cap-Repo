@@ -140,7 +140,7 @@ class Profile extends React.Component {
 								<div id='top-profileContainer-mainSection'>
 									<h1>{this.props.user.username}</h1>
 									<div style={{ fontSize: 'x-large', marginBottom: '10px' }}>
-										Completion:{' '}
+										Completion:
 										{(completedLevels / this.props.levels.length) * 100} %
 									</div>
 									<div
