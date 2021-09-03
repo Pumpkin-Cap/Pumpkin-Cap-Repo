@@ -8,7 +8,7 @@ import Anime from 'react-anime';
 import socket from '../socket';
 import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
-import BottomBar from './BottomBar';
+import BottomBar from './VideoChat/BottomBar';
 import Dialog from './Dialog';
 import LoadingPage from './LoadingPage';
 

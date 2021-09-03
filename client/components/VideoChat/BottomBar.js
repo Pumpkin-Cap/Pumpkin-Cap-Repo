@@ -1,7 +1,7 @@
 import React from 'react'
-import socket from '../socket';
+import socket from '../../socket';
 import { connect } from 'react-redux'
-import VideoChat from './VideoChat/VideoChat';
+import VideoChat from './VideoChat';
 
 
 export class BottomBar extends React.Component {
@@ -74,18 +74,25 @@ export class BottomBar extends React.Component {
                         {this.state.inRoom ? (
                             <>
                             {console.log(this.state.roomName)}
-                                {this.state.inCall && <div><VideoChat roomID={this.state.roomName}/></div> }
-                                <div style={{backgroundColor: 'blanchedalmond'}}>{this.state.roomName}</div>
-                                <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
+                                {this.state.inCall && <VideoChat roomID={this.state.roomName}/> }
+                                <div className="videoChatControls">
+                                    <div>
+                                        <div style={{backgroundColor: 'blanchedalmond'}}>{this.state.roomName}</div>
+                                        <div>
+                                            <button onClick={(e) => this.handleLeaveRoom(e)}>LEAVE ROOM</button>
+                                            <button onClick={() => this.setState({isOpen: false})}>Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </>
                             ) : (
                             <>
                                 <input name="roomName" type="text" value={this.state.roomName} onChange={this.handleChange} required></input>
                                 <button onClick={this.handleStartRoom}>START ROOM</button>
+                                <button onClick={() => this.setState({isOpen: false})}>Close</button>
                             </>
                             )
                             }
-                        <button onClick={() => this.setState({isOpen: false})}>Close</button>
                     </div>
                     </>
               ) : (
