@@ -1,16 +1,17 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Routes from './Routes'
-import BottomBar from './components/BottomBar'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Routes from './Routes';
+import BottomBar from './components/BottomBar';
 
 const App = () => {
-  return (
-    <div>
-      <Navbar />
-      <Routes />
-      <BottomBar />
-    </div>
-  )
-}
+	return (
+		<div>
+			<img id='bg-img' src='/duckbackground.jpg' />
+			<Navbar />
+			<Routes />
+			<BottomBar />
+		</div>
+	);
+};
 
-export default App
+export default App;
