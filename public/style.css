@@ -134,7 +134,8 @@ form div {
 }
 
 #codeIframe {
-	display: flex;
+  display: none;
+	/* display: flex; */
 	flex-direction: column;
 	align-items: center;
 	margin: 20px;
@@ -191,7 +192,9 @@ form div {
 /*to alter*/
 .duckDiv {
 	display: flex;
-	z-index: -1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+	/* z-index: -1; */
 }
 
 .generalJoe {
@@ -487,3 +490,22 @@ form div {
   text-align: center;
   justify-content: flex-end;
 }
+
+.duckTestCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+}
+
+.testDescription {
+  z-index: 1;
+  background-color: #f0f8ffbd;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+

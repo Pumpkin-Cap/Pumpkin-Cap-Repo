@@ -11,6 +11,7 @@ import LevelComplete from './LevelComplete';
 import BottomBar from './VideoChat/BottomBar';
 import Dialog from './Dialog';
 import LoadingPage from './LoadingPage';
+import DuckList from './LevelPage/DuckList';
 
 
 class SingleLevel extends React.Component {
@@ -160,39 +161,9 @@ class SingleLevel extends React.Component {
               />
             </div>
 
-            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
+            <DuckList results={this.state.testResults} scale={this.state.scale}/>
 
-					<div className='duckDiv'>
-						{level.tests &&
-							level.tests.map((test, index) => {
-								if (this.state.testResults[index] === 'PASSED') {
-									return (
-										<Anime
-											duration={3000}
-											rotate={[0, 20, 0, -20]}
-											loop={true}
-											direction={'alternate'}>
-											<img
-												src='../theDocileRubberDuck.png'
-												className='goodDuck'></img>
-										</Anime>
-									);
-								} else {
-									return (
-										<Anime
-											duration={3000}
-											rotate={[0, -20, 0, 20]}
-											scale={[this.state.scale]}
-											loop={true}
-											direction={'alternate'}>
-											<img
-												src='../theEvilRubberDuck.png'
-												className='evilDuck'></img>
-										</Anime>
-									);
-								}
-							})}
-					</div>
+            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
 
 					<div id='popbox'>
 						{level.tests &&
