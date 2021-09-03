@@ -147,7 +147,7 @@ class SingleLevel extends React.Component {
 			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
-			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> :
+			{this.state.dialogOpen ? <Dialog level={level} closeDialog={this.closeDialog}/> :
           <div id="level">
             <div id="level-left">
             {(this.props.level.id) && <div>
@@ -176,6 +176,7 @@ class SingleLevel extends React.Component {
 								}
 							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
 					</div>
+
               <Editor
                 height="50vh"
                 width="50vw"
