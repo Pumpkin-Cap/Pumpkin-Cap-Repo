@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import VerifyPassword from "./VerifyPassword";
 import Anime from "react-anime";
-import LoadingPage from "./LoadingPage";
+import LoadingPage from "../LoadingPage";
 import ProfileLevels from "./ProfileLevels";
 import FriendsList from "./FriendsList";
 
