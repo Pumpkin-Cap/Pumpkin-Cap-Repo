@@ -8,9 +8,10 @@ import Anime from 'react-anime';
 import socket from '../socket';
 import { changeCode } from '../store/code';
 import LevelComplete from './LevelComplete';
-import BottomBar from './BottomBar';
+import BottomBar from './VideoChat/BottomBar';
 import Dialog from './Dialog';
 import LoadingPage from './LoadingPage';
+import DuckList from './LevelPage/DuckList';
 
 class SingleLevel extends React.Component {
 	constructor() {
@@ -117,128 +118,86 @@ class SingleLevel extends React.Component {
 
           </script>
         </html>
-      `;
-		if (canDo) {
-			let scale = this.state.scale;
-			if (scale >= 8) {
-				scale = 8;
-			} else {
-				scale += 1;
-			}
-			this.setState({
-				doc,
-				scale,
-			});
-		}
-	}
 
-	render() {
-		const sampleCode = this.props.level.startingJS;
-		const level = this.props.level;
-		const { isLoaded } = this.state;
-		return (
-			<div>
-				{!isLoaded ? (
-					<LoadingPage />
-				) : this.props.level.startingJS ? (
-					<>
-						<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
-							<img src='../generalJoe.png' className='generalJoe'></img>
-						</Anime>
-						{this.state.dialogOpen ? (
-							<Dialog closeDialog={this.closeDialog} />
-						) : (
-							<div id='level'>
-								{this.props.level.id && (
-									<div>
-										<h2>{this.props.level.name}</h2>
-										<h3>{this.props.level.prompt}</h3>
-									</div>
-								)}
-								<div id='codeIframe'>
-									<iframe
-										id='thing'
-										srcDoc={this.state.doc}
-										title='output'
-										sandbox='allow-scripts allow-top-navigation allow-same-origin'
-										frameBorder='0'
-										width='100%'
-										height='100%'
-									/>
-								</div>
+      `
+        if (canDo) {
+          let scale = this.state.scale
+          if (scale >= 8) {
+            scale = 8
+          } else {
+            scale += 1
+          }
+          this.setState({
+            doc,
+            scale
+          })
+        }
+      }
 
-								<button
-									className='runButton'
-									onClick={() => this.setDoc(this.state.animationIsDone)}>
-									Run
-								</button>
+    render () {
+      const sampleCode = this.props.level.startingJS
+      const level = this.props.level
+      const { isLoaded } = this.state
+        return (
+          <div>
+            {!isLoaded ? (
+              <LoadingPage />
+            ) : (
+          this.props.level.startingJS ? <>
+			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
+				<img src="../generalJoe.png" className="generalJoe"></img>
+			</Anime>
+			{this.state.dialogOpen ? <Dialog closeDialog={this.closeDialog}/> :
+          <div id="level">
+            {(this.props.level.id) && <div>
+                  <h2>{this.props.level.name}</h2>
+                  <h3>{this.props.level.prompt}</h3>
+                  </div>}
+            <div id="codeIframe">
+              <iframe id="thing"
+                srcDoc={this.state.doc}
+                title="output"
+                sandbox="allow-scripts allow-top-navigation allow-same-origin"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+              />
+            </div>
 
-								<div className='duckDiv'>
-									{level.tests &&
-										level.tests.map((test, index) => {
-											if (this.state.testResults[index] === 'PASSED') {
-												return (
-													<Anime
-														duration={3000}
-														rotate={[0, 20, 0, -20]}
-														loop={true}
-														direction={'alternate'}>
-														<img
-															src='../theDocileRubberDuck.png'
-															className='goodDuck'></img>
-													</Anime>
-												);
-											} else {
-												return (
-													<Anime
-														duration={3000}
-														rotate={[0, -20, 0, 20]}
-														scale={[this.state.scale]}
-														loop={true}
-														direction={'alternate'}>
-														<img
-															src='../theEvilRubberDuck.png'
-															className='evilDuck'></img>
-													</Anime>
-												);
-											}
-										})}
-								</div>
+            <DuckList results={this.state.testResults} scale={this.state.scale}/>
 
-								<div id='popbox'>
-									{level.tests &&
-										level.tests.every((test, index) => {
-											if (this.state.testResults[index] === 'PASSED') {
-												return true;
-											}
-										}) && (
-											<LevelComplete handleNextLevel={this.handleNextLevel} />
-										)}
-								</div>
+            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
 
-								<Editor
-									height='50vh'
-									width='75vw'
-									fontsize='12px'
-									value={this.state.js}
-									defaultLanguage='javascript'
-									theme='vs-dark'
-									onChange={this.onChange}
-									defaultValue={sampleCode}
-									options={{
-										readOnly: false,
-										lineHeight: 25,
-									}}
-								/>
+					<div id='popbox'>
+						{level.tests &&
+							level.tests.every((test, index) => {
+								if (this.state.testResults[index] === 'PASSED') {
+									return true;
+								}
+							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
+					</div>
 
-								<BottomBar />
-							</div>
-						)}{' '}
-					</>
-				) : null}
-			</div>
-		);
-	}
+            <Editor
+              height="50vh"
+              width="75vw"
+              fontsize="12px"
+              value={this.state.js}
+              defaultLanguage="javascript"
+              theme="vs-dark"
+              onChange={this.onChange}
+              defaultValue={sampleCode}
+              options={{
+                readOnly: false,
+                lineHeight: 25,
+              }}
+            />
+
+			<BottomBar />
+          </div> } </>  : null
+            )}
+      </div>
+        )
+      }
 }
 
 const mapState = (state) => ({

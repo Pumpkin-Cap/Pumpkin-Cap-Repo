@@ -181,7 +181,9 @@ form div {
 /*to alter*/
 .duckDiv {
 	display: flex;
-	z-index: -1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+	/* z-index: -1; */
 }
 
 .generalJoe {
@@ -368,53 +370,14 @@ form div {
 
 #bottomBar {
 	display: flex;
-	display: flex;
 	position: fixed;
 	justify-content: space-between;
 	bottom: 10px;
 	right: 10px;
-	left: 10px;
+	/* left: 10px; */
 	align-items: flex-end;
 }
 
-#bottomBarInnerDiv {
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	height: 25px;
-	background-color: royalblue;
-}
-
-#bottomBarOpenSymbol {
-	position: fixed;
-	bottom: 10px;
-	right: 10px;
-}
-
-.userList {
-	display: flex;
-	flex-direction: column;
-	border-style: outset;
-	width: 200px;
-	text-align: center;
-	background: antiquewhite;
-	/* display: flex;
-  position: fixed;
-  /* justify-content: space-between; 
-  bottom: 10px;
-  right: 10px;
-  /*left: 10px; 
-  align-items: flex-end;
-  width: 200px; */
-}
-
-#bottomBarInnerDiv {
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	height: 25px;
-	background-color: royalblue;
-}
 
 #bottomBarOpenSymbol {
 	position: fixed;
@@ -509,30 +472,31 @@ form div {
 	flex-direction: column;
 }
 
-#bottomBarInnerDiv {
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	height: 25px;
-	background-color: royalblue;
-}
-
-#bottomBarOpenSymbol {
-	position: fixed;
-	bottom: 10px;
-	right: 10px;
-}
-
-.userList {
-	display: flex;
-	flex-direction: column;
-	border-style: outset;
-	width: 200px;
-	text-align: center;
-	background: antiquewhite;
-}
-
 .videoFrame {
 	display: flex;
-	flex-direction: column;
 }
+
+.videoChatControls {
+  display: flex;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.duckTestCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+}
+
+.testDescription {
+  z-index: 1;
+  background-color: #f0f8ffbd;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+
