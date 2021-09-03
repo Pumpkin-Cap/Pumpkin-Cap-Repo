@@ -111,9 +111,14 @@ form div {
 
 #level {
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	align-items: center;
 }
+
+#level-left {
+	margin: 15px;
+}
+
 /*to alter*/
 #level h2 {
 	display: flex;
