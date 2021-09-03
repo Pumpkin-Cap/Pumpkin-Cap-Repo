@@ -26,9 +26,9 @@ const modalStyle = () => ({
 		zIndex: 20,
 		width: '400px',
 		height: '350px',
-		backgroundColor: '#A4AC86',
+		backgroundColor: '#c4c4c4',
 		borderWidth: '10px',
-		borderColor: '#582F0E',
+		borderColor: '#8a8a8a',
 		borderStyle: 'ridge',
 	},
 });
@@ -87,7 +87,7 @@ class AuthForm extends React.Component {
 
 	afterOpenModal() {
 		// references are now sync'd and can be accessed.
-		this.subtitle.style.color = '#414833';
+		this.subtitle.style.color = '#000';
 		this.subtitle.style.fontFamily = "'Roboto Mono', monospace";
 	}
 

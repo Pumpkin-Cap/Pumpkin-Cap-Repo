@@ -32,12 +32,9 @@ label {
 }
 
 .nav-button {
-	background-color: #414833;
+	background-color: #c4c4c4;
 	border-radius: 10px;
 	border-style: none;
-}
-
-.nav-button:hover {
 }
 
 nav a {
@@ -54,7 +51,7 @@ nav a {
 	padding: 50px;
 	background-color: #c4c4c4b9;
 	position: relative;
-	z-index: 1;
+	z-index: 0;
 	border-radius: 20px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -74,7 +71,7 @@ form div {
 	border-radius: 15px;
 	border-style: outset;
 	border-width: 3px;
-	width: 200px;
+	width: 180px;
 	height: 50px;
 	background-color: #c4c4c473;
 	font-size: larger;
@@ -94,6 +91,7 @@ form div {
 	border-style: solid;
 	border-width: 3px;
 	text-align: center;
+	width: 150px;
 	height: 50px;
 	padding: 15px;
 	background-color: #5f5f5f;
@@ -134,7 +132,7 @@ form div {
 }
 
 #codeIframe {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	margin: 20px;
@@ -144,16 +142,6 @@ form div {
 	width: 600px;
 	height: 250px;
 }
-/* #codeIframe {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-  z-index: 1;
-  border: 5px double;
-  width: 600px;
-  height: 250px;
-} */
 
 #profileContainer {
 	display: flex;
@@ -168,6 +156,8 @@ form div {
 	margin-right: 25%;
 	justify-content: center;
 	text-align: center;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .evilDuck {
@@ -230,18 +220,9 @@ form div {
 	color: #000;
 	background-color: #b6ad90;
 	width: 200px;
-	/* padding: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-color: #414833;
-  border-width: 15px;
-  border-style: groove;
-  color: #333d29;
-  background-color: #b6ad90;
-  width: 200px;
-  height: 400px; */
+	height: 400px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .singleCardText {
@@ -266,24 +247,30 @@ form div {
 	background-color: #c4c4c473;
 }
 
-.edit-profile-button {
+#edit-profile-button {
 	border-style: outset;
 	background-color: #999797;
 }
 
-.edit-profile-button:hover {
+#edit-profile-button:hover {
 	border-style: inset;
 	background-color: #999797;
 }
 
 #level-topics {
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
 }
 
 #level-menu {
 	display: flex;
 	justify-content: space-between;
+}
+
+.levelCard {
+	display: flex;
+	justify-content: center;
 }
 
 .topic-card {
@@ -308,17 +295,23 @@ form div {
 }
 
 #level-list-menu {
-	display: flex;
 	align-content: flex-start;
 	justify-content: center;
 	flex-direction: column;
+	z-index: 4;
 	margin-left: 50px;
 }
 
 #level-menu {
-	margin: 50px;
+	display: -webkit-box;
 	background-color: #c4c4c4b9;
+	width: 900px;
+	position: fixed;
+	z-index: 4;
+	margin: 100px 100px;
 	padding: 30px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #level-description {
@@ -329,6 +322,7 @@ form div {
 	border-width: 3px;
 	background-color: #c4c4c49c;
 	padding: 10px;
+	z-index: 4;
 	padding-left: 15px;
 	padding-right: 15px;
 	margin: 10px;
@@ -340,7 +334,7 @@ form div {
 	border-radius: 15px;
 	border-style: double;
 	border-width: 3px;
-	background-color: #c4c4c49c;
+	background-color: #8f8b8b9c;
 	padding: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -353,9 +347,7 @@ form div {
 	flex: 1;
 	padding: 10px;
 	height: 300px;
-	max-width: 80%;
 	/* display: flex;
-  justify-content: space-between;
   width: -webkit-fill-available;
   max-width: 100%;
   margin-left: 10%;

@@ -64,143 +64,180 @@ export class Home extends React.Component {
 						<img src='../sargeantSarah.png' className='openingOfficer'></img>
 					)}
 				</Anime>
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					<h2 style={{ textAlign: 'center', color: '#000' }}>
+						{this.props.username && 'Welcome, ' + this.props.username + '.'}
+					</h2>
+					<h3 style={{ textAlign: 'center', color: '#000' }}>
+						{this.props.username && (
+							<div>
+								<Anime delay={1200} duration={1500} opacity={[0, 1]}>
+									<>Are you ready for your next mission?</>
+								</Anime>
+								<Anime delay={2000} duration={2000} opacity={[0, 1]}>
+									<div style={{ display: 'flex', justifyContent: 'center' }}>
+										<Link to={`/level/${nextLevel}`}>
+											<div
+												className='unlocked'
+												style={{
+													padding: '0px',
+													marginTop: '20px',
+													height: '120px',
+												}}>
+												<h2>{levelCategory}</h2>
+												<h4 style={{ marginBottom: '20px' }}>
+													Level {levelNumber}
+												</h4>
+											</div>
+										</Link>
+									</div>
+								</Anime>
+							</div>
+						)}
+					</h3>
+				</div>
+				<Link
+					to='/aboutTheAuthor'
+					style={{ position: 'fixed', bottom: '10px', left: '10px' }}>
+					<button>Meet the Dev Team</button>
+				</Link>
 			</div>
-			// {/* <div
-			// style={{
-			// 		display: 'flex',
-			// 		justifyContent: 'center',
-			// 		paddingTop: '20px',
-			// 	}}>
-			// 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
-			// 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
-			// 	</Anime>
-			// 	<Anime duration={3500} rotate={[0, 20, 0, -20, 0]} loop={true}>
-			// 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
-			// 	</Anime>
-			// 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
-			// 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
-			// 	</Anime>
-			// 	<Anime duration={3500} rotate={[0, 20, 0, -20, 0]} loop={true}>
-			// 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
-			// 	</Anime>
-			// 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
-			// 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
-			// 	</Anime>
-			// </div> */}
-			// {/* <div
-			// 	style={{
-			// 		display: 'flex',
-			// 		justifyContent: 'center',
-			// 	}}>
-			// 	<div id='homepage'>
-			// 		<Anime duration={5000} translateX={[-700, -50]} easing={'linear'}>
-			// 			{!this.props.username && (
-			// 				<img src='../generalJoe.png' className='openingOfficer'></img>
-			// 			)}
-			// 		</Anime>
-			// 		<div style={{ display: 'flex', flexDirection: 'column' }}>
-			// 			<h2 style={{ textAlign: 'center', color: '#333D29' }}>
-			// 				{this.props.username && 'Welcome, ' + this.props.username + '.'}
-			// 			</h2>
-			// 			<h3 style={{ textAlign: 'center', color: '#333D29' }}>
-			// 				{this.props.username && (
-			// 					<div>
-			// 						<Anime delay={1200} duration={1500} opacity={[0, 1]}>
-			// 							<>Are you ready for your next mission?</>
-			// 						</Anime>
-			// 						<Anime delay={2000} duration={2000} opacity={[0, 1]}>
-			// 							<div
-			// 								style={{ display: 'flex', justifyContent: 'center' }}>
-			// 								<Link to={`/level/${nextLevel}`}>
-			// 									<div
-			// 										className='unlocked'
-			// 										style={{
-			// 											padding: '0px',
-			// 											marginTop: '20px',
-			// 											height: '120px',
-			// 										}}>
-			// 										<h2>{levelCategory}</h2>
-			// 										<h4 style={{ marginBottom: '20px' }}>
-			// 											Level {levelNumber}
-			// 										</h4>
-			// 									</div>
-			// 								</Link>
-			// 							</div>
-			// 						</Anime>
-			// 					</div>
-			// 				)}
-			// 			</h3>
+			//  { /* <div
+			// // style={{
+			// // 		display: 'flex',
+			// // 		justifyContent: 'center',
+			// // 		paddingTop: '20px',
+			// // 	}}>
+			// // 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
+			// // 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
+			// // 	</Anime>
+			// // 	<Anime duration={3500} rotate={[0, 20, 0, -20, 0]} loop={true}>
+			// // 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
+			// // 	</Anime>
+			// // 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
+			// // 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
+			// // 	</Anime>
+			// // 	<Anime duration={3500} rotate={[0, 20, 0, -20, 0]} loop={true}>
+			// // 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
+			// // 	</Anime>
+			// // 	<Anime duration={3500} rotate={[0, -20, 0, 20, 0]} loop={true}>
+			// // 		<img src='theEvilRubberDuck.png' className='evilDuck'></img>
+			// // 	</Anime>
+			// // </div> */}
+			// // {/* <div
+			// // 	style={{
+			// // 		display: 'flex',
+			// // 		justifyContent: 'center',
+			// // 	}}>
+			// // 	<div id='homepage'>
+			// // 		<Anime duration={5000} translateX={[-700, -50]} easing={'linear'}>
+			// // 			{!this.props.username && (
+			// // 				<img src='../generalJoe.png' className='openingOfficer'></img>
+			// // 			)}
+			// // 		</Anime>
+			// // 		<div style={{ display: 'flex', flexDirection: 'column' }}>
+			// // 			<h2 style={{ textAlign: 'center', color: '#333D29' }}>
+			// // 				{this.props.username && 'Welcome, ' + this.props.username + '.'}
+			// // 			</h2>
+			// // 			<h3 style={{ textAlign: 'center', color: '#333D29' }}>
+			// // 				{this.props.username && (
+			// // 					<div>
+			// // 						<Anime delay={1200} duration={1500} opacity={[0, 1]}>
+			// // 							<>Are you ready for your next mission?</>
+			// // 						</Anime>
+			// // 						<Anime delay={2000} duration={2000} opacity={[0, 1]}>
+			// // 							<div
+			// // 								style={{ display: 'flex', justifyContent: 'center' }}>
+			// // 								<Link to={`/level/${nextLevel}`}>
+			// // 									<div
+			// // 										className='unlocked'
+			// // 										style={{
+			// // 											padding: '0px',
+			// // 											marginTop: '20px',
+			// // 											height: '120px',
+			// // 										}}>
+			// // 										<h2>{levelCategory}</h2>
+			// // 										<h4 style={{ marginBottom: '20px' }}>
+			// // 											Level {levelNumber}
+			// // 										</h4>
+			// // 									</div>
+			// // 								</Link>
+			// // 							</div>
+			// // 						</Anime>
+			// // 					</div>
+			// // 				)}
+			// // 			</h3>
 
-			// 			<h3 style={{ textAlign: 'center' }}>
-			// 				{!this.props.username &&
-			// 					'Help fight off the oncoming ducks by learning to code!'}
-			// 			</h3>
-			// 			<h3 style={{ textAlign: 'center' }}>
-			// 				{!this.props.username && 'Join the fight!'}
-			// 			</h3>
-			// 			<Anime duration={5000} translateX={[700, 50]} easing={'linear'}>
-			// 				{!this.props.username && (
-			// 					<img
-			// 						src='../sargeantSarah.png'
-			// 						className='openingOfficer'></img>
-			// 				)}
-			// 			</Anime>
-			// 		</div>
-			// 	</div>
-			// 	{/* {!this.props.username && (
-			// 	<div
-			// 		style={{
-			// 			display: 'flex',
-			// 			justifyContent: 'center',
-			// 			marginTop: '20px',
-			// 		}}>
-			// 		<Anime duration={6000} translateX={[-7000, 0]} easing={'linear'}>
-			// 			<BioCard
-			// 				name={'Stephanie Durino'}
-			// 				picture={'../womanCommander.jpeg'}
-			// 				bio={"Hello, I'm a bio"}
-			// 			/>
-			// 		</Anime>
-			// 		<Anime duration={6100} translateX={[-7200, 0]} easing={'linear'}>
-			// 			<BioCard
-			// 				name={'James Goering'}
-			// 				picture={'../womanCommander.jpeg'}
-			// 				bio={"Hello, I'm a bio"}
-			// 			/>
-			// 		</Anime>
-			// 		<Anime duration={6200} translateX={[-7400, 0]} easing={'linear'}>
-			// 			<BioCard
-			// 				name={'Andrew Kerr'}
-			// 				picture={'../womanCommander.jpeg'}
-			// 				bio={"Hello, I'm a bio"}
-			// 			/>
-			// 		</Anime>
-			// 		<Anime duration={6300} translateX={[-7600, 0]} easing={'linear'}>
-			// 			<BioCard
-			// 				name={'Vaughn Pole'}
-			// 				picture={'../womanCommander.jpeg'}
-			// 				bio={"Hello, I'm a bio"}
-			// 			/>
-			// 		</Anime>
-			// 	</div>
-			// )}
-			// </div> */}
-			//  <div style={{display: 'flex', justifyContent: 'center', marginTop: "20px"}}>
-			// 	<Anime duration={6000} translateX={[-7000,0]} easing={'linear'}>
-			//     <BioCard name={"Sarah Zhao"} picture={"../sargeantSarah.png"}  bio={"\"Brings a whole new meaning to 'Rubber Duck Debugging.'\""}/>
-			//   </Anime>
-			//   <Anime duration={6100} translateX={[-7200,0]} easing={'linear'}>
-			//     <BioCard name={"Joe Alves"} picture={"../generalJoe.png"}  bio={"\"Dev tested; Penny approved.\""}/>
-			//   </Anime>
-			//   <Anime duration={6200} translateX={[-7400,0]} easing={'linear'}>
-			//     <BioCard name={"Gary Kertis"} picture={"../theEvilRubberDuck.png"}  bio={"\"Would play again. All you really need to know for my credibility is that my name is Gary.\""}/>
-			//   </Anime>
-			//   <Anime duration={6300} translateX={[-7600,0]} easing={'linear'}>
-			//     <BioCard name={"Serena Sussman"} picture={"../theDocileRubberDuck.png"}  bio={"\"Better than iced coffee on a hot day!!\""}/>
-			//   </Anime>
-			// </div>
-			// <Link to='/aboutTheAuthor' style={{position:"fixed", bottom:"10px", left:"10px"}}><button>Meet the Dev Team</button></Link>
-			// </Anime>
+			// // 			<h3 style={{ textAlign: 'center' }}>
+			// // 				{!this.props.username &&
+			// // 					'Help fight off the oncoming ducks by learning to code!'}
+			// // 			</h3>
+			// // 			<h3 style={{ textAlign: 'center' }}>
+			// // 				{!this.props.username && 'Join the fight!'}
+			// // 			</h3>
+			// // 			<Anime duration={5000} translateX={[700, 50]} easing={'linear'}>
+			// // 				{!this.props.username && (
+			// // 					<img
+			// // 						src='../sargeantSarah.png'
+			// // 						className='openingOfficer'></img>
+			// // 				)}
+			// // 			</Anime>
+			// // 		</div>
+			// // 	</div>
+			// // 	{/* {!this.props.username && (
+			// // 	<div
+			// // 		style={{
+			// // 			display: 'flex',
+			// // 			justifyContent: 'center',
+			// // 			marginTop: '20px',
+			// // 		}}>
+			// // 		<Anime duration={6000} translateX={[-7000, 0]} easing={'linear'}>
+			// // 			<BioCard
+			// // 				name={'Stephanie Durino'}
+			// // 				picture={'../womanCommander.jpeg'}
+			// // 				bio={"Hello, I'm a bio"}
+			// // 			/>
+			// // 		</Anime>
+			// // 		<Anime duration={6100} translateX={[-7200, 0]} easing={'linear'}>
+			// // 			<BioCard
+			// // 				name={'James Goering'}
+			// // 				picture={'../womanCommander.jpeg'}
+			// // 				bio={"Hello, I'm a bio"}
+			// // 			/>
+			// // 		</Anime>
+			// // 		<Anime duration={6200} translateX={[-7400, 0]} easing={'linear'}>
+			// // 			<BioCard
+			// // 				name={'Andrew Kerr'}
+			// // 				picture={'../womanCommander.jpeg'}
+			// // 				bio={"Hello, I'm a bio"}
+			// // 			/>
+			// // 		</Anime>
+			// // 		<Anime duration={6300} translateX={[-7600, 0]} easing={'linear'}>
+			// // 			<BioCard
+			// // 				name={'Vaughn Pole'}
+			// // 				picture={'../womanCommander.jpeg'}
+			// // 				bio={"Hello, I'm a bio"}
+			// // 			/>
+			// // 		</Anime>
+			// // 	</div>
+			// // )}
+			// // </div> */}
+			// {/* //  <div style={{display: 'flex', justifyContent: 'center', marginTop: "20px"}}>
+			// // 	<Anime duration={6000} translateX={[-7000,0]} easing={'linear'}>
+			// //     <BioCard name={"Sarah Zhao"} picture={"../sargeantSarah.png"}  bio={"\"Brings a whole new meaning to 'Rubber Duck Debugging.'\""}/>
+			// //   </Anime>
+			// //   <Anime duration={6100} translateX={[-7200,0]} easing={'linear'}>
+			// //     <BioCard name={"Joe Alves"} picture={"../generalJoe.png"}  bio={"\"Dev tested; Penny approved.\""}/>
+			// //   </Anime>
+			// //   <Anime duration={6200} translateX={[-7400,0]} easing={'linear'}>
+			// //     <BioCard name={"Gary Kertis"} picture={"../theEvilRubberDuck.png"}  bio={"\"Would play again. All you really need to know for my credibility is that my name is Gary.\""}/>
+			// //   </Anime>
+			// //   <Anime duration={6300} translateX={[-7600,0]} easing={'linear'}>
+			// //     <BioCard name={"Serena Sussman"} picture={"../theDocileRubberDuck.png"}  bio={"\"Better than iced coffee on a hot day!!\""}/>
+			// //   </Anime>
+			// // </div>
+
+			// // </Anime> */}
 		);
 	}
 }
