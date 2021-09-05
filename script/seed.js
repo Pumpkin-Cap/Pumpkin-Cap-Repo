@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Test, Level, Dialog },
+  models: { User, Test, Level, Dialog, Tutorial },
 } = require("../server/db");
 
 /**
@@ -72,33 +72,331 @@ async function seed() {
 
   //WILL HAVE TO CHANGE ALL DIV IDS BELOW TO BE UNIQUE FOR OUR SUCCESS MOVING FORWARD - test it have to match divID
   //Might have to refactor
+
+  //Tutorial 1
+  const Tutorial1 = await Tutorial.create({
+    name: "Comments",
+    prompt: "Tutorial: Comments",
+    category: "Tutorials",
+    password: "ro",
+    startingJS: `/*
+    If you've ever wanted to have a leisurely chat with no one in particular or perhaps even your future self, then "comments" is the feature you've been looking for. Simply by denoted code as a comment, the entire section will be ignored by the compiler and is there purely to be read by the programmer reading the code. In JavaScript, comments are made by:
+
+    // Two forward slashes will denote an entire line as a comment, and
+
+    /* forward slash - asterisk will open a comment block
+    Which will then continue
+    For as long as
+    You want it to
+    Until
+    You close it was an asterisk - forward slash */
+
+    You will see many comments throughout our missions. They will either provide direction, or denote the area where your code should be written.
+*/
+
+    const winCommand = "I win!!"
+
+    function myTutorialFunction(){
+    //make the function return winCommand to win
+
+    return (/*winCommand*/)
+    }`,
+  });
+
+  const TutorialOneTest = await Test.create({
+    name: "tutorial test",
+    description: 'To pass this test, you must read and understand this tutorial.',
+    test: `describe('myTutorialFunction', function(){
+      it('returns "I win!!" when given the win command', function(){
+        expect(myTutorialFunction()).to.equal("I win!!");
+      });
+    });`,
+    divId: "returns TRUE when given the win command",
+  });
+
+  await Tutorial1.addTests([
+    TutorialOneTest
+  ]);
+
+  //Tutorial 2
+  const Tutorial2 = await Tutorial.create({
+    name: "Conventions",
+    prompt: "Tutorial: Conventions",
+    category: "Tutorials",
+    password: "ck",
+    startingJS: `/*
+    I know what you’re thinking. You became a programmer because you’re unconventional! You’re here to invent new things by doing them your own way! Why would a field driven by creativity and individual thinking be preaching conventions?
+
+    Think of it this way. The methods of many individual thinkers before you have been catalogued into an observation of common good practice. These conventions are meant as guidelines to help instill a strong foundation in your coding methods. The shoulders of giants are available to you - all you need is to stand upon them.
+
+    As you're presented conventions both here and throughout your career, be sure to understand why they are before any consideration to break them.
+*/
+
+    const winCommand = "I win!!"
+
+    function myTutorialFunction(){
+    //make the function return winCommand to win
+
+    return (/*winCommand*/)
+    }`,
+  });
+
+  const TutorialTwoTest = await Test.create({
+    name: "tutorial test",
+    description: 'To pass this test, you must read and understand this tutorial.',
+    test: `describe('myTutorialFunction', function(){
+      it('returns "I win!!" when given the win command', function(){
+        expect(myTutorialFunction()).to.equal("I win!!");
+      });
+    });`,
+    divId: "returns TRUE when given the win command",
+  });
+
+  await Tutorial2.addTests([
+    TutorialTwoTest
+  ]);
+
+  //Tutorial 3
+  const Tutorial3 = await Tutorial.create({
+    name: "Variable Types",
+    prompt: "Tutorial: Variable Types",
+    category: "Tutorials",
+    password: "ma",
+    startingJS: `/*
+    Remember algebra when you’d solve for x? Now the power is in your hands! You get to declare what x is and have the computer deal with it! In JavaScript, we do this through variable declaration.
+
+    let yourVariableName = aValue
+
+    “let” is our declaration. We are “letting” this variable be a certain value. This variable can be reassigned at any time after, but only declared once. Use “let” when you have a variable that will be changing through your code. For example:
+
+    let exampleVariable = ‘I am a string.’
+    exampleVariable = ‘I am now a different string’
+    exampleVariable = exampleVariable + ‘!!!’
+
+    exampleVariable will now be ‘I am now a different string!!!’
+
+    Another way to declare a variable is the “const” declaration. Standing for “constant,” this declaration makes a variable unable to be changed. For example:
+
+    Const exampleConstant = ‘I am a string.’
+    exampleConstant = ‘I am now a different string’
+
+    This code will not compile, having an error when you try to reassign a constant.
+
+    Why would you make something a constant when you can just use “let” instead? That’s a great question! While “let” does everything “const” can and more, by declaring something a “constant” that should be constant will work to error-proof your program.
+*/
+
+    const winCommand = "I win!!"
+
+    function myTutorialFunction(){
+    //make the function return winCommand to win
+
+    return (/*winCommand*/)
+    }`,
+  });
+
+  const TutorialThreeTest = await Test.create({
+    name: "tutorial test",
+    description: 'To pass this test, you must read and understand this tutorial.',
+    test: `describe('myTutorialFunction', function(){
+      it('returns "I win!!" when given the win command', function(){
+        expect(myTutorialFunction()).to.equal("I win!!");
+      });
+    });`,
+    divId: "returns TRUE when given the win command",
+  });
+
+  await Tutorial3.addTests([
+    TutorialThreeTest
+  ]);
+
+  //Tutorial 4
+  const Tutorial4 = await Tutorial.create({
+    name: "Data Types",
+    prompt: "Tutorial: Data Types",
+    category: "Tutorials",
+    password: "n",
+    startingJS: `/*
+    Number” and “string” are two examples of data types. A data type is the kind of data you’re working with. Different data types have different things that can be done to and with them, and there is a lot to explore. Knowing what you’re working with makes it easier to find these methods and execute what you’re trying to accomplish.
+
+    Remember: if you can think to do it, then there’s a way to do it. Just look it up in the documentation!
+*/
+
+    const winCommand = "I win!!"
+
+    function myTutorialFunction(){
+    //make the function return winCommand to win
+
+    return (/*winCommand*/)
+    }`,
+  });
+
+  const TutorialFourTest = await Test.create({
+    name: "tutorial test",
+    description: 'To pass this test, you must read and understand this tutorial.',
+    test: `describe('myTutorialFunction', function(){
+      it('returns "I win!!" when given the win command', function(){
+        expect(myTutorialFunction()).to.equal("I win!!");
+      });
+    });`,
+    divId: "returns TRUE when given the win command",
+  });
+
+  await Tutorial4.addTests([
+    TutorialFourTest
+  ]);
+
+  //Tutorial 5
+  const Tutorial5 = await Tutorial.create({
+    name: "Anatomy of a Function",
+    prompt: "Tutorial: Anatomy of a Function",
+    category: "Tutorials",
+    password: "rockman",
+    startingJS: `/*
+    What are the pieces of a function? This is crucial - so listen closely!
+
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+/////////////////////////////////////
+    Let’s take a look at each of these pieces.
+
+
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+    This is the declaration of your function. By declaring this a “function,” it tells the compiler to treat it as one: data goes in, things happen, and data comes out.
+
+/////////////////////////////////////
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+    This is the name of your function. It can be anything you want, but I’d recommend the convention of naming it something to do with what it does.
+
+    You also may notice the capitalization. This convention is “camel case” where variable names begin lowercase and new words are distinguished with a capital (rather than a space as in common written language). For example:
+
+    example
+    forExample
+    forExampleNumberTwo
+    nameMeWhateverYouWantButRememberYouWillNeedToTypeMeWhenYouWantToUseMe
+
+/////////////////////////////////////
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+    This is the parameter field. When you call your function in your code, you feed data to your function for it to use. It can have any number of parameters; like your function’s name, they can be anything, but conventionally their names reflect the purpose or identity. Here are a few examples:
+
+    Zero:		myFunction()
+    One:		myFunction(paramOne)
+    Two:		myFunction(paramOne, paramTwo)
+    Three:		myFunction(integerOne, integerTwo, string)
+
+/////////////////////////////////////
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+    These brackets contain the code of your function. You’ll see these brackets for more than just functions - so get used to them!
+
+/////////////////////////////////////
+    function myFunction(parameters) {
+
+    Your code!
+
+    return a value
+    }
+
+    This is where the meat of your function is. Write whatever logic you need to get the job done! If you have parameters, you’ll likely want to use them in some fashion.
+
+
+/////////////////////////////////////
+    function myFunction(parameters){
+
+    Your code!
+
+    return aValue
+    }
+
+    Your function doesn’t need to return anything, but the return statement is often used in a function. This will “return” whatever value you choose (in this case “aValue”) - whether it be a number, string, boolean, or any other. This will likely be “why” your function exists in the first place.
+
+    To obtain this return value, set your function equal to a variable:
+
+    const myFunctionReturned = myFunction(paramOne, paramTwo)
+
+    But be careful! Whether the return is at the end of your function or not, once you reach it your function will end.
+
+*/
+
+    const winCommand = "I win!!"
+
+    function myTutorialFunction(){
+    //make the function return winCommand to win
+
+    return (/*winCommand*/)
+    }`,
+  });
+
+  const TutorialFiveTest = await Test.create({
+    name: "tutorial test",
+    description: 'To pass this test, you must read and understand this tutorial.',
+    test: `describe('myTutorialFunction', function(){
+      it('returns "I win!!" when given the win command', function(){
+        expect(myTutorialFunction()).to.equal("I win!!");
+      });
+    });`,
+    divId: "returns TRUE when given the win command",
+  });
+
+  await Tutorial5.addTests([
+    TutorialFiveTest
+  ]);
+
+  //Level 1
   const Level1 = await Level.create({
     name: "Level 1",
-    prompt: "Prove to me you understand how to write conditional statements! Remove the comment (//) on the return statements when you're ready to submit the function.",
+    prompt: "Prove to me you understand how to write conditional statements!",
     category: "Control Flow",
     password: "megaman",
     startingJS: `function myLessThanFunction(){
     //insert appropriate numbers to make it TRUE
 
-    // return (/*replace me!*/ < /*replace me!*/)
+    return (/*replace me!*/ < /*replace me!*/)
     }
 
     function myGreaterThanFunction(){
     //insert appropriate numbers to make it TRUE
 
-    // return (/*replace me!*/ > /*replace me!*/)
+    return (/*replace me!*/ > /*replace me!*/)
     }
 
     function myEqualToFunction(){
     //insert appropriate numbers to make it TRUE
 
-    // return (/*replace me!*/ === /*replace me!*/)
+    return (/*replace me!*/ === /*replace me!*/)
     }
 
     function myNotEqualToFunction(){
     //insert appropriate numbers to make it TRUE
 
-    // return (/*replace me!*/ !== /*replace me!*/)
+    return (/*replace me!*/ !== /*replace me!*/)
     }`,
   });
 
@@ -164,7 +462,6 @@ async function seed() {
     const fire = 'Fire!!'
     const hold = 'Hold your fire!!'
 
-/*
     if (/*replace me with your condition!*/){
 
     return /*replace me with your order!*/
@@ -173,7 +470,6 @@ async function seed() {
 
     return /*replace me with your order!*/
     }
-*/
   }
     `,
   });
@@ -293,21 +589,21 @@ async function seed() {
   // Level 4
   const Level4 = await Level.create({
     name: "Level 4",
-    prompt: 'Prove to me you understand how to JOIN conditional statements! Remove the comment (//) on the return statements when you\'re ready to submit the function.',
+    prompt: 'Prove to me you understand how to JOIN conditional statements!',
     category: "Control Flow",
     password: "gutsman",
     startingJS: `function myAndFunction(){
 
       //insert appropriate numbers to make it TRUE
 
-      // return (/*replace me!*/ <= /*replace me!*/ && /*replace me!*/ >= /*replace me!*/)
+      return (/*replace me!*/ <= /*replace me!*/ && /*replace me!*/ >= /*replace me!*/)
       }
 
       function myOrFunction(){
 
       //insert appropriate numbers to make it FALSE
 
-      // return (/*replace me!*/ <= /*replace me!*/ || /*replace me!*/ >= /*replace me!*/)
+      return (/*replace me!*/ <= /*replace me!*/ || /*replace me!*/ >= /*replace me!*/)
       }
       `
   });
@@ -444,13 +740,13 @@ async function seed() {
     startingJS: `function myForLoopFunction(){
 
       let counter = 0
-/*
+
       //Insert starting and ending points to have the function return 10
       for (let i = /*replace me*/; i < /*replace me*/; i++){
 
       counter++
       }
-*/
+
       return counter
       }
     `,
@@ -633,8 +929,7 @@ Each bullet takes 1 second to fire.
   // Level 10
   const Level10 = await Level.create({
     name: "Level 10",
-    prompt: `Prove to me you understand how arrays work! Remove the comment (//) on the return statements when you're ready to submit the function.
-    `,
+    prompt: `Prove to me you understand how arrays work!`,
     category: "Arrays",
     password: 'beautyman',
     startingJS: `const myArray = [20, 15, 300, 45, -50, 0, 15]
@@ -643,28 +938,28 @@ Each bullet takes 1 second to fire.
 
     function myFirstArrayFunction(){
 
-    // return (20 === myArray[/*replace me!*/])
+    return (20 === myArray[/*replace me!*/])
     }
 
     function mySecondArrayFunction(){
 
-    // return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    return (345 === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
     }
 
     // For the following questions, I expect you to use integers to solve for true. THERE IS NO ROOM FOR LAZINESS!
     function myThirdArrayFunction(){
 
-    // return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
+    return ((/*replace me!*/ === myArray[1]) && (/*replace me!*/ === myArray[6]))
     }
 
     function myFourthArrayFunction(){
 
-    // return (myArray.length === /*replace me!*/)
+    return (myArray.length === /*replace me!*/)
     }
 
     function myFifthArrayFunction(){
 
-    // return (/*replace me!*/ === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
+    return (/*replace me!*/ === (myArray[/*replace me!*/] + myArray[/*replace me!*/]))
     }
     `,
   });
@@ -783,7 +1078,7 @@ Each bullet takes 1 second to fire.
   //level 12
   const Level12 = await Level.create({
     name: "Level 12",
-    prompt: `Show me you understand how to use these array methods! Remove the comment (//) on the return statements when you're ready to submit the function.`,
+    prompt: `Show me you understand how to use these array methods!`,
     category: "Arrays",
     password: 'Colonel',
     startingJS: `//make all functions return true
@@ -795,7 +1090,7 @@ Each bullet takes 1 second to fire.
     //We’ve already dealt with .length, but it’s so important it’s here again!
     //myArray.length will set a variable equal to the length.
 
-    // return (myArray.length === /*replace me!*/)
+    return (myArray.length === /*replace me!*/)
     }
 
 
@@ -810,7 +1105,7 @@ Each bullet takes 1 second to fire.
 
     //Your code above
 
-    // return (myArray[2] === 6)
+    return (myArray[2] === 6)
     }
 
     function myPopFunction(){
@@ -824,7 +1119,7 @@ Each bullet takes 1 second to fire.
 
     //Your code above
 
-    // return (myArray[myArray.length - 1] === 8)
+    return (myArray[myArray.length - 1] === 8)
     }
 
     function myIncludesFunction(){
@@ -833,7 +1128,7 @@ Each bullet takes 1 second to fire.
 
     //myArray.includes(x) will return a boolean: true if x is found in the array, and false if not.
 
-    // return (myArray.includes(/*replace me!*/))
+    return (myArray.includes(/*replace me!*/))
     }
 
     function myIndexOfFunction(){
@@ -842,7 +1137,7 @@ Each bullet takes 1 second to fire.
 
     //myArray.indexOf(x) will return the index of the first instance of x (or -1 if it’s not there)
 
-    // return (myArray.indexOf(/*replace me!*/) === 1)
+    return (myArray.indexOf(/*replace me!*/) === 1)
     }
 
     `,
@@ -969,7 +1264,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
   //level 15
   const Level15 = await Level.create({
     name: "Level 15",
-    prompt: `Prove to me you understand how objects work! Remove the comment (//) on the return statements when you're ready to submit the function.`,
+    prompt: `Prove to me you understand how objects work!`,
     category: "Objects",
     password: 'icewoman',
     startingJS: `const myObject = {
@@ -984,18 +1279,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 
       function myFirstObjectFunction(){
 
-      // return "rubber" === myObject./*replace me!*/
+      return "rubber" === myObject./*replace me!*/
       }
 
       function mySecondObjectFunction(){
 
-      // return "rubber" === myObject[/*replace me!*/]
+      return "rubber" === myObject[/*replace me!*/]
 
       }
 
       function myThirdObjectFunction(){
 
-      // return 55 === myObject[/*replace me!*/]
+      return 55 === myObject[/*replace me!*/]
       }
 
       function myFourthObjectFunction(){
@@ -1005,7 +1300,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 
       function myFifthObjectFunction(){
 
-      // return myObject[((!myObject.true).toString())] === /*replace me!*/
+      return myObject[((!myObject.true).toString())] === /*replace me!*/
       }
       `,
   });
@@ -1299,139 +1594,322 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     levelSeventeenTestThree
   ]);
 
+  //Tutorial 1
+  const dialogueT1 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on comments.
+*/`
+  })
+
+  await Tutorial1.addDialogs([
+    dialogueT1,
+    dialogueT1
+  ])
+
+  //Tutorial 2
+  const dialogueT2 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Conventions.
+*/`
+  })
+
+  await Tutorial2.addDialogs([
+    dialogueT2,
+    dialogueT2
+  ])
+
+  //Tutorial 3
+  const dialogueT3 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Variable Types.
+*/`
+  })
+
+  await Tutorial3.addDialogs([
+    dialogueT3,
+    dialogueT3
+  ])
+
+  //Tutorial 4
+  const dialogueT4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Data Types.
+*/`
+  })
+
+  await Tutorial4.addDialogs([
+    dialogueT4,
+    dialogueT4
+  ])
+
+  //Tutorial 5
+  const dialogueT5 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Functions.
+*/`
+  })
+
+  await Tutorial5.addDialogs([
+    dialogueT5,
+    dialogueT5
+  ])
+
+  //level 1
   const dialogue1 = await Dialog.create({
-    content: `It’s important to understand how to compare values. We will often want to do different things depending on if something is greater than, less than, or equal to another value.`
+    content: `/*
+    General Joe:
+
+
+    It’s important to understand how to compare values. We will often want to do different things depending on if something is greater than, less than, or equal to another value.
+*/`
   })
 
   const dialogue1_2 = await Dialog.create({
-    content: `In JavaScript, these conditional operators are written like this:
+    content: `/*
+    General Joe:
 
-    Less than:				<
-    Less than or equal to:		<=
-    Equal to:				===
-    Not equal to:			!==
-    Greater than:			>
-    Greater than or equal to:		>=`
+
+    In JavaScript, these conditional operators are written like this:
+
+    Less than:                  <
+    Less than or equal to:      <=
+    Equal to:                   ===
+    Not equal to:               !==
+    Greater than:               >
+    Greater than or equal to:   >=
+*/`
   })
 
   const dialogue1_3 = await Dialog.create({
-    content: `And always remember the documentation is there if you need it!`
+    content: `/*
+    General Joe:
+
+
+    And always remember the documentation is there if you need it!
+*/`
   })
 
   await Level1.addDialogs([
     dialogue1,
     dialogue1_2,
+    dialogue1_3,
     dialogue1_3
   ])
 
   //level2
   const dialogue2 = await Dialog.create({
-    content: `How do we use these values? Any way you can think to! But a common use is inserting them as if-conditions. We can divide our program logic into separate blocks based on the conditions at hand.`
+    content: `/*
+    General Joe:
+
+
+    How do we use these values? Any way you can think to! But a common use is inserting them as if-conditions. We can divide our program logic into separate blocks based on the conditions at hand.
+*/`
   })
 
   const dialogue2_2 = await Dialog.create({
-    content: `Normally I’d handle something important like this, but I need to go feed Penny; if I supply you with a template for an if-statement do you think you could take charge of issuing orders to the troops? GOOD!`
+    content: `/*
+    General Joe:
+
+
+    Normally I’d handle something important like this, but I need to go feed my dog; if I supply you with a template for an if-statement do you think you could take charge of issuing orders to the troops? GOOD!
+*/`
   })
 
   const dialogue2_3 = await Dialog.create({
-    content: `And don’t forget to reference the documentation whenever needed!`
+    content: `/*
+    General Joe:
+
+
+    And don’t forget to reference the documentation whenever needed!
+*/`
   })
 
   await Level2.addDialogs([
     dialogue2,
     dialogue2_2,
+    dialogue2_3,
     dialogue2_3
   ])
 
   //level3
   const dialogue3 = await Dialog.create({
-    content: `Well done!`
+    content: `/*
+    General Joe:
+
+    Well done!
+*/`
   })
 
   const dialogue3_2 = await Dialog.create({
-    content: `But we’re going to need to be conscious of what weapon we’re using. Did you know we can chain conditions using an “else if” command? It will continue checking your conditions until it finds one that evaluates TRUE and enter that block. Refactor your orders to account for the following conditions.`
+    content: `/*
+    General Joe:
+
+
+    But we’re going to need to be conscious of what weapon we’re using. Did you know we can chain conditions using an “else if” command? It will continue checking your conditions until it finds one that evaluates TRUE and enters that block. Refactor your orders to account for the following conditions.
+*/`
   })
 
   const dialogue3_3 = await Dialog.create({
-    content: `And don’t forget to check the documentation!`
+    content: `/*
+    General Joe:
+
+
+    And don’t forget to check the documentation!
+*/`
   })
 
   await Level3.addDialogs([
     dialogue3,
     dialogue3_2,
+    dialogue3_3,
     dialogue3_3
   ])
 
   //level4
   const dialogue4 = await Dialog.create({
-    content: `Excellent job! Those ducks didn’t know what hit ‘em! But you can bet things can get more complicated.`
+    content: `/*
+    General Joe:
+
+
+    Excellent job! Those ducks didn’t know what hit ‘em! But you can bet things can get more complicated.
+*/`
   })
 
   const dialogue4_2 = await Dialog.create({
-    content: `Did you know that you can join conditionals? In JavaScript you write these as:
+    content: `/*
+    General Joe:
+
+
+    Did you know that you can join conditionals? In JavaScript you write these as:
 
     AND operator:	&&
     OR operator:	||
 
     With the AND operator, the condition returns TRUE if both sides are true. If either one or both sides are false, then the entire condition returns FALSE.
 
-    With the OR operator, the entire condition returns TRUE if either one or both sides are true. If both sides are false, then the condition returns FALSE.`
+    With the OR operator, the entire condition returns TRUE if either one or both sides are true. If both sides are false, then the condition returns FALSE.
+*/`
   })
 
   const dialogue4_3 = await Dialog.create({
-    content: `Let’s run a quick drill! And don’t forget the documentation!`
+    content: `/*
+    General Joe:
+
+
+    Let’s run a quick drill! And don’t forget the documentation!
+*/`
   })
 
   await Level4.addDialogs([
     dialogue4,
     dialogue4_2,
+    dialogue4_3,
     dialogue4_3
   ])
 
   //level5
   const dialogue5 = await Dialog.create({
-    content: `Great! I now know my faith was not misplaced!`
+    content: `/*
+    General Joe:
+
+
+    Great! I now know my faith was not misplaced!
+*/`
   })
 
   const dialogue5_2 = await Dialog.create({
-    content: `They’re changing up their strategy. Some of their waves are being sent out with shields! If they’re using a shield, we’re going to need the grenade launcher no matter how many they have. We’re going to have to adapt!
-    `
+    content: `/*
+    General Joe:
+
+
+    They’re changing up their strategy. Some of their waves are being sent out with shields! If they’re using a shield, we’re going to need the grenade launcher no matter how many there are. We’re going to have to adapt!
+*/`
   })
 
   const dialogue5_3 = await Dialog.create({
-    content: `Finish what you’ve started. Take charge of rewriting the code!`
+    content: `/*
+    General Joe:
+
+
+    Finish what you’ve started: take charge of rewriting the code!
+*/`
   })
 
   const dialogue5_4 = await Dialog.create({
-    content: `The documentation is always there!`
+    content: `/*
+    General Joe:
+
+
+    The documentation is always there!
+*/`
   })
 
   await Level5.addDialogs([
     dialogue5,
     dialogue5_2,
     dialogue5_3,
+    dialogue5_4,
     dialogue5_4
   ])
 
   const dialogue6 = await Dialog.create({
-    content: `All right! Our defense against their type of attack is set! Now let’s tackle how to handle their continuous attacks.`
+    content: `/*
+    General Joe:
+
+
+    All right! Our defense against their type of attack is set! Now let’s tackle how to handle their continuous attacks.
+*/`
   })
 
   const dialogue6_2 = await Dialog.create({
-    content: `In any system you’ll need to decide not only what to execute, but how many times to execute it. If you’re going to need a code block to execute more than two or three times - or perhaps a varying number of times - then you’re probably going to want to employ a loop.
-    `
+    content: `/*
+    General Joe:
+
+
+    In any system you’ll need to decide not only what to execute, but how many times to execute it. If you’re going to need a code block to execute more than two or three times - or perhaps a varying number of times - then you’re probably going to want to employ a loop.
+*/`
   })
 
   const dialogue6_3 = await Dialog.create({
-    content: `There are many kinds of loops that are each ideal for different kinds of situations. While no loop is officially more important than another, you’ll get little argument from me that the “for-loop” is your go-to.`
+    content: `/*
+    General Joe:
+
+
+    There are many kinds of loops that are each ideal for different kinds of situations. While no loop is officially more important than another, you’ll get little argument from me that the “for-loop” is your go-to.
+*/`
   })
 
   const dialogue6_4 = await Dialog.create({
-    content: `A for-loop declares a variable, changes that variable after each iteration of the code, and has an end condition for when that variable becomes a certain value. That variable can be called anything, but is conventionally “i.” The incrementation of that variable can be anything that makes sense for your function, but often it makes sense to increment it by 1 (i = i + 1, or i++ in shorter notation).`
+    content: `/*
+    General Joe:
+
+
+    A for-loop declares a variable, changes that variable after each iteration of the code, and has an end condition for when that variable becomes a certain value. That variable can be called anything, but is conventionally “i.” The incrementation of that variable can be anything that makes sense for your function, but often it makes sense to increment it by 1 (i = i + 1, or i++ in shorter notation).
+*/`
   })
 
   const dialogue6_5 = await Dialog.create({
-    content: `Don’t forget to consult your documentation!`
+    content: `/*
+    General Joe:
+
+
+    Don’t forget to consult your documentation!
+*/`
   })
 
   await Level6.addDialogs([
@@ -1439,23 +1917,43 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     dialogue6_2,
     dialogue6_3,
     dialogue6_4,
+    dialogue6_5,
     dialogue6_5
   ])
 
   const dialogue7 = await Dialog.create({
-    content: `Now let’s put that for-loop into action!`
+    content: `/*
+    General Joe:
+
+
+    Now let’s put that for-loop into action!
+*/`
   })
 
   const dialogue7_2 = await Dialog.create({
-    content: `It looks like there are waves advancing, and we need to prepare for it. We need to deploy more troops depending on how many waves we get; design a function to deploy the right amount of troops.`
+    content: `/*
+    General Joe:
+
+
+    It looks like there are waves advancing, and we need to prepare for it. We need to deploy more troops depending on how many waves we get; design a function to deploy the right amount of troops.
+*/`
   })
 
   const dialogue7_3 = await Dialog.create({
-    content: `We need 5 troops per wave, and each additional wave will require an extra troop. I’m counting on you!`
+    content: `/*
+    General Joe:
+
+
+    We need 5 troops per wave, and each additional wave will require an extra troop. I’m counting on you!
+*/`
   })
 
   const dialogue7_4 = await Dialog.create({
-    content: `Documentation: Use it!`
+    content: `/*
+    General Joe:
+
+    Documentation: Use it!
+*/`
   })
 
   await Level7.addDialogs([
@@ -1463,23 +1961,40 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     dialogue7_2,
     dialogue7_3,
     dialogue7_4,
+    dialogue7_4
   ])
 
   //level 8
   const dialogue8 = await Dialog.create({
-    content: `Those ducks soon won’t stand a chance!`
+    content: `/*
+    General Joe:
+
+    Those ducks soon won’t stand a chance!
+*/`
   })
 
   const dialogue8_2 = await Dialog.create({
-    content: `But there are other times a for-loop won’t work for the situation. For example, if we want to iterate on a block of code until a particular condition is met that can’t be reliably counted by the number of times we’ve looped (like a for-loop does), then perhaps a “while-loop” is appropriate.`
+    content: `/*
+    General Joe:
+
+    But there are other times a for-loop won’t work for the situation. For example, if we want to iterate on a block of code until a particular condition is met that can’t be reliably counted by the number of times we’ve looped (like a for-loop does), then perhaps a “while-loop” is appropriate.
+*/`
   })
 
   const dialogue8_3 = await Dialog.create({
-    content: `To properly plan our strategy, we’ll need to know how long we’ve got until ducks reach our base. Given its distance, write us something that computes the time for one to reach us!`
+    content: `/*
+    General Joe:
+
+    To properly plan our strategy, we’ll need to know how long we’ve got until ducks reach our base. Given its distance, write us something that computes the time for one to reach us.
+*/`
   })
 
   const dialogue8_4 = await Dialog.create({
-    content: `The documentation is there if you need it.`
+    content: `/*
+    General Joe:
+
+    The documentation is there if you need it.
+*/`
   })
 
   await Level8.addDialogs([
@@ -1487,38 +2002,63 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     dialogue8_2,
     dialogue8_3,
     dialogue8_4,
+    dialogue8_4
   ])
 
   //level 9
   const dialogue9 = await Dialog.create({
-    content: `Now let’s bring it together. Based on how long it takes a big tough duck to reach us, we need to know how many guns at once we’ll need on it to bring it down in time.`
+    content: `/*
+    General Joe:
+
+    Now let’s bring it together. Based on how long it takes a big tough duck to reach us, we need to know how many guns at once we’ll need on it to bring it down in time.
+*/`
   })
 
   const dialogue9_2 = await Dialog.create({
-    content: `And not a moment too soon! There’s some big tough poultry coming this way, and they can take a lot of pepper - write us something that tells the troops how many guns to fire at a duck given its height and distance!`
+    content: `/*
+    General Joe:
+
+    And not a moment too soon! There’s some big tough poultry coming this way, and they can take a lot of pepper - write us something that tells the troops how many guns to fire at a duck given its height and distance!
+*/`
   })
 
   const dialogue9_3 = await Dialog.create({
-    content: `The documentation is always with you.`
+    content: `/*
+    General Joe:
+
+    The documentation is always with you.
+*/`
   })
 
   await Level9.addDialogs([
     dialogue9,
     dialogue9_2,
+    dialogue9_3,
     dialogue9_3
   ])
 
     //level 10
     const dialogue10 = await Dialog.create({
-      content: `You’ve done a great job. We now have systems in place to deal with any particular attack.`
+      content: `/*
+      General Joe:
+
+      You’ve done a great job. We now have systems in place to deal with any particular attack.
+*/`
     })
 
     const dialogue10_2 = await Dialog.create({
-      content: `Let’s now have you work with arrays. An array is a data type that stores references to other data.`
+      content: `/*
+      General Joe:
+
+      Let’s now have you work with arrays. An array is a data type that stores references to other data.
+*/`
     })
 
     const dialogue10_3 = await Dialog.create({
-      content: `For example, you can have an array with 3 integers in it - each called an “element.” You can refer to each one of these integers, and the length of this array is considered 3. This is what that might look like:
+      content: `/*
+      General Joe:
+
+      For example, you can have an array with 3 integers in it - each called an “element.” You can refer to each one of these integers, and the length of this array is considered 3. This is what that might look like:
 
       const myArray = [4, 10, -5]
 
@@ -1527,15 +2067,24 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       myArray[0] === 4
       myArray[1] === 10
       myArray[2] === -5
-      myArray.length === 3`
+      myArray.length === 3
+*/`
     })
 
     const dialogue10_4 = await Dialog.create({
-      content: `By the time you’re ready to take over my job it’ll be important to understand the difference between this array having these values and having references to these values, but for now I want you to focus on putting these arrays and values to use!`
+      content: `/*
+      General Joe:
+
+      By the time you’re ready to take over my job it’ll be important to understand the difference between this array having these values and having references to these values, but for now I want you to focus on putting these arrays and values to use!
+*/`
     })
 
     const dialogue10_5 = await Dialog.create({
-      content: `There is a lot to know about arrays. I’ll lay out the basics, but the documentation has everything you could ever need.`
+      content: `/*
+      General Joe:
+
+      There is a lot to know about arrays. I’ll lay out the basics, but the documentation has everything you could ever need.
+*/`
     })
 
     await Level10.addDialogs([
@@ -1543,66 +2092,113 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue10_2,
       dialogue10_3,
       dialogue10_4,
+      dialogue10_5,
       dialogue10_5
     ])
 
     //11
     const dialogue11 = await Dialog.create({
-      content: `Excellent. I knew you would be the one I could trust with this next mission.`
+      content: `/*
+      General Joe:
+
+      Excellent. I knew you would be the one I could trust with this next mission.
+*/`
     })
 
     const dialogue11_2 = await Dialog.create({
-      content: `We have placed a spy in their ranks. It is time to recover our operative and add that wealth of knowledge to our intelligence.`
+      content: `/*
+      General Joe:
+
+      We have placed a spy in their ranks. It is time to recover our operative and add that wealth of knowledge to our intelligence.
+*/`
     })
 
     const dialogue11_3 = await Dialog.create({
-      content: `Using arrays and any other tools you’ve learned, write a program to recover the spy. You will recognize our ally from the rest by the pizza/party hat.`
+      content: `/*
+      General Joe:
+
+      Using arrays and any other tools you’ve learned, write a program to recover the spy. You will recognize our ally from the rest by the pizza/party hat.
+*/`
     })
 
     const dialogue11_4 = await Dialog.create({
-      content: `Remember, referencing the documentation could save a life!!`
+      content: `/*
+      General Joe:
+
+      Remember, referencing the documentation could save a life!!
+*/`
     })
 
     await Level11.addDialogs([
       dialogue11,
       dialogue11_2,
       dialogue11_3,
+      dialogue11_4,
       dialogue11_4
     ])
 
     //level12
     const dialogue12 = await Dialog.create({
-      content: `To make use of the critical information gathered, it will be useful to familiarize you with array methods. A method is a built-in function that you can apply to manipulate or access data you need.`
+      content: `/*
+      General Joe:
+
+      To make use of the critical information gathered, it will be useful to familiarize you with array methods. A method is a built-in function that you can apply to manipulate or access data you need.
+*/`
     })
 
     const dialogue12_2 = await Dialog.create({
-      content: `We’ll go over some common array methods, but there are many, many more. Always remember the documentation is there to reference rather than trying to memorize them all.`
+      content: `/*
+      General Joe:
+
+      We’ll go over some common array methods, but there are many, many more. Always remember the documentation is there to reference rather than trying to memorize them all.
+*/`
     })
 
     await Level12.addDialogs([
       dialogue12,
+      dialogue12_2,
       dialogue12_2
     ])
 
     //level 13
     const dialogue13 = await Dialog.create({
-      content: `You’re now ready to begin acting on the intelligence we’ve gathered. Sergeant Sarah will brief you.`
+      content: `/*
+      General Joe:
+
+      You’re now ready to begin acting on the intelligence we’ve gathered. Sergeant Sarah will brief you.
+*/`
     })
 
     const dialogue13_2 = await Dialog.create({
-      content: `I’ve heard you’re the peak programming duck in our ranks. The King Duck. The peak king duck. You’re certainly piquing my interest, duck.`
+      content: `/*
+      Sergeant Sarah:
+
+      I’ve heard you’re the peak programming duck in our ranks. The King Duck. The peak king duck. You’re certainly piquing my interest, duck.
+*/`
     })
 
     const dialogue13_3 = await Dialog.create({
-      content: `Missiles are slow and expensive, but totally worth it against those tough ducks - the only problem is by the time we know where they are to target them it’s too late to use them. But I think we can use your skills to make this happen.`
+      content: `/*
+      Sergeant Sarah:
+
+      Missiles are slow and expensive, but totally worth it against those tough ducks - the only problem is by the time we know where they are to target them it’s too late to use them. But I think we can use your skills to make this happen.
+*/`
     })
 
     const dialogue13_4 = await Dialog.create({
-      content: `I’ve discovered their deployment schema. I can give you this information in the form of an array: General Joe tells me you’ll be able to find where a tough duck will be, and what place it’ll be in their deployment. With these calculations we’ll be able to target our missiles from afar.`
+      content: `/*
+      Sergeant Sarah:
+
+      I’ve discovered their deployment schema. I can give you this information in the form of an array; General Joe tells me you’ll be able to find where a tough duck will be, and what place it’ll be in their deployment. With these calculations we’ll be able to target our missiles from afar.
+*/`
     })
 
     const dialogue13_5 = await Dialog.create({
-      content: `And the documentation will fill in the gaps!`
+      content: `/*
+      Sergeant Sarah:
+
+      And the documentation will fill in the gaps!
+*/`
     })
 
     await Level13.addDialogs([
@@ -1610,90 +2206,138 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue13_2,
       dialogue13_3,
       dialogue13_4,
+      dialogue13_5,
       dialogue13_5
     ])
 
     //level14
     const dialogue14 = await Dialog.create({
-      content: `General Joe was right about you. I now see for myself that you are the one for this next mission.`
+      content: `/*
+      Sergeant Sarah:
+
+      General Joe was right about you. I now see for myself that you are the one for this next mission.
+*/`
     })
 
     const dialogue14_2 = await Dialog.create({
-      content: `The decision to extract me now was made because my partner was compromised. It was only a matter of time before they found me, too, and I was recovered; he is still in their custody.`
+      content: `/*
+      Sergeant Sarah:
+
+      The decision to extract me was made because my partner was compromised. It was only a matter of time before they found me, too, so I was recovered; he is still in their custody.
+*/`
     })
 
     const dialogue14_3 = await Dialog.create({
-      content: `Knowing there was a spy, they began encrypting their orders. I got the information on where he’s being held before I was recovered, but the clear location must be extracted from this jumbled mess.`
+      content: `/*
+      Sergeant Sarah:
+
+      Knowing there was a spy, they began encrypting their orders. I got the information on where he’s being held, but the location must be extracted from this jumbled mess.
+*/`
     })
 
     const dialogue14_4 = await Dialog.create({
-      content: `General Joe says you’ll be able to figure out how to use “Array.isArray()” from the documentation. That is what they use to decrypt these orders.`
+      content: `/*
+      Sergeant Sarah:
+
+      General Joe says you’ll be able to figure out how to use “Array.isArray()” from the documentation. That is what they use to decrypt these orders.
+*/`
     })
 
     await Level14.addDialogs([
       dialogue14,
       dialogue14_2,
       dialogue14_3,
+      dialogue14_4,
       dialogue14_4
     ])
 
     //level 15
     const dialogue15 = await Dialog.create({
-      content: `You’ve done us all a great service with the rescue of Gary. He is invaluable to our operation; his name is Gary, and that’s all you need to know about him.`
+      content: `/*
+      General Joe:
+
+      You’ve done us all a great service with the rescue of Gary. He is invaluable to our operation; his name is Gary, and that’s all you need to know about him.
+*/`
     })
 
     const dialogue15_2 = await Dialog.create({
-      content: `Once we get you up to speed on objects we will be primed for our final strike.`
+      content: `/*
+      General Joe:
+
+      Once we get you up to speed on objects we will be primed for our final strike.
+*/`
     })
 
     const dialogue15_3 = await Dialog.create({
-      content: `You, of course, know what an array looks like. Let’s take our original example:
+      content: `/*
+      General Joe:
 
-      const myArray = [4, 10, -5]`
+      You, of course, know what an array looks like. Let’s take our original example:
+
+      const myArray = [4, 10, -5]
+*/`
     })
 
     const dialogue15_4 = await Dialog.create({
-      content: `Now what if I presented it to you like this?
+      content: `/*
+      General Joe:
+
+      Now what if I presented it to you like this?
 
       const myArray = {
-      0: 4,
-      1: 10,
-      2: -5
-      }`
+        0: 4,
+        1: 10,
+        2: -5
+      }
+*/`
     })
 
     const dialogue15_5 = await Dialog.create({
-      content: `Do you see the relationship between them? We are explicitly stating the index and its value along with it rather than just the value. If you take this idea and “rename” the indices as any names you see fit, then you’ve got the concept of an object. In fact, an array is merely a special kind of object!`
+      content: `/*
+      General Joe:
+
+      Do you see the relationship between them? We are explicitly stating the index and its value along with it rather than just the value. If you take this idea and “rename” the indices as any names you see fit, then you’ve got the concept of an object. In fact, an array is merely a special kind of object!
+*/`
     })
 
     const dialogue15_6 = await Dialog.create({
-      content: `In the case of an object, we refer to them as “key-value pairs.” The “named” index is the key, and the value is its associated value. In the case of an array, the key is an integer; with an object it is a string.`
+      content: `/*
+      General Joe:
+
+      In the case of an object, we refer to them as “key-value pairs.” The “named” index is the key, and the value is its associated value. In the case of an array, the key is an integer; with an object it is a string.
+*/`
     })
 
     const dialogue15_7 = await Dialog.create({
-      content: `When thinking of an array as an object, it becomes easy to figure out how to navigate an object.
+      content: `/*
+      General Joe:
+
+      When thinking of an array as an object, it becomes easy to figure out how to navigate an object.
 
       const myArray = [4, 10, -5]
 
       const myObject = {
-      green: “turtle”,
-      circle: true,
-      cat: “cute”,
-      dog: 10
+        green: “turtle”,
+        circle: true,
+        cat: “cute”,
+        dog: 10
       }
 
       //The following statements are true
       myArray[2] === -5
       myObject[“cat”] === “cute”
-      myObject.cat === “cute”`
+      myObject.cat === “cute”
+
+      Note the ability to use dot notation with objects. This tells the code to assume the following word is a string, so it knows to find a string-type key. This will not work with arrays whose keys are integers.
+*/`
     })
 
     const dialogue15_8 = await Dialog.create({
-      content: `Note the ability to use dot notation with objects. This tells the code to assume the following word is a string, so it knows to find a string-type key. This will not work with arrays whose keys are integers.`
-    })
+      content: `/*
+      General Joe:
 
-    const dialogue15_9 = await Dialog.create({
-      content: `Like arrays, there is much to know about objects. This is a solid basis, but the documentation has anything else you might need.`
+      Like arrays, there is much to know about objects. This is a solid basis, but the documentation has anything else you might need.
+*/`
     })
 
 
@@ -1706,59 +2350,79 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue15_6,
       dialogue15_7,
       dialogue15_8,
-      dialogue15_9,
+      dialogue15_8
     ])
 
     //level 16
     const dialogue16 = await Dialog.create({
-      content: `There’s just one more thing and you will be ready.`
+      content: `/*
+      General Joe:
+
+      There’s just one more thing and you will be ready.
+*/`
     })
 
     const dialogue16_2 = await Dialog.create({
-      content: `For our final attack, you must know how to “build” objects as well as read them. You can define an object’s key-value pairs outright when you declare it, but you also can add them (or change them) as you go along just as easily. Let’s take our last example:
+      content: `/*
+      General Joe:
+
+      For our final attack, you must know how to “build” objects as well as read them. You can define an object’s key-value pairs outright when you declare it, but you also can add them (or change them) as you go along just as easily. Let’s take our last example:
 
       const myObject = {
-      green: “turtle”,
-      circle: true,
-      cat: “cute”,
-      dog: 10
-      }`
+        green: “turtle”,
+        circle: true,
+        cat: “cute”,
+        dog: 10
+      }
+*/`
     })
 
     const dialogue16_3 = await Dialog.create({
-      content: `Now if you code:
+      content: `/*
+      General Joe:
+
+      Now if you code:
 
       myObject.snake: “creepy”
 
       myObject will now have that key-value pair, looking like:
 
       {
-      green: “turtle”,
-      circle: true,
-      cat: “cute”,
-      dog: 10,
-      snake: “creepy”
-      }`
+        green: “turtle”,
+        circle: true,
+        cat: “cute”,
+        dog: 10,
+        snake: “creepy”
+      }
+*/`
     })
 
     const dialogue16_4 = await Dialog.create({
-      content: `In addition, you can make alterations at any point in your code:
+      content: `/*
+      General Joe:
+
+      In addition, you can make alterations at any point in your code:
 
       myObject.cat = “super, super cute”
 
       myObject will now have that change, looking like:
 
       {
-      green: “turtle”,
-      circle: true,
-      cat: “super, super cute”,
-      dog: 10,
-      snake: “creepy”
-      }`
+        green: “turtle”,
+        circle: true,
+        cat: “super, super cute”,
+        dog: 10,
+        snake: “creepy”
+      }
+*/`
     })
 
     const dialogue16_5 = await Dialog.create({
-      content: `Let’s build an enemy blueprint! Look into your documentation when needed.`
+      content: `/*
+      General Joe:
+
+      Let’s build an enemy blueprint! Look into your documentation when needed.
+*/`
     })
 
 
@@ -1767,91 +2431,124 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue16_2,
       dialogue16_3,
       dialogue16_4,
+      dialogue16_5,
       dialogue16_5
     ])
 
     //level 17
     const dialogue17 = await Dialog.create({
-      content: `All right. You’re ready to perform the Special Ops mission. With the recovery of Gary, we have retrieved critical information that we can use to put an end to this invasion. It won’t be easy - you’re going to have to pull out all the tricks you’ve learned up to this point.`
+      content: `/*
+      General Joe:
+
+      All right. You’re ready to perform the Special Ops mission. With the recovery of Gary, we have retrieved critical information that we can use to put an end to this invasion. It won’t be easy - you’re going to have to pull out all the tricks you’ve learned up to this point.
+*/`
     })
 
     const dialogue17_2 = await Dialog.create({
-      content: `The key to our victory lies in severing their communication. Each of the enemy looks the same to the untrained eye; however, we have discovered a critical feature of those responsible for dispersing their orders: squeakers.`
+      content: `/*
+      General Joe:
+
+      The key to our victory lies in severing their communication. Each of the enemy looks the same to the untrained eye; however, we have discovered a critical feature of those responsible for dispersing their orders: squeakers.
+*/`
     })
 
     const dialogue17_3 = await Dialog.create({
-      content: `Given an array of the entire army where each duck is given as an object, we will need you to do the following:`
+      content: `/*
+      General Joe:
+
+      Given an array of the entire army where each duck is given as an object, we will need you to do the following:
+*/`
     })
 
     const dialogue17_4 = await Dialog.create({
-      content: `Find where the ducks with squeakers are located, and which weapon to use based on how many are clustered together and if they have shields. You may fire a weapon at the first of a group to hit all of them. If any one duck in a cluster has a shield, it is the same as if all of them do.`
+      content: `/*
+      General Joe:
+
+      Find where the ducks with squeakers are located, and which weapon to use based on how many are clustered together and if they have shields. You may fire a weapon at the first of a group to hit all of them. If any one duck in a cluster has a shield, it is the same as if all of them do.
+*/`
     })
 
     const dialogue17_5 = await Dialog.create({
-      content: `Where the toughDucks are located, and how many guns will need to be focused on them based on their particular height and distance.`
+      content: `/*
+      General Joe:
+
+      Find where the toughDucks are located, and how many guns will need to be focused on them before they reach us based on each of their particular height and distance.
+*/`
     })
 
     const dialogue17_6 = await Dialog.create({
-      content: `The enemy objects will appear with keys depending on what type it is:`
+      content: `/*
+      General Joe:
+
+      The enemy objects will appear with keys depending on what type it is:
+
+      A squeaker will be:
+
+      enemyObj = {
+        type: “squeaker”,
+        attributes: {
+          hasShield: boolean
+              }
+      }
+
+      A toughDuck will be:
+
+      enemyObj = {
+        type: “toughDuck”,
+        attributes: {
+          height: integer,
+          distance: integer
+            }
+      }
+*/`
     })
 
     const dialogue17_7 = await Dialog.create({
-      content: `A squeaker will be:
+      content: `/*
+      General Joe:
 
-      enemyObj = {
+      Return your data as an array of objects. Each object should have the “type” key, and an “attributes” key whose value itself will be an object with keys of the necessary data. This is an example of what each kind would look like:
+
+      yourSqueaker = {
         type: “squeaker”,
-      attributes: {
-          hasShield: boolean
-              }
-        }`
+        attributes: {
+          index: indexNumber,
+          weapon: weaponToUse
+            }
+        }
+
+        yourToughDuck = {
+          type: “toughDuck”,
+          attributes: {
+            index: indexNumber,
+            guns: gunsRequired
+                }
+        }
+*/`
     })
 
     const dialogue17_8 = await Dialog.create({
-      content: `A toughDuck will be:
+      content: `/*
+      General Joe:
 
-      enemyObj = {
-      type: “toughDuck”,
-      attributes: {
-          height: integer,
-      distance: integer
-              }
-        }`
+      You can also bet it’ll be encrypted by now.
+*/`
     })
 
     const dialogue17_9 = await Dialog.create({
-      content: `Return your data as an array of objects. Each object should have the “type” key, and an “attributes” key whose value itself will be an object with keys of the necessary data. This is an example of what each kind would look like:`
+      content: `/*
+      General Joe:
+
+      This is for all the marbles, kid. It’s gonna be tough, but when you come out the other side we will be victorious!
+*/`
     })
 
     const dialogue17_10 = await Dialog.create({
-      content: `yourSqueaker = {
-        type: “squeaker”,
-        attributes: {
-              index: indexNumber,
-              weapon: weaponToUse
-                  }
-        }`
-    })
+      content: `/*
+      General Joe:
 
-    const dialogue17_11 = await Dialog.create({
-      content: `yourToughDuck = {
-        type: “toughDuck”,
-        attributes: {
-        index: indexNumber,
-        guns: gunsRequired
-            }
-        }`
-    })
-
-    const dialogue17_12 = await Dialog.create({
-      content: `You can also bet it’ll be encrypted by now.`
-    })
-
-    const dialogue17_13 = await Dialog.create({
-      content: `This is for all the marbles, kid. It’s gonna be tough, but when you come out the other side we will be victorious!`
-    })
-
-    const dialogue17_14 = await Dialog.create({
-      content: `I’d wish you luck, but I wish you documentation instead!`
+      I’d wish you luck, but I wish you documentation instead!
+*/`
     })
 
     await Level17.addDialogs([
@@ -1865,10 +2562,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue17_8,
       dialogue17_9,
       dialogue17_10,
-      dialogue17_11,
-      dialogue17_12,
-      dialogue17_13,
-      dialogue17_14
+      dialogue17_10
     ])
 
   await users[2].addLevels([

@@ -30,6 +30,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/login" component={Home} />
             <Route path="/level/list" component={ListLevels} />
+            <Route path="/level/tutorial/:id" component={SingleLevel} />
             {/* With the way it's currently coded, all new '/level/...' routes must be above unauthorized. :id is ok because it bypasses unauthorized if authorized */}
             <Route path="/level/unauthorized" component={UnauthorizedLevel} />
             <Route path="/level/:id" component={SingleLevel} />

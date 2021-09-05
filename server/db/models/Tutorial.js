@@ -1,0 +1,28 @@
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+
+const Tutorial = db.define('tutorial', {
+  name: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
+  },
+  prompt: {
+    type: Sequelize.TEXT
+  },
+  category: {
+    type: Sequelize.STRING,
+  },
+  startingJS: {
+    type: Sequelize.TEXT
+  },
+  password: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
+  }
+})
+
+module.exports = Tutorial
+

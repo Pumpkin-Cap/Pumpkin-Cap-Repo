@@ -3,6 +3,7 @@
 const db = require('./db')
 
 const User = require('./models/User')
+const Tutorial = require('./models/Tutorial')
 const Level = require('./models/Level')
 const Test = require('./models/Test')
 const Request = require('./models/Request')
@@ -22,6 +23,11 @@ Test.belongsTo(Level)
 Level.hasMany(Dialog)
 Dialog.belongsTo(Level)
 
+Tutorial.hasMany(Test)
+Test.belongsTo(Tutorial)
+
+Tutorial.hasMany(Dialog)
+Dialog.belongsTo(Tutorial)
 
 
 module.exports = {
@@ -29,6 +35,7 @@ module.exports = {
   models: {
     User,
     Level,
+    Tutorial,
     Test,
     Request,
     Friend,
