@@ -507,3 +507,17 @@ form div {
 	border-radius: 10px;
 	border: 1px solid;
 }
+
+.dialogueContainer {
+	background-color: blanchedalmond;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 75%;
+	margin: auto;
+}
+
+.dialogue {
+	max-width: 75%;
+}
