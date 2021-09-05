@@ -29,9 +29,9 @@ class Dialog extends React.Component {
         const dialogs = this.props.level.dialogs || []
 
         if (this.state.dialogIndex < dialogs.length) {
-            return <div style={{backgroundColor: 'blanchedalmond'}}>
+            return <div className="dialogueContainer">
                     <div className="dialogue">{dialogs[this.state.dialogIndex].content}</div>
-                    <button onClick={() => this.nextDialog(dialogs)} >Next</button>
+                    <button onClick={() => this.nextDialog(dialogs)}>Next</button>
                 </div>
         } else {
             return null

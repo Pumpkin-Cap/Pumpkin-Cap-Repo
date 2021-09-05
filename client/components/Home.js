@@ -83,9 +83,13 @@ export class Home extends React.Component {
 													padding: '0px',
 													marginTop: '20px',
 													height: '120px',
+													display: 'flex',
+													flexWrap: 'wrap'
 												}}>
-												<h2>{levelCategory}</h2>
-												<h4 style={{ marginBottom: '20px' }}>
+												<h2 style={{marginBottom: '-5px'}}>{levelCategory}</h2>
+												<h4 style={{
+													marginBottom: '30px',
+													marginTop: '20px'}}>
 													Level {levelNumber}
 												</h4>
 											</div>
