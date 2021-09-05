@@ -267,7 +267,6 @@ form div {
 
 #level-topics {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 }
 
@@ -314,7 +313,6 @@ form div {
 	display: -webkit-box;
 	background-color: #c4c4c4b9;
 	width: 900px;
-	position: fixed;
 	z-index: 4;
 	margin: 100px 100px;
 	padding: 30px;
@@ -506,4 +504,18 @@ form div {
 	padding: 10px;
 	border-radius: 10px;
 	border: 1px solid;
+}
+
+.dialogueContainer {
+	background-color: blanchedalmond;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 75%;
+	margin: auto;
+}
+
+.dialogue {
+	max-width: 75%;
 }
