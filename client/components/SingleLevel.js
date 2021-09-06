@@ -119,86 +119,101 @@ class SingleLevel extends React.Component {
           </script>
         </html>
 
-      `
-        if (canDo) {
-          let scale = this.state.scale
-          if (scale >= 8) {
-            scale = 8
-          } else {
-            scale += 1
-          }
-          this.setState({
-            doc,
-            scale
-          })
-        }
-      }
+      `;
+		if (canDo) {
+			let scale = this.state.scale;
+			if (scale >= 8) {
+				scale = 8;
+			} else {
+				scale += 1;
+			}
+			this.setState({
+				doc,
+				scale,
+			});
+		}
+	}
 
-    render () {
-      const sampleCode = this.props.level.startingJS
-      const level = this.props.level
-      const { isLoaded } = this.state
-        return (
-          <div>
-            {!isLoaded ? (
-              <LoadingPage />
-            ) : (
-          this.props.level.startingJS ? <>
-			<Anime duration={3000} translateX={[-1000, 5]} easing={'linear'}>
-				<img src="../generalJoe.png" className="generalJoe"></img>
-			</Anime>
-			{this.state.dialogOpen ? <Dialog level={level} closeDialog={this.closeDialog}/> :
-          <div id="level">
-            <div id="level-left">
-            {(this.props.level.id) && <div>
-                  <h2>{this.props.level.name}</h2>
-                  <h3>{this.props.level.prompt}</h3>
-                  </div>}
-            <div id="codeIframe">
-              <iframe id="thing"
-                srcDoc={this.state.doc}
-                title="output"
-                sandbox="allow-scripts allow-top-navigation allow-same-origin"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-              />
-            </div>
+	render() {
+		const sampleCode = this.props.level.startingJS;
+		const level = this.props.level;
+		const { isLoaded } = this.state;
+		return (
+			<div>
+				{!isLoaded ? (
+					<LoadingPage />
+				) : this.props.level.startingJS ? (
+					<>
+						<Anime duration={2000} opacity={[0, 1]} easing={'linear'}>
+							<img src='../generalJoe.png' className='generalJoe'></img>
+						</Anime>
+						{this.state.dialogOpen ? (
+							<Dialog level={level} closeDialog={this.closeDialog} />
+						) : (
+							<div id='level'>
+								<div id='level-left'>
+									{this.props.level.id && (
+										<div id='level-text'>
+											<h2>{this.props.level.name}</h2>
+											<h3>{this.props.level.prompt}</h3>
+										</div>
+									)}
+									<div id='codeIframe'>
+										<iframe
+											id='thing'
+											srcDoc={this.state.doc}
+											title='output'
+											sandbox='allow-scripts allow-top-navigation allow-same-origin'
+											frameBorder='0'
+											width='100%'
+											height='100%'
+										/>
+									</div>
 
+									<button
+										className='runButton'
+										onClick={() => this.setDoc(this.state.animationIsDone)}>
+										Run
+									</button>
 
-            <button className="runButton" onClick={() => this.setDoc(this.state.animationIsDone)}>Run</button>
+									<div id='popbox'>
+										{level.tests &&
+											level.tests.every((test, index) => {
+												if (this.state.testResults[index] === 'PASSED') {
+													return true;
+												}
+											}) && (
+												<LevelComplete handleNextLevel={this.handleNextLevel} />
+											)}
+									</div>
 
-					<div id='popbox'>
-						{level.tests &&
-							level.tests.every((test, index) => {
-								if (this.state.testResults[index] === 'PASSED') {
-									return true;
-								}
-							}) && <LevelComplete handleNextLevel={this.handleNextLevel} />}
-					</div>
-
-              <Editor
-                height="50vh"
-                width="50vw"
-                fontsize="12px"
-                value={this.state.js}
-                defaultLanguage="javascript"
-                theme="vs-dark"
-                onChange={this.onChange}
-                defaultValue={sampleCode}
-                options={{
-                  readOnly: false,
-                  lineHeight: 25,
-                }}
-              />
-          </div>
-          <DuckList results={this.state.testResults} scale={this.state.scale}/>
-          <BottomBar />
-          </div>
-          } </>  : null)}
-      </div>
-        )
-      }
+									<Editor
+										height='50vh'
+										width='50vw'
+										fontsize='12px'
+										value={this.state.js}
+										defaultLanguage='javascript'
+										theme='vs-dark'
+										onChange={this.onChange}
+										defaultValue={sampleCode}
+										options={{
+											readOnly: false,
+											lineHeight: 25,
+										}}
+									/>
+								</div>
+								<DuckList
+									results={this.state.testResults}
+									scale={this.state.scale}
+								/>
+								<BottomBar />
+							</div>
+						)}{' '}
+					</>
+				) : null}
+			</div>
+		);
+	}
 }
 
 const mapState = (state) => ({

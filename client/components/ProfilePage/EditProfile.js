@@ -124,18 +124,6 @@ class EditProfile extends React.Component {
 						<Button onClick={this.closeModal}>close</Button>
 					</div>
 					<form onSubmit={this.handleEditUser} name={this.name}>
-						{/* <FormControl style={{ marginTop: "50px" }}>
-                <InputLabel
-                    style={{ transform: "translateX(15px)", fontSize: "12px" }}
-                    id="label"
-                >
-                    Email
-                </InputLabel>
-                <Input
-                    variant="outlined"
-                    name="email"
-                />
-                </FormControl> */}
 						<FormControl style={{ marginTop: '50px' }}>
 							<InputLabel
 								style={{ transform: 'translateX(15px)', fontSize: '12px' }}

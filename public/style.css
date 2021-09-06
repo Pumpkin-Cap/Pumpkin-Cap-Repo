@@ -119,6 +119,11 @@ form div {
 	margin: 15px;
 }
 
+#level-text {
+	background-color: #c4c4c4ad;
+	border-radius: 20px;
+}
+
 /*to alter*/
 #level h2 {
 	display: flex;
@@ -151,7 +156,6 @@ form div {
 
 #profileContainer {
 	display: flex;
-	/* flex-direction: column; */
 	align-items: center;
 	margin: 100px 100px;
 	padding: 50px;
@@ -189,7 +193,6 @@ form div {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	/* z-index: -1; */
 }
 
 .generalJoe {
@@ -245,14 +248,19 @@ form div {
 
 #profile-level-link {
 	border-style: outset;
-	background-color: #b6ad90;
+	background-color: #c4c4c4;
 	padding: 5px;
 	margin-top: 5px;
 }
 
 #profile-level-link:hover {
 	border-style: inset;
-	background-color: #c4c4c473;
+	background-color: #8a8a8a;
+}
+
+.this-edit-button {
+	display: flex;
+	align-self: flex-end;
 }
 
 #edit-profile-button {
@@ -340,7 +348,7 @@ form div {
 	border-radius: 15px;
 	border-style: double;
 	border-width: 3px;
-	background-color: #8f8b8b9c;
+	background-color: #8a8a8a9c;
 	padding: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -378,7 +386,6 @@ form div {
 	justify-content: space-between;
 	bottom: 10px;
 	right: 10px;
-	/* left: 10px; */
 	align-items: flex-end;
 }
 
@@ -411,19 +418,18 @@ form div {
 }
 
 .friends-button {
-	background-color: #b6ad90;
+	background-color: #c4c4c4;
 	border-style: outset;
 	width: 100px;
 }
 
 .friends-button:hover {
-	background-color: #a68a64;
+	background-color: #8a8a8a;
 	border-style: inset;
 }
 
 .ghost-friends-button {
-	border-color: #c2c5aa;
-	background-color: #c2c5aa;
+	border-color: #8a8a8a;
 	width: 25px;
 }
 
@@ -435,7 +441,7 @@ form div {
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
-	background-color: #b6ad90;
+	background-color: #c4c4c4;
 	padding: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -456,8 +462,8 @@ form div {
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #c2c5aa;
-	background-color: #c2c5aa;
+	border-color: #8a8a8a;
+	background-color: #c4c4c4;
 	padding: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -466,7 +472,8 @@ form div {
 }
 
 #ghost-friend-list-title {
-	color: #c2c5aa;
+	font-weight: bold;
+	color: #000;
 }
 
 .top-profileContainer-leftSection {
@@ -506,21 +513,20 @@ form div {
 	border: 1px solid;
 }
 
-<<<<<<< HEAD
-.this-edit-button {
-	position: fixed;
-=======
 .dialogueContainer {
-	background-color: blanchedalmond;
+	background-color: #c4c4c4ad;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	max-width: 75%;
-	margin: auto;
+	margin: 250px 290px;
+	padding: 50px;
+	text-align: center;
+	font-weight: bold;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dialogue {
 	max-width: 75%;
->>>>>>> 627d4cee0d825145ed99594cfd985f88da65b521
 }
