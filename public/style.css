@@ -120,8 +120,8 @@ form div {
 }
 
 #level-text {
-	background-color: #c4c4c4ad;
-	border-radius: 20px;
+  background-color: #c4c4c4ad;
+  border-radius: 20px;
 }
 
 /*to alter*/
@@ -155,19 +155,19 @@ form div {
 }
 
 #profileContainer {
-	display: flex;
-	align-items: center;
-	margin: 100px 100px;
-	padding: 50px;
-	background-color: #c4c4c481;
-	z-index: 0;
-	position: relative;
-	margin-left: 25%;
-	margin-right: 25%;
-	justify-content: center;
-	text-align: center;
-	border-radius: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  align-items: center;
+  margin: 100px 100px;
+  padding: 50px;
+  background-color: #c4c4c481;
+  z-index: 0;
+  position: relative;
+  margin-left: 25%;
+  margin-right: 25%;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .evilDuck {
@@ -190,9 +190,9 @@ form div {
 
 /*to alter*/
 .duckDiv {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .generalJoe {
@@ -247,20 +247,20 @@ form div {
 }
 
 #profile-level-link {
-	border-style: outset;
-	background-color: #c4c4c4;
-	padding: 5px;
-	margin-top: 5px;
+  border-style: outset;
+  background-color: #c4c4c4;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 #profile-level-link:hover {
-	border-style: inset;
-	background-color: #8a8a8a;
+  border-style: inset;
+  background-color: #8a8a8a;
 }
 
 .this-edit-button {
-	display: flex;
-	align-self: flex-end;
+  display: flex;
+  align-self: flex-end;
 }
 
 #edit-profile-button {
@@ -275,9 +275,7 @@ form div {
 
 #level-topics {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-
 }
 
 #level-menu {
@@ -320,15 +318,14 @@ form div {
 }
 
 #level-menu {
-	display: -webkit-box;
-	background-color: #c4c4c4b9;
-	width: 900px;
-	z-index: 4;
-	margin: 100px 100px;
-	padding: 30px;
-	border-radius: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+  display: -webkit-box;
+  background-color: #c4c4c4b9;
+  width: 900px;
+  z-index: 4;
+  margin: 100px 100px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #level-description {
@@ -346,16 +343,17 @@ form div {
 }
 
 #ghost-level-description {
-	width: 35%;
-	height: fit-content;
-	border-radius: 15px;
-	border-style: double;
-	border-width: 3px;
-	background-color: #8a8a8a9c;
-	padding: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin: 10px;
+  width: 35%;
+  height: fit-content;
+  border-radius: 15px;
+  border-style: double;
+  border-color: #c4c4c4b9;
+  border-width: 3px;
+  background-color: #c4c4c4b9;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px;
 }
 
 #profile-completed-levels {
@@ -384,12 +382,12 @@ form div {
 }
 
 #bottomBar {
-	display: flex;
-	position: fixed;
-	justify-content: space-between;
-	bottom: 10px;
-	right: 10px;
-	align-items: flex-end;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  bottom: 10px;
+  right: 10px;
+  align-items: flex-end;
 }
 
 #bottomBarOpenSymbol {
@@ -421,38 +419,38 @@ form div {
 }
 
 .friends-button {
-	background-color: #c4c4c4;
-	border-style: outset;
-	width: 100px;
+  background-color: #c4c4c4;
+  border-style: outset;
+  width: 100px;
 }
 
 .friends-button:hover {
-	background-color: #8a8a8a;
-	border-style: inset;
+  background-color: #8a8a8a;
+  border-style: inset;
 }
 
 .ghost-friends-button {
-	border-color: #8a8a8a;
-	width: 25px;
+  border-color: #8a8a8a;
+  width: 25px;
 }
 
 #friend-list {
-	display: flex;
-	flex-direction: column;
-	width: 150px;
-	height: 100px;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 1px;
-	background-color: #c4c4c4;
-	padding: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	justify-content: flex-start;
-	align-content: center;
-	overflow-y: scroll;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #c4c4c4;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  justify-content: flex-start;
+  align-content: center;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 #friend-list::-webkit-scrollbar {
@@ -460,23 +458,23 @@ form div {
 }
 
 #ghost-friend-list {
-	width: 150px;
-	height: 100px;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #8a8a8a;
-	background-color: #c4c4c4;
-	padding: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #8a8a8a;
+  background-color: #c4c4c4;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 #ghost-friend-list-title {
-	font-weight: bold;
-	color: #000;
+  font-weight: bold;
+  color: #000;
 }
 
 .top-profileContainer-leftSection {
@@ -529,19 +527,19 @@ form div {
 }
 
 .dialogueContainer {
-	background-color: #c4c4c4ad;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	max-width: 75%;
-	margin: 250px 290px;
-	padding: 50px;
-	text-align: center;
-	font-weight: bold;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #c4c4c4ad;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 75%;
+  margin: 250px 290px;
+  padding: 50px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dialogue {
-	max-width: 75%;
+  max-width: 75%;
 }
