@@ -18,8 +18,7 @@ const setLevel = (level) => ({
 export const fetchLevel = (id) => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
-		const queryString = window.location.search;
-		const { data } = await axios.get(`/api/level/${id}/${queryString}`, {
+		const { data } = await axios.get(`/api/level/${id}`, {
 			headers: { authorization: token },
 		});
 		dispatch(setLevel(data));

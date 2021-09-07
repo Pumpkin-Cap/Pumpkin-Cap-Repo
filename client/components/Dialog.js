@@ -15,6 +15,19 @@ class Dialog extends React.Component {
         this.setDoc = this.setDoc.bind(this)
     }
 
+    // componentDidMount(){
+    //     console.log('level: ',this.props.level)
+    //     this.setState({doc: this.props.level.dialogs[0].content});
+
+    // }
+
+    // componentDidUpdate(prevProps){
+    //     if (prevProps.level.id !== this.props.level.id){
+    //         this.setState({doc: this.props.level.dialogs[0].content});
+    //     }
+
+    // }
+
     nextDialog(dialogs) {
         this.setState({
             dialogIndex: this.state.dialogIndex + 1
