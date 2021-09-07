@@ -20,23 +20,9 @@ router.get('/list', requireToken, async (req, res, next) => {
 router.get('/tutorial/list', requireToken, async (req, res, next) => {
 	try {
 		const tutorials = await Tutorial.findAll({
-			include: { model: User, where: { id: req.user.id }, required: false },
 			order: [['id', 'ASC']],
 		});
 		res.send(tutorials);
-	} catch (err) {
-		next(err);
-	}
-});
-
-router.get('/complete/tutorial/:id', requireToken, async (req, res, next) => {
-	try {
-		const tutorial = await Level.findByPk(parseInt(req.params.id) + 1, {
-			include: Test,
-		});
-		if (tutorial) {
-			res.json(tutorial);
-		}
 	} catch (err) {
 		next(err);
 	}

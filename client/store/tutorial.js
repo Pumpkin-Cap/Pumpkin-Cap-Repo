@@ -18,7 +18,7 @@ export const fetchTutorial = (id) => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
 		const queryString = window.location.search;
-		const { data } = await axios.get(`/api/level/tutorial/${id}/${queryString}`, {
+		const { data } = await axios.get(`/api/level/tutorial/${id}`, {
 			headers: { authorization: token },
 		});
 		dispatch(setTutorial(data));
@@ -32,7 +32,7 @@ export const fetchTutorial = (id) => async (dispatch) => {
 export const fetchTutorials = () => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
-		const { data } = await axios.get(`/api/level/list`, {
+		const { data } = await axios.get(`/api/level/tutorial/list`, {
 			headers: { authorization: token },
 		});
 		dispatch(setTutorial(data));
@@ -41,14 +41,20 @@ export const fetchTutorials = () => async (dispatch) => {
 	}
 };
 
-export const nextLevel = (id) => async (dispatch) => {
+export const nextTutorial = (id) => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
-		const { data } = await axios.get(`/api/level/complete/tutorial/${id}`, {
-			headers: { authorization: token },
-		});
-		dispatch(setTutorial(data));
-		return data;
+		const nextId = parseInt(id) + 1;
+		console.log('nextId',typeof(nextId))
+		if (nextId > 5){
+			window.location.replace('/level/list');
+		}else{
+			const { data } = await axios.get(`/api/level/tutorial/${nextId}`, {
+				headers: { authorization: token },
+			});
+			dispatch(setTutorial(data));
+			return data;
+		}
 	} catch (levelError) {
 		console.log('These are not the ducks you are looking for', levelError);
 	}

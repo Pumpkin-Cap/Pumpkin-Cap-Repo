@@ -23,6 +23,9 @@ Test.belongsTo(Level)
 Level.hasMany(Dialog)
 Dialog.belongsTo(Level)
 
+User.belongsToMany(Tutorial, {through: 'completedTutorial'})
+Tutorial.belongsToMany(User, {through: 'completedTutorial'})
+
 Tutorial.hasMany(Test)
 Test.belongsTo(Tutorial)
 

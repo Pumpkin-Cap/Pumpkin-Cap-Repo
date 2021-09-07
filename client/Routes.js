@@ -6,6 +6,7 @@ import Home from './components/Home';
 import ListLevels from './components/ListLevels';
 import Profile from './components/ProfilePage/Profile';
 import SingleLevel from './components/SingleLevel';
+import SingleTutorial from './components/SingleTutorial';
 import UnauthorizedLevel from './components/UnauthorizedLevel';
 import PageNotFound from './components/PageNotFound';
 import BioPage from './components/BioPage'
@@ -30,7 +31,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/login" component={Home} />
             <Route path="/level/list" component={ListLevels} />
-            <Route path="/level/tutorial/:id" component={SingleLevel} />
+            <Route path="/level/tutorial/:id" component={SingleTutorial} />
             {/* With the way it's currently coded, all new '/level/...' routes must be above unauthorized. :id is ok because it bypasses unauthorized if authorized */}
             <Route path="/level/unauthorized" component={UnauthorizedLevel} />
             <Route path="/level/:id" component={SingleLevel} />

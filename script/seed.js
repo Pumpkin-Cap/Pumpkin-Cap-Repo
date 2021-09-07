@@ -83,24 +83,16 @@ async function seed() {
     If you've ever wanted to have a leisurely chat with no one in particular or perhaps even your future self, then "comments" is the feature you've been looking for. Simply by denoted code as a comment, the entire section will be ignored by the compiler and is there purely to be read by the programmer reading the code. In JavaScript, comments are made by:
 
     // Two forward slashes will denote an entire line as a comment, and
-
+*/
     /* forward slash - asterisk will open a comment block
     Which will then continue
     For as long as
     You want it to
     Until
     You close it was an asterisk - forward slash */
-
+/*
     You will see many comments throughout our missions. They will either provide direction, or denote the area where your code should be written.
-*/
-
-    const winCommand = "I win!!"
-
-    function myTutorialFunction(){
-    //make the function return winCommand to win
-
-    return (/*winCommand*/)
-    }`,
+*/`,
   });
 
   const TutorialOneTest = await Test.create({
@@ -130,15 +122,7 @@ async function seed() {
     Think of it this way. The methods of many individual thinkers before you have been catalogued into an observation of common good practice. These conventions are meant as guidelines to help instill a strong foundation in your coding methods. The shoulders of giants are available to you - all you need is to stand upon them.
 
     As you're presented conventions both here and throughout your career, be sure to understand why they are before any consideration to break them.
-*/
-
-    const winCommand = "I win!!"
-
-    function myTutorialFunction(){
-    //make the function return winCommand to win
-
-    return (/*winCommand*/)
-    }`,
+*/`,
   });
 
   const TutorialTwoTest = await Test.create({
@@ -183,15 +167,7 @@ async function seed() {
     This code will not compile, having an error when you try to reassign a constant.
 
     Why would you make something a constant when you can just use “let” instead? That’s a great question! While “let” does everything “const” can and more, by declaring something a “constant” that should be constant will work to error-proof your program.
-*/
-
-    const winCommand = "I win!!"
-
-    function myTutorialFunction(){
-    //make the function return winCommand to win
-
-    return (/*winCommand*/)
-    }`,
+*/`,
   });
 
   const TutorialThreeTest = await Test.create({
@@ -216,18 +192,10 @@ async function seed() {
     category: "Tutorials",
     password: "n",
     startingJS: `/*
-    Number” and “string” are two examples of data types. A data type is the kind of data you’re working with. Different data types have different things that can be done to and with them, and there is a lot to explore. Knowing what you’re working with makes it easier to find these methods and execute what you’re trying to accomplish.
+    "Number” and “string” are two examples of data types. A data type is the kind of data you’re working with. Different data types have different things that can be done to and with them, and there is a lot to explore. Knowing what you’re working with makes it easier to find these methods and execute what you’re trying to accomplish.
 
     Remember: if you can think to do it, then there’s a way to do it. Just look it up in the documentation!
-*/
-
-    const winCommand = "I win!!"
-
-    function myTutorialFunction(){
-    //make the function return winCommand to win
-
-    return (/*winCommand*/)
-    }`,
+*/`,
   });
 
   const TutorialFourTest = await Test.create({
@@ -262,10 +230,11 @@ async function seed() {
     }
 
 /////////////////////////////////////
+
     Let’s take a look at each of these pieces.
+*/
 
-
-    function myFunction(parameters) {
+    function /*myFunction(parameters) {
 
     Your code!
 
@@ -275,7 +244,8 @@ async function seed() {
     This is the declaration of your function. By declaring this a “function,” it tells the compiler to treat it as one: data goes in, things happen, and data comes out.
 
 /////////////////////////////////////
-    function myFunction(parameters) {
+
+    function*/ myFunction/*(parameters) {
 
     Your code!
 
@@ -292,7 +262,8 @@ async function seed() {
     nameMeWhateverYouWantButRememberYouWillNeedToTypeMeWhenYouWantToUseMe
 
 /////////////////////////////////////
-    function myFunction(parameters) {
+
+    function myFunction*/(parameters) /*{
 
     Your code!
 
@@ -307,20 +278,22 @@ async function seed() {
     Three:		myFunction(integerOne, integerTwo, string)
 
 /////////////////////////////////////
-    function myFunction(parameters) {
 
+    function myFunction(parameters)*/ {
+/*
     Your code!
 
-    return a value
+    return a value*/
     }
-
+/*
     These brackets contain the code of your function. You’ll see these brackets for more than just functions - so get used to them!
 
 /////////////////////////////////////
+
     function myFunction(parameters) {
-
+*/
     Your code!
-
+/*
     return a value
     }
 
@@ -328,12 +301,13 @@ async function seed() {
 
 
 /////////////////////////////////////
+
     function myFunction(parameters){
 
     Your code!
-
+*/
     return aValue
-    }
+/*  }
 
     Your function doesn’t need to return anything, but the return statement is often used in a function. This will “return” whatever value you choose (in this case “aValue”) - whether it be a number, string, boolean, or any other. This will likely be “why” your function exists in the first place.
 
@@ -343,15 +317,7 @@ async function seed() {
 
     But be careful! Whether the return is at the end of your function or not, once you reach it your function will end.
 
-*/
-
-    const winCommand = "I win!!"
-
-    function myTutorialFunction(){
-    //make the function return winCommand to win
-
-    return (/*winCommand*/)
-    }`,
+*/`,
   });
 
   const TutorialFiveTest = await Test.create({
@@ -1603,10 +1569,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Let's get you up to speed on comments.
 */`
   })
+  const dialogue2T1 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on comments.
+*/`
+  })
 
   await Tutorial1.addDialogs([
     dialogueT1,
-    dialogueT1
+    dialogue2T1
   ])
 
   //Tutorial 2
@@ -1618,10 +1592,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Let's get you up to speed on Conventions.
 */`
   })
+  const dialogue2T2 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Conventions.
+*/`
+  })
 
   await Tutorial2.addDialogs([
     dialogueT2,
-    dialogueT2
+    dialogue2T2
   ])
 
   //Tutorial 3
@@ -1633,10 +1615,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Let's get you up to speed on Variable Types.
 */`
   })
+  const dialogue2T3 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Variable Types.
+*/`
+  })
 
   await Tutorial3.addDialogs([
     dialogueT3,
-    dialogueT3
+    dialogue2T3
   ])
 
   //Tutorial 4
@@ -1648,10 +1638,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Let's get you up to speed on Data Types.
 */`
   })
+  const dialogue2T4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Data Types.
+*/`
+  })
 
   await Tutorial4.addDialogs([
     dialogueT4,
-    dialogueT4
+    dialogue2T4
   ])
 
   //Tutorial 5
@@ -1663,10 +1661,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     Let's get you up to speed on Functions.
 */`
   })
+  const dialogue2T5 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let's get you up to speed on Functions.
+*/`
+  })
 
   await Tutorial5.addDialogs([
     dialogueT5,
-    dialogueT5
+    dialogue2T5
   ])
 
   //level 1
@@ -1704,11 +1710,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue1_4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    And always remember the documentation is there if you need it!
+*/`
+  })
+
   await Level1.addDialogs([
     dialogue1,
     dialogue1_2,
     dialogue1_3,
-    dialogue1_3
+    dialogue1_4
   ])
 
   //level2
@@ -1739,11 +1754,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue2_4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    And don’t forget to reference the documentation whenever needed!
+*/`
+  })
+
   await Level2.addDialogs([
     dialogue2,
     dialogue2_2,
     dialogue2_3,
-    dialogue2_3
+    dialogue2_4
   ])
 
   //level3
@@ -1773,11 +1797,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue3_4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    And don’t forget to check the documentation!
+*/`
+  })
+
   await Level3.addDialogs([
     dialogue3,
     dialogue3_2,
     dialogue3_3,
-    dialogue3_3
+    dialogue3_4
   ])
 
   //level4
@@ -1815,11 +1848,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue4_4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Let’s run a quick drill! And don’t forget the documentation!
+*/`
+  })
+
   await Level4.addDialogs([
     dialogue4,
     dialogue4_2,
     dialogue4_3,
-    dialogue4_3
+    dialogue4_4
   ])
 
   //level5
@@ -1859,12 +1901,21 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+const dialogue5_5 = await Dialog.create({
+  content: `/*
+  General Joe:
+
+
+  The documentation is always there!
+*/`
+})
+
   await Level5.addDialogs([
     dialogue5,
     dialogue5_2,
     dialogue5_3,
     dialogue5_4,
-    dialogue5_4
+    dialogue5_5
   ])
 
   const dialogue6 = await Dialog.create({
@@ -1912,13 +1963,22 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue6_6 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+
+    Don’t forget to consult your documentation!
+*/`
+  })
+
   await Level6.addDialogs([
     dialogue6,
     dialogue6_2,
     dialogue6_3,
     dialogue6_4,
     dialogue6_5,
-    dialogue6_5
+    dialogue6_6
   ])
 
   const dialogue7 = await Dialog.create({
@@ -1956,12 +2016,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue7_5 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+    Documentation: Use it!
+*/`
+  })
+
   await Level7.addDialogs([
     dialogue7,
     dialogue7_2,
     dialogue7_3,
     dialogue7_4,
-    dialogue7_4
+    dialogue7_5
   ])
 
   //level 8
@@ -1997,12 +2065,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue8_5 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+    The documentation is there if you need it.
+*/`
+  })
+
   await Level8.addDialogs([
     dialogue8,
     dialogue8_2,
     dialogue8_3,
     dialogue8_4,
-    dialogue8_4
+    dialogue8_5
   ])
 
   //level 9
@@ -2030,11 +2106,19 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
   })
 
+  const dialogue9_4 = await Dialog.create({
+    content: `/*
+    General Joe:
+
+    The documentation is always with you.
+*/`
+  })
+
   await Level9.addDialogs([
     dialogue9,
     dialogue9_2,
     dialogue9_3,
-    dialogue9_3
+    dialogue9_4
   ])
 
     //level 10
@@ -2087,13 +2171,21 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue10_6 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      There is a lot to know about arrays. I’ll lay out the basics, but the documentation has everything you could ever need.
+*/`
+    })
+
     await Level10.addDialogs([
       dialogue10,
       dialogue10_2,
       dialogue10_3,
       dialogue10_4,
       dialogue10_5,
-      dialogue10_5
+      dialogue10_6
     ])
 
     //11
@@ -2129,12 +2221,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue11_5 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      Remember, referencing the documentation could save a life!!
+*/`
+    })
+
     await Level11.addDialogs([
       dialogue11,
       dialogue11_2,
       dialogue11_3,
       dialogue11_4,
-      dialogue11_4
+      dialogue11_5
     ])
 
     //level12
@@ -2154,10 +2254,18 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue12_3 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      We’ll go over some common array methods, but there are many, many more. Always remember the documentation is there to reference rather than trying to memorize them all.
+*/`
+    })
+
     await Level12.addDialogs([
       dialogue12,
       dialogue12_2,
-      dialogue12_2
+      dialogue12_3
     ])
 
     //level 13
@@ -2201,13 +2309,21 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue13_6 = await Dialog.create({
+      content: `/*
+      Sergeant Sarah:
+
+      And the documentation will fill in the gaps!
+*/`
+    })
+
     await Level13.addDialogs([
       dialogue13,
       dialogue13_2,
       dialogue13_3,
       dialogue13_4,
       dialogue13_5,
-      dialogue13_5
+      dialogue13_6
     ])
 
     //level14
@@ -2243,12 +2359,20 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue14_5 = await Dialog.create({
+      content: `/*
+      Sergeant Sarah:
+
+      General Joe says you’ll be able to figure out how to use “Array.isArray()” from the documentation. That is what they use to decrypt these orders.
+*/`
+    })
+
     await Level14.addDialogs([
       dialogue14,
       dialogue14_2,
       dialogue14_3,
       dialogue14_4,
-      dialogue14_4
+      dialogue14_5
     ])
 
     //level 15
@@ -2340,6 +2464,14 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue15_9 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      Like arrays, there is much to know about objects. This is a solid basis, but the documentation has anything else you might need.
+*/`
+    })
+
 
     await Level15.addDialogs([
       dialogue15,
@@ -2350,7 +2482,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue15_6,
       dialogue15_7,
       dialogue15_8,
-      dialogue15_8
+      dialogue15_9
     ])
 
     //level 16
@@ -2425,6 +2557,14 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue16_6 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      Let’s build an enemy blueprint! Look into your documentation when needed.
+*/`
+    })
+
 
     await Level16.addDialogs([
       dialogue16,
@@ -2432,7 +2572,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue16_3,
       dialogue16_4,
       dialogue16_5,
-      dialogue16_5
+      dialogue16_6
     ])
 
     //level 17
@@ -2551,6 +2691,14 @@ divId: `return TRUE when .indexOf is correctly implemented`,
 */`
     })
 
+    const dialogue17_11 = await Dialog.create({
+      content: `/*
+      General Joe:
+
+      I’d wish you luck, but I wish you documentation instead!
+*/`
+    })
+
     await Level17.addDialogs([
       dialogue17,
       dialogue17_2,
@@ -2562,7 +2710,7 @@ divId: `return TRUE when .indexOf is correctly implemented`,
       dialogue17_8,
       dialogue17_9,
       dialogue17_10,
-      dialogue17_10
+      dialogue17_11
     ])
 
   await users[2].addLevels([
