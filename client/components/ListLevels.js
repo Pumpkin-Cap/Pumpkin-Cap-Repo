@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchLevels } from '../store/level';
+import { fetchTutorials } from '../store/tutorial';
 import { Link } from 'react-router-dom';
 import Anime from 'react-anime';
 import LoadingPage from './LoadingPage';
@@ -16,10 +17,12 @@ class ListLevels extends React.Component {
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleMouseOver = this.handleMouseOver.bind(this);
+		this.handleMouseLeave = this.handleMouseLeave.bind(this);
 	}
 
 	async componentDidMount() {
 		await this.props.getLevels();
+		await this.props.getTutorials();
 		this.setState({
 			isLoaded: true,
 		});
@@ -33,8 +36,12 @@ class ListLevels extends React.Component {
 		this.setState({ levelPrompt: event.target.id });
 	}
 
+	handleMouseLeave() {
+		this.setState({ levelPrompt: '' });
+	}
+
 	render() {
-		const { levels } = this.props;
+		const { levels, tutorials } = this.props;
 		const { isLoaded } = this.state;
 		let lastCompleted = 1;
 
@@ -78,7 +85,18 @@ class ListLevels extends React.Component {
 						</div>
 
 						<div id='level-list-menu'>
-							{Array.isArray(levels) &&
+							{this.state.openMenu === "Tutorials" ?
+								Array.isArray(tutorials) && tutorials.map((element) => {
+									return (
+										<div className='levelCard' key={element.id}>
+												<Link to={`/level/tutorial/${element.id}`}>
+													<div className='unlocked' onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave} id={element.prompt}>{element.name}</div>
+												</Link>
+										</div>
+									);
+								})
+						:
+							Array.isArray(levels) &&
 								levels
 									.filter((element) => element.category === this.state.openMenu)
 									.map((level) => {
@@ -95,6 +113,7 @@ class ListLevels extends React.Component {
 														<div
 															className='unlocked'
 															onMouseOver={this.handleMouseOver}
+															onMouseLeave={this.handleMouseLeave}
 															id={level.prompt}>
 															{level.name}
 														</div>
@@ -133,9 +152,11 @@ class ListLevels extends React.Component {
 const mapState = (state) => ({
 	user: state.auth,
 	levels: state.level,
+	tutorials: state.tutorial
 });
 
 const mapDispatch = (dispatch) => ({
 	getLevels: () => dispatch(fetchLevels()),
+	getTutorials: () => dispatch(fetchTutorials())
 });
 export default connect(mapState, mapDispatch)(ListLevels);
