@@ -136,7 +136,7 @@ class Profile extends React.Component {
 								</div>
 								<FriendsList />
 							</div>
-							<div id='this-edit-button'>
+							<div id='this-edit-button' style={{position: "absolute", left: "25px", right: "25px", display: "flex", marginTop: "400px"}}>
 								{this.props.auth.id === this.props.user.id &&
 									(verified ? (
 										<EditProfile setVerified={this.setVerified} />

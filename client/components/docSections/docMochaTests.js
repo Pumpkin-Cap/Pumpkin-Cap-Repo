@@ -21,8 +21,7 @@ return (`
       });
 
      after(function() {
-        parent.postMessage(JSON.stringify(testResults),"http://localhost:8080");
-        // parent.postMessage(JSON.stringify(testResults),"https://fullstack-warfare.herokuapp.com/");
+        parent.postMessage(JSON.stringify(testResults),"https://fullstack-warfare.herokuapp.com/");
 
          if (testDivs.every(div => (div.innerText === 'PASSED'))) {
              const resultLink = document.getElementById('link')

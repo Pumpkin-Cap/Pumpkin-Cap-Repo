@@ -193,12 +193,13 @@ form div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  z-index: -1;
 }
 
 .generalJoe {
   height: 200px;
   width: 200px;
-  position: absolute;
+  position: fixed;
 }
 
 #success {
@@ -258,10 +259,7 @@ form div {
   background-color: #8a8a8a;
 }
 
-.this-edit-button {
-  display: flex;
-  align-self: flex-end;
-}
+
 
 #edit-profile-button {
   border-style: outset;
@@ -362,6 +360,9 @@ form div {
   flex: 1;
   padding: 10px;
   height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  background-color: #c4c4c4;
   /* display: flex;
   width: -webkit-fill-available;
   max-width: 100%;
@@ -371,7 +372,7 @@ form div {
 
 .profile-completed-level {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   text-align: center;
 }
 
@@ -542,4 +543,18 @@ form div {
 
 .dialogue {
   max-width: 75%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dialogueBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-top: 250px;
 }

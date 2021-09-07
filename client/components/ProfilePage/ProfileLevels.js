@@ -19,14 +19,18 @@ class ProfileLevels extends React.Component {
             <div>
                 {completedLevels !== 0 && <div style={{marginBottom: "10px", textAlign:"center"}}>Levels Completed:</div>}
                 <div id="profile-completed-levels">
-                    <div className="profile-completed-level"><div className="profile-completed-title">Control Flow</div>
-                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Control Flow').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                    <div className="profile-completed-level"><div className="profile-completed-title">Loops</div>
-                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Loops').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                    <div className="profile-completed-level"><div className="profile-completed-title">Arrays</div>
-                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Arrays').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
-                    <div className="profile-completed-level"><div className="profile-completed-title">Objects</div>
-                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Objects').map((element) =>(<div key={element.id}>{element.name}</div>)))}</div>
+                    <div className="profile-completed-level">
+                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Control Flow').map((element) =>(<div key={element.id}>{element.name}</div>)))}
+                    <div className="profile-completed-title">Control Flow</div></div>
+                    <div className="profile-completed-level">
+                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Loops').map((element) =>(<div key={element.id}>{element.name}</div>)))}
+                    <div className="profile-completed-title">Loops</div></div>
+                    <div className="profile-completed-level">
+                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Arrays').map((element) =>(<div key={element.id}>{element.name}</div>)))}
+                    <div className="profile-completed-title">Arrays</div></div>
+                    <div className="profile-completed-level">
+                    {Array.isArray(levels) && (levels.filter(element => element.category === 'Objects').map((element) =>(<div key={element.id}>{element.name}</div>)))}
+                    <div className="profile-completed-title">Objects</div></div>
                 </div>
             </div>
         )
