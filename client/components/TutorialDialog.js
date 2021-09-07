@@ -3,23 +3,27 @@ import Editor from '@monaco-editor/react';
 
 
 
-class Dialog extends React.Component {
+class TutorialDialog extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
             dialogIndex: 1,
-            doc: this.props.level.dialogs[0].content
+            doc: this.props.tutorial.dialogs[0].content
         }
         this.nextDialog = this.nextDialog.bind(this)
         this.setDoc = this.setDoc.bind(this)
+    }
+
+    componentDidMount(){
+        console.log('dialogue array: ', this.props.tutorial.dialogs)
     }
 
     nextDialog(dialogs) {
         this.setState({
             dialogIndex: this.state.dialogIndex + 1
         })
-        this.setState({doc: this.props.level.dialogs[this.state.dialogIndex].content})
+        this.setState({doc: this.props.tutorial.dialogs[this.state.dialogIndex].content})
 
         if (this.state.dialogIndex + 1 === dialogs.length) {
             this.props.closeDialog()
@@ -29,7 +33,7 @@ class Dialog extends React.Component {
 
 	setDoc() {
 		const doc = `
-        ${this.props.level.dialogs[this.state.dialogIndex].content}
+        ${this.props.tutorial.dialogs[this.state.dialogIndex].content}
 
       `
       this.setState({ doc });
@@ -38,11 +42,11 @@ class Dialog extends React.Component {
 
 
     render() {
-
-        const dialogs = this.props.level.dialogs || []
+        const dialogs = this.props.tutorial.dialogs || []
+        console.log(this.state.dialogIndex)
+        console.log(dialogs.length)
 
         if (this.state.dialogIndex < dialogs.length) {
-
             return (
             <div><Editor
             height="75vh"
@@ -60,7 +64,6 @@ class Dialog extends React.Component {
                 <button onClick={() => this.nextDialog(dialogs)} >Next</button>
             </div>
             )
-
         } else {
             return null
         }
@@ -70,7 +73,7 @@ class Dialog extends React.Component {
 }
 
 
-export default Dialog
+export default TutorialDialog
 
 
 
