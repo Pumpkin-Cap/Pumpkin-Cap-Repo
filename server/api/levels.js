@@ -36,7 +36,10 @@ router.get('/complete/:id', requireToken, async (req, res, next) => {
 			await req.user.addLevel(parseInt(req.params.id));
 		}
 		const level = await Level.findByPk(parseInt(req.params.id) + 1, {
-			include: Test,
+			include: {
+				all: true,
+				nested: true
+			}
 		});
 		if (level) {
 			res.json(level);
