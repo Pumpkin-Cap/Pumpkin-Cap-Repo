@@ -45,7 +45,7 @@ export class Home extends React.Component {
 		return (
 			// <Anime duration={5000} opacity={[0, 1]}>
 			<div id='homepage'>
-				<Anime duration={5000} translateX={[-700, -50]} easing={'linear'}>
+				<Anime duration={3000} opacity={[0, 1]} easing={'linear'}>
 					{!this.props.username && (
 						<img src='../generalJoe.png' className='openingOfficer'></img>
 					)}
@@ -59,7 +59,7 @@ export class Home extends React.Component {
 						{!this.props.username && 'Join the fight!'}
 					</h3>
 				</div>
-				<Anime duration={5000} translateX={[700, 50]} easing={'linear'}>
+				<Anime duration={3000} opacity={[0, 1]} easing={'linear'}>
 					{!this.props.username && (
 						<img src='../sargeantSarah.png' className='openingOfficer'></img>
 					)}
@@ -84,12 +84,16 @@ export class Home extends React.Component {
 													marginTop: '20px',
 													height: '120px',
 													display: 'flex',
-													flexWrap: 'wrap'
+													flexWrap: 'wrap',
 												}}>
-												<h2 style={{marginBottom: '-5px'}}>{levelCategory}</h2>
-												<h4 style={{
-													marginBottom: '30px',
-													marginTop: '20px'}}>
+												<h2 style={{ marginBottom: '-5px' }}>
+													{levelCategory}
+												</h2>
+												<h4
+													style={{
+														marginBottom: '30px',
+														marginTop: '20px',
+													}}>
 													Level {levelNumber}
 												</h4>
 											</div>

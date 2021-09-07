@@ -134,19 +134,20 @@ class Profile extends React.Component {
 											);
 										})}
 								</div>
+								<FriendsList />
+							</div>
+							<div id='this-edit-button'>
+								{this.props.auth.id === this.props.user.id &&
+									(verified ? (
+										<EditProfile setVerified={this.setVerified} />
+									) : (
+										<VerifyPassword setVerified={this.setVerified} />
+									))}
+								{this.props.auth.id !== this.props.user.id && (
+									<button>Add Friend</button>
+								)}
 							</div>
 							<div id='top-profileContainer'>
-								<div>
-									{this.props.auth.id === this.props.user.id &&
-										(verified ? (
-											<EditProfile setVerified={this.setVerified} />
-										) : (
-											<VerifyPassword setVerified={this.setVerified} />
-										))}
-									{this.props.auth.id !== this.props.user.id && (
-										<button>Add Friend</button>
-									)}
-								</div>
 								<div id='top-profileContainer-mainSection'>
 									<h1>{this.props.user.username}</h1>
 									<div style={{ fontSize: 'x-large', marginBottom: '10px' }}>
@@ -196,7 +197,6 @@ class Profile extends React.Component {
 										)}
 									</h4>
 								</div>
-								<FriendsList />
 							</div>
 							{completedLevels !== 0 && <ProfileLevels />}
 						</div>
