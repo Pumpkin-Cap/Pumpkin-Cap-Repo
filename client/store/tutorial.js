@@ -45,7 +45,6 @@ export const nextTutorial = (id) => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
 		const nextId = parseInt(id) + 1;
-		console.log('nextId',typeof(nextId))
 		if (nextId > 5){
 			window.location.replace('/level/list');
 		}else{
