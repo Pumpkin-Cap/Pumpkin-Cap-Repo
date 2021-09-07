@@ -269,6 +269,7 @@ form div {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
 }
 
 #level-menu {
@@ -311,15 +312,15 @@ form div {
 }
 
 #level-menu {
-  display: -webkit-box;
-  background-color: #c4c4c4b9;
-  width: 900px;
-  position: fixed;
-  z-index: 4;
-  margin: 100px 100px;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: -webkit-box;
+	background-color: #c4c4c4b9;
+	width: 900px;
+	z-index: 4;
+	margin: 100px 100px;
+	padding: 30px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 #level-description {
@@ -517,4 +518,18 @@ form div {
   border: 5px double;
   width: 600px;
   height: 250px;
+}
+
+.dialogueContainer {
+	background-color: blanchedalmond;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 75%;
+	margin: auto;
+}
+
+.dialogue {
+	max-width: 75%;
 }

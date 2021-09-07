@@ -144,7 +144,7 @@ class SingleLevel extends React.Component {
               <LoadingPage />
             ) : (
           this.props.level.startingJS ? <>
-			<Anime duration={3000} translateX={[-1000, 100]} easing={'linear'}>
+			<Anime duration={3000} translateX={[-1000, 5]} easing={'linear'}>
 				<img src="../generalJoe.png" className="generalJoe"></img>
 			</Anime>
 			{this.state.dialogOpen ? <Dialog level={level} closeDialog={this.closeDialog}/> :

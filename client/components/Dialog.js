@@ -42,6 +42,7 @@ class Dialog extends React.Component {
         const dialogs = this.props.level.dialogs || []
 
         if (this.state.dialogIndex < dialogs.length) {
+
             return (
             <div><Editor
             height="75vh"
@@ -59,6 +60,7 @@ class Dialog extends React.Component {
                 <button onClick={() => this.nextDialog(dialogs)} >Next</button>
             </div>
             )
+
         } else {
             return null
         }
