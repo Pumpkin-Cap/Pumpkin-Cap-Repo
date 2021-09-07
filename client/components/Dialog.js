@@ -44,9 +44,9 @@ class Dialog extends React.Component {
         if (this.state.dialogIndex < dialogs.length) {
 
             return (
-            <div><Editor
-            height="75vh"
-            width="75vw"
+            <div className="dialogueBox"><Editor
+            height="45vh"
+            width="45vw"
             fontsize="12px"
             value={this.state.doc}
             defaultLanguage="javascript"

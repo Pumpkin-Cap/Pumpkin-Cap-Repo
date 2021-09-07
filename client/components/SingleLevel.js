@@ -170,11 +170,13 @@ class SingleLevel extends React.Component {
 										/>
 									</div>
 
+									<div className="buttonContainer">
 									<button
 										className='runButton'
 										onClick={() => this.setDoc(this.state.animationIsDone)}>
 										Run
 									</button>
+									</div>
 
 									<div id='popbox'>
 										{level.tests &&
