@@ -10,6 +10,7 @@ import SingleTutorial from './components/SingleTutorial';
 import UnauthorizedLevel from './components/UnauthorizedLevel';
 import PageNotFound from './components/PageNotFound';
 import BioPage from './components/BioPage'
+import WinPage from './components/WinPage'
 import {me} from './store'
 
 /**
@@ -37,6 +38,7 @@ class Routes extends Component {
             <Route path="/level/:id" component={SingleLevel} />
             <Route path="/user/:id" component={Profile} />
             <Route path="/aboutTheAuthor" component={BioPage} />
+            <Route path="/theWinPage" component={WinPage} />
             <Route component={PageNotFound} />
             <Redirect to="/home" />
           </Switch>

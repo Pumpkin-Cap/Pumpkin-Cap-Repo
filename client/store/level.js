@@ -45,11 +45,17 @@ export const fetchLevels = () => async (dispatch) => {
 export const nextLevel = (id) => async (dispatch) => {
 	try {
 		const token = window.localStorage.getItem(TOKEN);
-		const { data } = await axios.get(`/api/level/complete/${id}`, {
-			headers: { authorization: token },
-		});
-		dispatch(setLevel(data));
-		return data;
+
+		const nextId = parseInt(id) + 1;
+		if (nextId > 17){
+			window.location.replace('/theWinPage');
+		}else{
+			const { data } = await axios.get(`/api/level/complete/${id}`, {
+				headers: { authorization: token },
+			});
+			dispatch(setLevel(data));
+			return data;
+		}
 	} catch (levelError) {
 		console.log('These are not the ducks you are looking for', levelError);
 	}
