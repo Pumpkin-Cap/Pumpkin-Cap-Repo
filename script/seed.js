@@ -1398,8 +1398,45 @@ divId: `return TRUE when .indexOf is correctly implemented`,
     `,
     category: "Objects",
     password: 'wily',
-    startingJS: `function myFinalFunction(arrayOfEnemies){
+    startingJS: `/*
+    As a reminder:
+
+      enemySqueakerObj = {
+        type: “squeaker”,
+        attributes: {
+          hasShield: boolean
+              }
+      }
+
+      enemyToughDuckObj = {
+        type: “toughDuck”,
+        attributes: {
+          height: integer,
+          distance: integer
+            }
+      }
+
+      yourSqueakerObj = {
+        type: “squeaker”,
+        attributes: {
+          index: indexNumber,
+          weapon: weaponToUse
+            }
+        }
+
+        yourToughDuckObj = {
+          type: “toughDuck”,
+          attributes: {
+            index: indexNumber,
+            guns: gunsRequired
+                }
+        }
+
+*/
+    function myFinalFunction(arrayOfEnemies){
+
       //Do it. Do it.
+
       }
       `,
   });
