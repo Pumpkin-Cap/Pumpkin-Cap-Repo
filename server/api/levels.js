@@ -67,6 +67,15 @@ router.get('/:id', requireToken, userHasLevel, async (req, res, next) => {
 			all: true,
 			nested: true
 		}});
+
+		level.dialogs.sort((a, b) =>{
+			return a.id - b.id;
+		});
+
+		level.tests.sort((a, b) =>{
+			return a.id - b.id;
+		});
+
 		res.json(level);
 	} catch (err) {
 		next(err);
