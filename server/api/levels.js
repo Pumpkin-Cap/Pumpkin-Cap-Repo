@@ -55,6 +55,15 @@ router.get('/tutorial/:id', requireToken, async (req, res, next) => {
 			all: true,
 			nested: true
 		}});
+
+		tutorial.dialogs.sort((a, b) =>{
+			return a.id - b.id;
+		});
+
+		tutorial.tests.sort((a, b) =>{
+			return a.id - b.id;
+		});
+
 		res.json(tutorial);
 	} catch (err) {
 		next(err);
