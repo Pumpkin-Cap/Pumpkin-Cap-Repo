@@ -43,8 +43,6 @@ class TutorialDialog extends React.Component {
 
     render() {
         const dialogs = this.props.tutorial.dialogs || []
-        console.log(this.state.dialogIndex)
-        console.log(dialogs.length)
 
         if (this.state.dialogIndex < dialogs.length) {
             return (

@@ -83,7 +83,6 @@ class SingleTutorial extends React.Component {
 	async handleNextTutorial() {
 		const nextTutorial = await this.props.newTutorial(this.props.tutorial.id);
 		this.props.history.push(`/level/tutorial/${this.props.tutorial.id}`);
-console.log('the next tutorial' ,nextTutorial)
 		this.props.changeCode(nextTutorial.startingJS);
 		this.setState({
 			js: nextTutorial.startingJS,

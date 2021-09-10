@@ -12,12 +12,10 @@ class DuckList extends React.Component {
 
     render() {
 
-        console.log(this.props.results)
-
         const testResults = this.props.results || []
 
         return (
-            
+
 			<div className='duckDiv'>
             {this.props.tests.map((test,index) => {
                 if (testResults[index] === 'PASSED') {

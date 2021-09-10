@@ -28,7 +28,6 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/level/list">Levels</Link>
           <Link to={`/user/${userId}`}>Profile</Link>
-          {console.log("THIS IS THE UDER ID ", userId)}
           <a href="#" onClick={handleClick}>
             Logout
           </a>
