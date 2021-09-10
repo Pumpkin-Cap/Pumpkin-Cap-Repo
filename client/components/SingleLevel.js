@@ -61,12 +61,12 @@ class SingleLevel extends React.Component {
 		this.setState({ isLoaded: true });
 	}
 
-	componentDidUpdate(prevProps) {
+	async componentDidUpdate(prevProps) {
 		if (this.props.code != this.state.js) {
-			this.setState({ js: this.props.code });
+			await this.setState({ js: this.props.code });
 		}
 		if (prevProps.location.key !== this.props.location.key) {
-			this.props.getLevel(this.props.match.params.id);
+			await this.props.getLevel(this.props.match.params.id);
 		}
 	}
 
