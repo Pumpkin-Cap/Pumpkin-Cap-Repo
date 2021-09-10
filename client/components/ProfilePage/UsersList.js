@@ -11,7 +11,6 @@ class UsersList extends React.Component{
 
   render() {
     const { allUsers, search } = this.props;
-console.log('the search function in child ', search)
     return (
       <div id="profile-all-users-list-container">
 

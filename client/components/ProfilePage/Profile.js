@@ -74,12 +74,10 @@ class Profile extends React.Component {
 	}
 
 	search(origiRay) {
-		console.log('input in parent function ', origiRay);
 		let mutaRay = [...origiRay];
 		mutaRay = mutaRay.filter((element) =>
 			element.username.toLowerCase().includes(this.state.search.toLowerCase())
 		);
-		console.log('filtered array in parent function ', mutaRay);
 
 		return mutaRay;
 	}

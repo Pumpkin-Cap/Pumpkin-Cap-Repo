@@ -28,7 +28,6 @@ export class BottomBar extends React.Component {
 
     handleStartRoom() {
         const roomName = this.state.roomName
-        console.log('I joined the room: ', roomName)
         socket.emit('join-room', {roomName, userName: this.props.user.username});
         this.setState({
             inRoom: true,
@@ -43,7 +42,6 @@ export class BottomBar extends React.Component {
 
     handleLeaveRoom() {
         const roomName = this.state.roomName
-        console.log('I left the room: ', roomName)
         socket.emit('leave-room', {roomName, userName: this.props.user.username});
         this.setState({
             inRoom: false,
@@ -73,7 +71,6 @@ export class BottomBar extends React.Component {
                         {/* <button onClick={(e) => this.handleMessageRoom(e)}>MESSAGE ROOM</button> */}
                         {this.state.inRoom ? (
                             <>
-                            {console.log(this.state.roomName)}
                                 {this.state.inCall && <VideoChat roomID={this.state.roomName}/> }
                                 <div className="videoChatControls">
                                     <div>
