@@ -35,9 +35,10 @@ https://fullstack-warfare.herokuapp.com/
 * User progress get's tracked as they advance.
 
 
-## Demo
+## Video Demostration
 
-* -GIFS OF WEBSITE ONCE OF SATISFACTION WILL GO HERE-
+* https://drive.google.com/file/d/1Mzgq-EoAmsg7X_E1UXipnJXXLBjfDwCQ/view?usp=sharing
+    
 
 ## Credits
 1. Stephanie Durino
